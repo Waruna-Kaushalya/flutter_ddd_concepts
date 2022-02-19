@@ -1,6 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'failures.dart';
 
+/// this is value object validators
+/// this functions input [Strings] and
+/// return [Either] type
+/// [right] side is validated without any issue
+/// [left] side is retun when object has any issue
+
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   // Maybe not the most robust way of email validation but it's good enough
   const emailRegex =
