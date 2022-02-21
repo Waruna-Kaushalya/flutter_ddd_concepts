@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'failures.dart';
+import '../failures/failures.dart';
 
 /// this is value object validators
 /// this functions input [Strings] and

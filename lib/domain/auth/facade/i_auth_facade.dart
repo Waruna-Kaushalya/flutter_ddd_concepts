@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_ddd_concepts/domain/auth/value_objects.dart';
 
-import 'auth_failure.dart';
+import '../value_objects/value_objects.dart';
+import 'failures/auth_failure.dart';
 
 //this is like reposotory
 //abstraction for register and sign in with email and google sign in

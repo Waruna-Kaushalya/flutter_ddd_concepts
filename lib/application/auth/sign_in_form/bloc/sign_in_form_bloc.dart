@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../domain/auth/auth_failure.dart';
-import '../../../../domain/auth/i_auth_facade.dart';
-import '../../../../domain/auth/value_objects.dart';
+import '../../../../domain/auth/facade/failures/auth_failure.dart';
+import '../../../../domain/auth/facade/i_auth_facade.dart';
+import '../../../../domain/auth/value_objects/value_objects.dart';
 
 part 'sign_in_form_bloc.freezed.dart';
 part 'sign_in_form_event.dart';
@@ -16,7 +16,29 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     this._authFacade,
   ) : super(SignInFormState.initial()) {
     on<SignInFormEvent>((event, emit) {
-      // TODO: implement event handler
+      event.map(
+        /// Validate newly update email address
+        emailChanged: (value) {
+          emit(state.copyWith(
+            emailAddress: EmailAddress(value.emailStr),
+
+            /// registerd successfully --> some(right(unit))
+            /// unsscsefull --> none(left(AuthFailure))
+            authFailureOrSuccessOption: none(),
+          ));
+        },
+
+        /// Validate newly update password
+        passwordChanged: (value) {
+          emit(state.copyWith(
+            password: Password(value.passwordStr),
+            authFailureOrSuccessOption: none(),
+          ));
+        },
+        registerWithEmailAndPasswordPressed: (value) {},
+        signInWithEmailAndPasswordPressed: (value) {},
+        signInWithGooglePressed: (value) {},
+      );
     });
   }
 }

@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 
-import '../core/failures.dart';
-import '../core/value_objects.dart';
-import '../core/value_validators.dart';
+import 'failures/failures.dart';
+import 'core/value_objects.dart';
+import 'value_validators/value_validators.dart';
 
+/// EmailAddress data class
 class EmailAddress extends ValueObject<String> {
   /// Either is use for return validated value respose.
   /// that means [validateEmailAddress] function return
@@ -29,6 +30,7 @@ class EmailAddress extends ValueObject<String> {
   }
 }
 
+/// Password data class
 class Password extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
