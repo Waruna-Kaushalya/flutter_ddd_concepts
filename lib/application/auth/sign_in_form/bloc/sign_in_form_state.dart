@@ -6,6 +6,8 @@ class SignInFormState with _$SignInFormState {
     required EmailAddress emailAddress,
     required Password password,
     required bool showErrorMessages,
+
+    /// this bool is for show loading indicator while backend press happen
     required bool isSubmitting,
 
     /// why [Option]
