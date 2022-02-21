@@ -15,6 +15,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   SignInFormBloc(
     this._authFacade,
   ) : super(SignInFormState.initial()) {
+    //! asysnc is not written
     on<SignInFormEvent>((event, emit) {
       event.map(
         /// Validate newly update email address
@@ -35,7 +36,22 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             authFailureOrSuccessOption: none(),
           ));
         },
-        registerWithEmailAndPasswordPressed: (value) {},
+
+        /// checkif the entered email and password are valid.
+        ///
+        /// if valid,register using [IAuthFacade] and
+        /// emit Some<Right<Unit> in the [authFailureOrSuccessOption]
+        /// state field
+        ///
+        /// If invalid, indicate to start showing
+        /// error messages and keep the
+        /// [authFailureOrSuccessOption] set to None.
+        registerWithEmailAndPasswordPressed: (value) {
+          final isEmailValid = state.emailAddress.isValid();
+          final isPasswordValid = state.password.isValid();
+          // check email is valid or not
+          if (isEmailValid && isPasswordValid) {}
+        },
         signInWithEmailAndPasswordPressed: (value) {},
         signInWithGooglePressed: (value) async {
           emit(state.copyWith(

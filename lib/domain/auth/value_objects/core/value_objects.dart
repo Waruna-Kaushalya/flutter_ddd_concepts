@@ -20,6 +20,11 @@ abstract class ValueObject<T> {
   /// ptivate constructor
   Either<ValueFailure<T>, T> get value;
 
+  /// check email or pasword valid or not
+  /// if valid [value] has data in [right] side
+  /// then [isValid()] return true
+  bool isValid() => value.isRight();
+
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
