@@ -19,6 +19,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     on<SignInFormEvent>((event, emit) {
       event.map(
         /// Validate newly update email address
+        /// when user enter email and re enter email
         emailChanged: (value) {
           emit(state.copyWith(
             emailAddress: EmailAddress(value.emailStr),
@@ -48,10 +49,6 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// [authFailureOrSuccessOption] set to None.
         registerWithEmailAndPasswordPressed: (value) async {
           /// register the user using [IAuthFacade]
-          // failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
-          //   emailAddress: state.emailAddress,
-          //   password: state.password,
-          // );
 
           //! in here emit is not availeble in video
           //! emit add due to ocre emit is not in bloc call back isse
@@ -63,10 +60,6 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         },
         signInWithEmailAndPasswordPressed: (value) {
           /// sign in the user using [IAuthFacade]
-          // failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
-          //   emailAddress: state.emailAddress,
-          //   password: state.password,
-          // );
 
           //! in here emit is not availeble in video
           //! emit add due to ocre emit is not in bloc call back isse
@@ -126,17 +119,15 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         emailAddress: state.emailAddress,
         password: state.password,
       );
-
-      // emit(state.copyWith(
-      //   /// auth Failure Or Success --> some()
-      //   authFailureOrSuccessOption: some(failureOrSuccess),
-      // ));
     }
     emit(state.copyWith(
       /// stop loading indicator
       isSubmitting: false,
       showErrorMessages: true,
 
+      /// why [optionOf]
+      /// [optionOf] is equl to
+      /// [failureOrSuccess == null ? none() : some(failureOrSuccess)]
       /// [authFailureOrSuccessOption] both option are correct
       ///
       // authFailureOrSuccessOption:
