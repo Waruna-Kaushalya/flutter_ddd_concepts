@@ -55,12 +55,27 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
           //! in here emit is not availeble in video
           //! emit add due to ocre emit is not in bloc call back isse
+          //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
           _performAction0nAuthFacadeWithEmaiLAndPassword(
             _authFacade.registerWithEmailAndPassword,
             emit,
           );
         },
-        signInWithEmailAndPasswordPressed: (value) {},
+        signInWithEmailAndPasswordPressed: (value) {
+          /// sign in the user using [IAuthFacade]
+          // failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
+          //   emailAddress: state.emailAddress,
+          //   password: state.password,
+          // );
+
+          //! in here emit is not availeble in video
+          //! emit add due to ocre emit is not in bloc call back isse
+          //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
+          _performAction0nAuthFacadeWithEmaiLAndPassword(
+            _authFacade.signInWithEmailAndPassword,
+            emit,
+          );
+        },
         signInWithGooglePressed: (value) async {
           emit(state.copyWith(
             /// loading indicator --> true
@@ -97,6 +112,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     final isPasswordValid = state.password.isValid();
     // check email is valid or not
     if (isEmailValid && isPasswordValid) {
+      //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
       emit(state.copyWith(
         /// loading indicator --> true
         isSubmitting: true,
