@@ -47,38 +47,18 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// error messages and keep the
         /// [authFailureOrSuccessOption] set to None.
         registerWithEmailAndPasswordPressed: (value) async {
-          final isEmailValid = state.emailAddress.isValid();
-          final isPasswordValid = state.password.isValid();
-          // check email is valid or not
-          if (isEmailValid && isPasswordValid) {
-            emit(state.copyWith(
-              /// loading indicator --> true
-              isSubmitting: true,
+          /// register the user using [IAuthFacade]
+          // failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
+          //   emailAddress: state.emailAddress,
+          //   password: state.password,
+          // );
 
-              /// resetiiing previos login
-              authFailureOrSuccessOption: none(),
-            ));
-
-            /// register the user using [IAuthFacade]
-            final failureOrSuccess =
-                await _authFacade.registerWithEmailAndPassword(
-              emailAddress: state.emailAddress,
-              password: state.password,
-            );
-
-            emit(state.copyWith(
-              /// stop loading indicator
-              isSubmitting: false,
-
-              /// auth Failure Or Success --> some()
-              authFailureOrSuccessOption: some(failureOrSuccess),
-            ));
-          } else {
-            emit(state.copyWith(
-              showErrorMessages: true,
-              authFailureOrSuccessOption: none(),
-            ));
-          }
+          //! in here emit is not availeble in video
+          //! emit add due to ocre emit is not in bloc call back isse
+          _performAction0nAuthFacadeWithEmaiLAndPassword(
+            _authFacade.registerWithEmailAndPassword,
+            emit,
+          );
         },
         signInWithEmailAndPasswordPressed: (value) {},
         signInWithGooglePressed: (value) async {
@@ -102,5 +82,50 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         },
       );
     });
+  }
+
+  Stream<SignInFormEvent> _performAction0nAuthFacadeWithEmaiLAndPassword(
+    Future<Either<AuthFailure, Unit>> Function({
+      required EmailAddress emailAddress,
+      required Password password,
+    })
+        forwardedCall,
+    Emitter<SignInFormState> emit,
+  ) async* {
+    Either<AuthFailure, Unit>? failureOrSuccess;
+    final isEmailValid = state.emailAddress.isValid();
+    final isPasswordValid = state.password.isValid();
+    // check email is valid or not
+    if (isEmailValid && isPasswordValid) {
+      emit(state.copyWith(
+        /// loading indicator --> true
+        isSubmitting: true,
+
+        /// resetiiing previos login
+        authFailureOrSuccessOption: none(),
+      ));
+
+      /// register the user using [IAuthFacade]
+      failureOrSuccess = await forwardedCall(
+        emailAddress: state.emailAddress,
+        password: state.password,
+      );
+
+      // emit(state.copyWith(
+      //   /// auth Failure Or Success --> some()
+      //   authFailureOrSuccessOption: some(failureOrSuccess),
+      // ));
+    }
+    emit(state.copyWith(
+      /// stop loading indicator
+      isSubmitting: false,
+      showErrorMessages: true,
+
+      /// [authFailureOrSuccessOption] both option are correct
+      ///
+      // authFailureOrSuccessOption:
+      //     failureOrSuccess == null ? none() : some(failureOrSuccess),
+      authFailureOrSuccessOption: optionOf(failureOrSuccess),
+    ));
   }
 }
