@@ -46,11 +46,34 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// If invalid, indicate to start showing
         /// error messages and keep the
         /// [authFailureOrSuccessOption] set to None.
-        registerWithEmailAndPasswordPressed: (value) {
+        registerWithEmailAndPasswordPressed: (value) async {
           final isEmailValid = state.emailAddress.isValid();
           final isPasswordValid = state.password.isValid();
           // check email is valid or not
-          if (isEmailValid && isPasswordValid) {}
+          if (isEmailValid && isPasswordValid) {
+            emit(state.copyWith(
+              /// loading indicator --> true
+              isSubmitting: true,
+
+              /// resetiiing previos login
+              authFailureOrSuccessOption: none(),
+            ));
+
+            /// register the user using [IAuthFacade]
+            final failureOrSuccess =
+                await _authFacade.registerWithEmailAndPassword(
+              emailAddress: state.emailAddress,
+              password: state.password,
+            );
+
+            emit(state.copyWith(
+              /// stop loading indicator
+              isSubmitting: false,
+
+              /// auth Failure Or Success --> some()
+              authFailureOrSuccessOption: some(failureOrSuccess),
+            ));
+          }
         },
         signInWithEmailAndPasswordPressed: (value) {},
         signInWithGooglePressed: (value) async {
