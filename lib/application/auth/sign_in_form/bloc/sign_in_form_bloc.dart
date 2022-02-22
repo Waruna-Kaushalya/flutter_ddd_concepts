@@ -73,6 +73,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
               /// auth Failure Or Success --> some()
               authFailureOrSuccessOption: some(failureOrSuccess),
             ));
+          } else {
+            emit(state.copyWith(
+              showErrorMessages: true,
+              authFailureOrSuccessOption: none(),
+            ));
           }
         },
         signInWithEmailAndPasswordPressed: (value) {},
