@@ -13,6 +13,9 @@ dependencies:
   freezed_annotation: ^1.1.0
   flutter_bloc: ^8.0.1
   bloc: ^8.0.2
+  firebase_auth: ^0.15.1+1
+  firebase_core: ^0.4.2+2
+  google_sign_in: ^4.0.16
 
 dev_dependencies:
   flutter_test:

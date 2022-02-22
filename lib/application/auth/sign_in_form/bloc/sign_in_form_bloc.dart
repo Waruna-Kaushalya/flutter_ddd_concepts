@@ -123,6 +123,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     emit(state.copyWith(
       /// stop loading indicator
       isSubmitting: false,
+      //! concern about whay [showErrorMessages] value has true.
+      //! becase if auth is success no need to show err msg
       showErrorMessages: true,
 
       /// why [optionOf]

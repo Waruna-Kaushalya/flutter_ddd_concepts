@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 
+import '../../core/value_objects.dart';
 import 'failures/failures.dart';
-import 'core/value_objects.dart';
+
 import 'value_validators/value_validators.dart';
 
 /// EmailAddress data class

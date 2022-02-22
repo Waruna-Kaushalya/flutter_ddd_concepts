@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ddd_concepts/domain/core/errors.dart';
 
-import '../failures/failures.dart';
+import '../auth/value_objects/failures/failures.dart';
 
 @immutable
 abstract class ValueObject<T> {
@@ -19,6 +20,12 @@ abstract class ValueObject<T> {
 
   /// ptivate constructor
   Either<ValueFailure<T>, T> get value;
+
+  /// Throws [UnexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    // id = identity - same as writing (right) => right
+    return value.fold((f) => throw UnexpectedValueError(f), id);
+  }
 
   /// check email or pasword valid or not
   /// if valid [value] has data in [right] side

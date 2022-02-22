@@ -879,6 +879,8 @@ mixin _$SignInFormState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
+
+  /// this bool is for show loading indicator while backend press happen
   bool get isSubmitting => throw _privateConstructorUsedError;
 
   /// why [Option]
@@ -1031,6 +1033,8 @@ class _$_SignInFormState implements _SignInFormState {
   @override
   final bool showErrorMessages;
   @override
+
+  /// this bool is for show loading indicator while backend press happen
   final bool isSubmitting;
   @override
 
@@ -1099,6 +1103,8 @@ abstract class _SignInFormState implements SignInFormState {
   @override
   bool get showErrorMessages;
   @override
+
+  /// this bool is for show loading indicator while backend press happen
   bool get isSubmitting;
   @override
 
