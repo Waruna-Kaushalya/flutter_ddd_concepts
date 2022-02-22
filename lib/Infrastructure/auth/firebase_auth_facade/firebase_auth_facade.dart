@@ -2,11 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:flutter_ddd_concepts/domain/auth/facade/failures/auth_failure.dart';
 import 'package:flutter_ddd_concepts/domain/auth/facade/i_auth_facade.dart';
 import 'package:flutter_ddd_concepts/domain/auth/value_objects/value_objects.dart';
 
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
@@ -32,7 +34,8 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on PlatformException catch (e) {
-      if (e.code == "ERROR_EMAIL_ALREADY_IN_USE") {
+      //! double check this errr codes
+      if (e.code == "email-already-in-use") {
         return const Left(AuthFailure.emailAlreadyInUse());
       } else {
         return const Left(AuthFailure.serverError());
@@ -55,8 +58,8 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on PlatformException catch (e) {
-      if (e.code == "ERROR_WRONG_PASSWORD" ||
-          e.code == "ERROR_USER_NOT_FOUND ") {
+      //! double check this errr codes
+      if (e.code == "wrong-password" || e.code == "user-not-found") {
         return const Left(AuthFailure.emailAlreadyInUse());
       } else {
         return const Left(AuthFailure.serverError());
@@ -66,18 +69,23 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    final googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) {
-      return left(const AuthFailure.cancelledByUser());
-    }
+    try {
+      final googleUser = await _googleSignIn.signIn();
 
-    final googleAuthentication = await googleUser.authentication;
-    final authCredential = GoogleAuthProvider.getCredential(
+      if (googleUser == null) {
+        return left(const AuthFailure.cancelledByUser());
+      }
+
+      final googleAuthentication = await googleUser.authentication;
+      final authCredential = GoogleAuthProvider.credential(
+        accessToken: googleAuthentication.accessToken,
         idToken: googleAuthentication.idToken,
-        accessToken: googleAuthentication.accessToken);
-
-    return _firebaseAuth
-        .signInWithCredential(authCredential)
-        .then((r) => right(unit));
+      );
+      return _firebaseAuth
+          .signInWithCredential(authCredential)
+          .then((r) => right(unit));
+    } on PlatformException catch (_) {
+      return left(const AuthFailure.serverError());
+    }
   }
 }
