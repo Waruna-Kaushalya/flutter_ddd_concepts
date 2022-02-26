@@ -68,7 +68,12 @@ class SignInForm extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<SignInFormBloc>().add(
+                              const SignInFormEvent
+                                  .signInWithEmailAndPasswordPressed(),
+                            );
+                      },
                       child: const Text(
                         "SIGN IN",
                         style: TextStyle(
@@ -79,7 +84,12 @@ class SignInForm extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<SignInFormBloc>().add(
+                              const SignInFormEvent
+                                  .registerWithEmailAndPasswordPressed(),
+                            );
+                      },
                       child: const Text(
                         "REGISTER",
                         style: TextStyle(
@@ -91,7 +101,11 @@ class SignInForm extends StatelessWidget {
                 ],
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<SignInFormBloc>().add(
+                        const SignInFormEvent.signInWithGooglePressed(),
+                      );
+                },
                 child: const Text(
                   "SIGN IN WITH GOOGLE",
                   style: TextStyle(
