@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -127,7 +128,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       isSubmitting: false,
       //! concern about whay [showErrorMessages] value has true.
       //! becase if auth is success no need to show err msg
-      showErrorMessages: true,
+      showErrorMessages: AutovalidateMode.always,
 
       /// why [optionOf]
       /// [optionOf] is equl to
