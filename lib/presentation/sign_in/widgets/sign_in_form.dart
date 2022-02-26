@@ -12,7 +12,10 @@ class SignInForm extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Form(
-          autovalidateMode: state.showErrorMessages,
+          autovalidateMode: state.showErrorMessages
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
+          // autovalidateMode: state.showErrorMessages,
           child: ListView(
             children: [
               const Text(
@@ -53,6 +56,7 @@ class SignInForm extends StatelessWidget {
                   labelText: "Password",
                 ),
                 autocorrect: false,
+                obscureText: true,
                 onChanged: (value) => context.read<SignInFormBloc>().add(
                       SignInFormEvent.passwordChanged(value),
                     ),

@@ -19,13 +19,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     this._authFacade,
   ) : super(SignInFormState.initial()) {
     //! asysnc is not written
-    on<SignInFormEvent>((event, emit) {
-      event.map(
+    on<SignInFormEvent>((event, emit) async {
+      await event.map(
         /// Validate newly update email address
         /// when user enter email and re enter email
         emailChanged: (value) {
           emit(state.copyWith(
-            emailAddress: EmailAddress(value.emailStr),
+            emailAddress: EmailAddress(value.emailStr.trim()),
 
             /// registerd successfully --> some(right(unit))
             /// unsscsefull --> none(left(AuthFailure))
@@ -36,7 +36,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// Validate newly update password
         passwordChanged: (value) {
           emit(state.copyWith(
-            password: Password(value.passwordStr),
+            password: Password(value.passwordStr.trim()),
             authFailureOrSuccessOption: none(),
           ));
         },
@@ -56,21 +56,25 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           //! in here emit is not availeble in video
           //! emit add due to ocre emit is not in bloc call back isse
           //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
-          _performAction0nAuthFacadeWithEmaiLAndPassword(
-            _authFacade.registerWithEmailAndPassword,
-            emit,
-          );
+          // _performAction0nAuthFacadeWithEmaiLAndPassword(
+          //   _authFacade.registerWithEmailAndPassword,
+          //   emit,
+          // );
+          await signInEmailP(_authFacade.registerWithEmailAndPassword, emit);
         },
-        signInWithEmailAndPasswordPressed: (value) {
-          /// sign in the user using [IAuthFacade]
+        signInWithEmailAndPasswordPressed: (value) async {
+          // /// sign in the user using [IAuthFacade]
 
-          //! in here emit is not availeble in video
-          //! emit add due to ocre emit is not in bloc call back isse
-          //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
-          _performAction0nAuthFacadeWithEmaiLAndPassword(
-            _authFacade.signInWithEmailAndPassword,
-            emit,
-          );
+          // //! in here emit is not availeble in video
+          // //! emit add due to ocre emit is not in bloc call back isse
+          // //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
+          // _performAction0nAuthFacadeWithEmaiLAndPassword(
+          //   _authFacade.signInWithEmailAndPassword,
+          //   emit,
+          // );
+          //! ===============================
+          await signInEmailP(_authFacade.signInWithEmailAndPassword, emit);
+          //! ===============================
         },
         signInWithGooglePressed: (value) async {
           emit(state.copyWith(
@@ -93,6 +97,51 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         },
       );
     });
+  }
+
+  Future<void> signInEmailP(
+      Future<Either<AuthFailure, Unit>> Function({
+    required EmailAddress emailAddress,
+    required Password password,
+  })
+          forwardedCall,
+      Emitter<SignInFormState> emit) async {
+    Either<AuthFailure, Unit>? failureOrSuccess;
+    final isEmailValid = state.emailAddress.isValid();
+    final isPasswordValid = state.password.isValid();
+    // check email is valid or not
+    if (isEmailValid && isPasswordValid) {
+      //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
+      emit(state.copyWith(
+        /// loading indicator --> true
+        isSubmitting: true,
+
+        /// resetiiing previos login
+        authFailureOrSuccessOption: none(),
+      ));
+
+      /// register the user using [IAuthFacade]
+      failureOrSuccess = await forwardedCall(
+        emailAddress: state.emailAddress,
+        password: state.password,
+      );
+    }
+    emit(state.copyWith(
+      /// stop loading indicator
+      isSubmitting: false,
+      //! concern about whay [showErrorMessages] value has true.
+      //! becase if auth is success no need to show err msg
+      showErrorMessages: true,
+
+      /// why [optionOf]
+      /// [optionOf] is equl to
+      /// [failureOrSuccess == null ? none() : some(failureOrSuccess)]
+      /// [authFailureOrSuccessOption] both option are correct
+      ///
+      // authFailureOrSuccessOption:
+      //     failureOrSuccess == null ? none() : some(failureOrSuccess),
+      authFailureOrSuccessOption: optionOf(failureOrSuccess),
+    ));
   }
 
   Stream<SignInFormEvent> _performAction0nAuthFacadeWithEmaiLAndPassword(
@@ -128,7 +177,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       isSubmitting: false,
       //! concern about whay [showErrorMessages] value has true.
       //! becase if auth is success no need to show err msg
-      showErrorMessages: AutovalidateMode.always,
+      showErrorMessages: true,
 
       /// why [optionOf]
       /// [optionOf] is equl to

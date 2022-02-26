@@ -5,7 +5,8 @@ class SignInFormState with _$SignInFormState {
   const factory SignInFormState({
     required EmailAddress emailAddress,
     required Password password,
-    required AutovalidateMode showErrorMessages,
+    // required AutovalidateMode showErrorMessages,
+    required bool showErrorMessages,
 
     /// this bool is for show loading indicator while backend press happen
     required bool isSubmitting,
@@ -31,7 +32,7 @@ class SignInFormState with _$SignInFormState {
         /// empty filed show err msg.
         /// but initily we dont need to do that
         /// so then we use [showErrorMessages] bool to handle that
-        showErrorMessages: AutovalidateMode.disabled,
+        showErrorMessages: false,
         isSubmitting: false,
 
         /// no response yet from backend. Therefore Option value is none in

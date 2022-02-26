@@ -858,7 +858,7 @@ class _$SignInFormStateTearOff {
   _SignInFormState call(
       {required EmailAddress emailAddress,
       required Password password,
-      required AutovalidateMode showErrorMessages,
+      required bool showErrorMessages,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
     return _SignInFormState(
@@ -877,8 +877,9 @@ const $SignInFormState = _$SignInFormStateTearOff();
 /// @nodoc
 mixin _$SignInFormState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
-  Password get password => throw _privateConstructorUsedError;
-  AutovalidateMode get showErrorMessages => throw _privateConstructorUsedError;
+  Password get password =>
+      throw _privateConstructorUsedError; // required AutovalidateMode showErrorMessages,
+  bool get showErrorMessages => throw _privateConstructorUsedError;
 
   /// this bool is for show loading indicator while backend press happen
   bool get isSubmitting => throw _privateConstructorUsedError;
@@ -910,7 +911,7 @@ abstract class $SignInFormStateCopyWith<$Res> {
   $Res call(
       {EmailAddress emailAddress,
       Password password,
-      AutovalidateMode showErrorMessages,
+      bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
 }
@@ -944,7 +945,7 @@ class _$SignInFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as AutovalidateMode,
+              as bool,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -967,7 +968,7 @@ abstract class _$SignInFormStateCopyWith<$Res>
   $Res call(
       {EmailAddress emailAddress,
       Password password,
-      AutovalidateMode showErrorMessages,
+      bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
 }
@@ -1003,7 +1004,7 @@ class __$SignInFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as AutovalidateMode,
+              as bool,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -1030,8 +1031,8 @@ class _$_SignInFormState implements _SignInFormState {
   final EmailAddress emailAddress;
   @override
   final Password password;
-  @override
-  final AutovalidateMode showErrorMessages;
+  @override // required AutovalidateMode showErrorMessages,
+  final bool showErrorMessages;
   @override
 
   /// this bool is for show loading indicator while backend press happen
@@ -1091,7 +1092,7 @@ abstract class _SignInFormState implements SignInFormState {
   const factory _SignInFormState(
       {required EmailAddress emailAddress,
       required Password password,
-      required AutovalidateMode showErrorMessages,
+      required bool showErrorMessages,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>>
           authFailureOrSuccessOption}) = _$_SignInFormState;
@@ -1100,8 +1101,8 @@ abstract class _SignInFormState implements SignInFormState {
   EmailAddress get emailAddress;
   @override
   Password get password;
-  @override
-  AutovalidateMode get showErrorMessages;
+  @override // required AutovalidateMode showErrorMessages,
+  bool get showErrorMessages;
   @override
 
   /// this bool is for show loading indicator while backend press happen

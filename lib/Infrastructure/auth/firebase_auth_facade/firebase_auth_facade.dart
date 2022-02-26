@@ -21,7 +21,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    /// extract String value from value object 
+    /// extract String value from value object
     final emailAddressStr = emailAddress.getOrCrash();
 
     /// extract String value from value object
@@ -57,8 +57,11 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordStr,
       );
       return right(unit);
-    } on PlatformException catch (e) {
-      //! double check this errr codes
+    } on FirebaseAuthException catch (e) {
+      //! double check this errr codespr
+      print("------------------------");
+      print(e);
+      print("--------------------");
       if (e.code == "wrong-password" || e.code == "user-not-found") {
         return const Left(AuthFailure.emailAlreadyInUse());
       } else {
@@ -89,4 +92,3 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 }
-
