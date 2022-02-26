@@ -5,6 +5,7 @@ import 'failures/auth_failure.dart';
 
 //this is like reposotory
 //abstraction for register and sign in with email and google sign in
+// contract
 
 abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({

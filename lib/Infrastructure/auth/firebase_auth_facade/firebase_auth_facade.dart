@@ -21,7 +21,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    /// extract String value from value object
+    /// extract String value from value object 
     final emailAddressStr = emailAddress.getOrCrash();
 
     /// extract String value from value object
@@ -89,3 +89,4 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 }
+
