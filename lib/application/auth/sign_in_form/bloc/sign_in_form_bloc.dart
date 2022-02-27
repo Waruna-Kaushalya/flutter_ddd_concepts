@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -143,50 +142,51 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       authFailureOrSuccessOption: optionOf(failureOrSuccess),
     ));
   }
-
-  Stream<SignInFormEvent> _performAction0nAuthFacadeWithEmaiLAndPassword(
-    Future<Either<AuthFailure, Unit>> Function({
-      required EmailAddress emailAddress,
-      required Password password,
-    })
-        forwardedCall,
-    Emitter<SignInFormState> emit,
-  ) async* {
-    Either<AuthFailure, Unit>? failureOrSuccess;
-    final isEmailValid = state.emailAddress.isValid();
-    final isPasswordValid = state.password.isValid();
-    // check email is valid or not
-    if (isEmailValid && isPasswordValid) {
-      //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
-      emit(state.copyWith(
-        /// loading indicator --> true
-        isSubmitting: true,
-
-        /// resetiiing previos login
-        authFailureOrSuccessOption: none(),
-      ));
-
-      /// register the user using [IAuthFacade]
-      failureOrSuccess = await forwardedCall(
-        emailAddress: state.emailAddress,
-        password: state.password,
-      );
-    }
-    emit(state.copyWith(
-      /// stop loading indicator
-      isSubmitting: false,
-      //! concern about whay [showErrorMessages] value has true.
-      //! becase if auth is success no need to show err msg
-      showErrorMessages: true,
-
-      /// why [optionOf]
-      /// [optionOf] is equl to
-      /// [failureOrSuccess == null ? none() : some(failureOrSuccess)]
-      /// [authFailureOrSuccessOption] both option are correct
-      ///
-      // authFailureOrSuccessOption:
-      //     failureOrSuccess == null ? none() : some(failureOrSuccess),
-      authFailureOrSuccessOption: optionOf(failureOrSuccess),
-    ));
-  }
 }
+
+//   Stream<SignInFormEvent> _performAction0nAuthFacadeWithEmaiLAndPassword(
+//     Future<Either<AuthFailure, Unit>> Function({
+//       required EmailAddress emailAddress,
+//       required Password password,
+//     })
+//         forwardedCall,
+//     Emitter<SignInFormState> emit,
+//   ) async* {
+//     Either<AuthFailure, Unit>? failureOrSuccess;
+//     final isEmailValid = state.emailAddress.isValid();
+//     final isPasswordValid = state.password.isValid();
+//     // check email is valid or not
+//     if (isEmailValid && isPasswordValid) {
+//       //! The member 'emit' can only be used within 'package:bloc/src/bloc.dart' or a test. there for add [Emitter<SignInFormState> emit] argument
+//       emit(state.copyWith(
+//         /// loading indicator --> true
+//         isSubmitting: true,
+
+//         /// resetiiing previos login
+//         authFailureOrSuccessOption: none(),
+//       ));
+
+//       /// register the user using [IAuthFacade]
+//       failureOrSuccess = await forwardedCall(
+//         emailAddress: state.emailAddress,
+//         password: state.password,
+//       );
+//     }
+//     emit(state.copyWith(
+//       /// stop loading indicator
+//       isSubmitting: false,
+//       //! concern about whay [showErrorMessages] value has true.
+//       //! becase if auth is success no need to show err msg
+//       showErrorMessages: true,
+
+//       /// why [optionOf]
+//       /// [optionOf] is equl to
+//       /// [failureOrSuccess == null ? none() : some(failureOrSuccess)]
+//       /// [authFailureOrSuccessOption] both option are correct
+//       ///
+//       // authFailureOrSuccessOption:
+//       //     failureOrSuccess == null ? none() : some(failureOrSuccess),
+//       authFailureOrSuccessOption: optionOf(failureOrSuccess),
+//     ));
+//   }
+// }
