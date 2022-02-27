@@ -7,7 +7,8 @@ import 'package:injectable/injectable.dart';
 
 import 'package:flutter_ddd_concepts/domain/auth/facade/failures/auth_failure.dart';
 import 'package:flutter_ddd_concepts/domain/auth/facade/i_auth_facade.dart';
-import 'package:flutter_ddd_concepts/domain/auth/value_objects/value_objects.dart';
+
+import '../../../domain/auth/value_objects/objects/value_objects.dart';
 
 import './firebase_user_mapper.dart';
 
@@ -19,14 +20,6 @@ class FirebaseAuthFacade implements IAuthFacade {
     this._firebaseAuth,
     this._googleSignIn,
   );
-
-  // @override
-  // Future<Option<CurrentUser>> getSignedInUser() => _firebaseAuth.currentUser;
-
-  // @override
-  // Future<Option<CurrentUser>> getSignedInUser() async => _firebaseAuth
-  //     .currentUser()
-  //     .then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
 
   @override
   Future<Option<CurrentUser>> getSignedInUser() async =>
@@ -110,7 +103,9 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+    return Future.wait([
+      _firebaseAuth.signOut(),
+      _googleSignIn.signOut(),
+    ]);
   }
 }

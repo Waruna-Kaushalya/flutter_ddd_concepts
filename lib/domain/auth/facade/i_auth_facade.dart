@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_ddd_concepts/domain/auth/entities/user.dart';
 
-import '../value_objects/value_objects.dart';
+import '../value_objects/objects/value_objects.dart';
 import 'failures/auth_failure.dart';
 
 //this is like reposotory
