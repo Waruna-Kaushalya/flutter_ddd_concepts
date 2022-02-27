@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../domain/auth/facade/failures/auth_failure.dart';
 import '../../../../domain/auth/facade/i_auth_facade.dart';
-import '../../../../domain/auth/value_objects/value_objects.dart';
+import '../../../../domain/auth/value_objects/objects/value_objects.dart';
 
 part 'sign_in_form_bloc.freezed.dart';
 part 'sign_in_form_event.dart';
