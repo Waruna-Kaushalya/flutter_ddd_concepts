@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter_ddd_concepts/domain/auth/entities/user.dart';
 
 import '../value_objects/value_objects.dart';
 import 'failures/auth_failure.dart';
@@ -8,6 +11,8 @@ import 'failures/auth_failure.dart';
 // contract
 
 abstract class IAuthFacade {
+  Future<Option<CurrentUser>> getSignedInUser();
+
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
@@ -17,4 +22,5 @@ abstract class IAuthFacade {
     required Password password,
   });
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
+  Future<void> signOut();
 }

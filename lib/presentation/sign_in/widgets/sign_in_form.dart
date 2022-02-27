@@ -16,6 +16,7 @@ class SignInForm extends StatelessWidget {
           () {},
           // ifSome
           (either) => either.fold((failure) {
+            /// [Snakbar]
             FlushbarHelper.createError(
               message: failure.map(
                 cancelledByUser: (_) => "Canceled",
@@ -30,10 +31,10 @@ class SignInForm extends StatelessWidget {
       },
       builder: (context, state) {
         return Form(
+          // validate or not
           autovalidateMode: state.showErrorMessages
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
-          // autovalidateMode: state.showErrorMessages,
           child: ListView(
             children: [
               const Text(
