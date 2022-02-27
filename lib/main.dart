@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ddd_concepts/presentation/core/app_widget.dart';
+import 'package:flutter_ddd_concepts/presentation/routes/route.dart';
 import 'package:injectable/injectable.dart';
 
 import 'application/bloc_observer/bloc_observer.dart';
@@ -18,7 +19,7 @@ Future<void> main() async {
   /// BlocObserver can be used to observe all
   BlocOverrides.runZoned(
     () {
-      runApp(const MyApp());
+      runApp(MyApp(appRoutes: AppRoutes()));
     },
     blocObserver: observer,
   );

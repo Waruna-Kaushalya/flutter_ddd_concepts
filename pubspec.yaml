@@ -21,8 +21,10 @@ dependencies:
   equatable: ^2.0.3
   another_flushbar: ^1.10.28
   uuid: ^3.0.6
+  auto_route: ^3.2.4
 
 dev_dependencies:
+  auto_route_generator: ^3.2.3
   build_runner: ^2.1.7
   flutter_lints: ^1.0.4
   flutter_test:

@@ -25,7 +25,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ),
           );
         },
-        signOut: (value) {},
+        signOut: (value) async {
+          await _authFacade.signOut();
+          emit(const AuthState.unAuthenticated());
+        },
       );
     });
   }
