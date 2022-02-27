@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ddd_concepts/presentation/sign_in/widgets/sign_in_form.dart';
 
-import '../../application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
+import '../../application/aplication.dart';
 import '../../injection.dart';
 
 class SignInPage extends StatelessWidget {
