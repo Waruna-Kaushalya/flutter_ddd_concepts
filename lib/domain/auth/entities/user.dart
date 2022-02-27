@@ -3,9 +3,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
 
+// independent User
 @freezed
 class CurrentUser with _$CurrentUser {
   const factory CurrentUser({
-    required UniqueId id,
+    required UniqueId currentUserId,
   }) = _CurrentUser;
 }

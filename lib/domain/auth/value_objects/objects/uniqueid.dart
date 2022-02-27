@@ -1,7 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:uuid/uuid.dart';
 import '../../../core/value_objects.dart';
 import '../failures/failures.dart';
+import 'package:dartz/dartz.dart';
 
 class UniqueId extends ValueObject<String> {
   @override
@@ -18,7 +18,9 @@ class UniqueId extends ValueObject<String> {
   /// insted of use 3rd paty unique id providrs Unique id
   /// ex: firebase auth
   factory UniqueId.fromUniqueString(String uniqueid) {
-    return UniqueId._(right(uniqueid));
+    return UniqueId._(
+      right(uniqueid),
+    );
   }
   const UniqueId._(this.value);
 }

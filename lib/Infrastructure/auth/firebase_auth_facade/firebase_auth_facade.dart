@@ -21,6 +21,10 @@ class FirebaseAuthFacade implements IAuthFacade {
     this._googleSignIn,
   );
 
+  /// [Option] is nonnullable type
+  /// Either hold [none] or [some]
+  /// if passed is null value then => [none]
+  /// if passed some value then => [some]
   @override
   Future<Option<CurrentUser>> getSignedInUser() async =>
       optionOf(_firebaseAuth.currentUser?.toDomain());
@@ -68,9 +72,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       return right(unit);
     } on FirebaseAuthException catch (e) {
       //! double check this errr codespr
-      print("------------------------");
-      print(e);
-      print("--------------------");
+
       if (e.code == "wrong-password" || e.code == "user-not-found") {
         return const Left(AuthFailure.invalidEmailAndPasswordCombination());
       } else {

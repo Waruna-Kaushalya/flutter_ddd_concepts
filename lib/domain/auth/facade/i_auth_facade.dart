@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_ddd_concepts/domain/auth/entities/user.dart';
 
@@ -11,6 +9,10 @@ import 'failures/auth_failure.dart';
 // contract
 
 abstract class IAuthFacade {
+  /// [Option] is nonnullable type
+  /// Either hold [none] or [some]
+  /// if passed is null value then => [none]
+  /// if passed some value then => [some]
   Future<Option<CurrentUser>> getSignedInUser();
 
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -22,5 +24,6 @@ abstract class IAuthFacade {
     required Password password,
   });
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
+
   Future<void> signOut();
 }

@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CurrentUserTearOff {
   const _$CurrentUserTearOff();
 
-  _CurrentUser call({required UniqueId id}) {
+  _CurrentUser call({required UniqueId currentUserId}) {
     return _CurrentUser(
-      id: id,
+      currentUserId: currentUserId,
     );
   }
 }
@@ -30,7 +30,7 @@ const $CurrentUser = _$CurrentUserTearOff();
 
 /// @nodoc
 mixin _$CurrentUser {
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get currentUserId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CurrentUserCopyWith<CurrentUser> get copyWith =>
@@ -42,7 +42,7 @@ abstract class $CurrentUserCopyWith<$Res> {
   factory $CurrentUserCopyWith(
           CurrentUser value, $Res Function(CurrentUser) then) =
       _$CurrentUserCopyWithImpl<$Res>;
-  $Res call({UniqueId id});
+  $Res call({UniqueId currentUserId});
 }
 
 /// @nodoc
@@ -55,12 +55,12 @@ class _$CurrentUserCopyWithImpl<$Res> implements $CurrentUserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? currentUserId = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      currentUserId: currentUserId == freezed
+          ? _value.currentUserId
+          : currentUserId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
     ));
   }
@@ -73,7 +73,7 @@ abstract class _$CurrentUserCopyWith<$Res>
           _CurrentUser value, $Res Function(_CurrentUser) then) =
       __$CurrentUserCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id});
+  $Res call({UniqueId currentUserId});
 }
 
 /// @nodoc
@@ -88,12 +88,12 @@ class __$CurrentUserCopyWithImpl<$Res> extends _$CurrentUserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? currentUserId = freezed,
   }) {
     return _then(_CurrentUser(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      currentUserId: currentUserId == freezed
+          ? _value.currentUserId
+          : currentUserId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
     ));
   }
@@ -102,14 +102,14 @@ class __$CurrentUserCopyWithImpl<$Res> extends _$CurrentUserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CurrentUser implements _CurrentUser {
-  const _$_CurrentUser({required this.id});
+  const _$_CurrentUser({required this.currentUserId});
 
   @override
-  final UniqueId id;
+  final UniqueId currentUserId;
 
   @override
   String toString() {
-    return 'CurrentUser(id: $id)';
+    return 'CurrentUser(currentUserId: $currentUserId)';
   }
 
   @override
@@ -117,12 +117,13 @@ class _$_CurrentUser implements _CurrentUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CurrentUser &&
-            const DeepCollectionEquality().equals(other.id, id));
+            const DeepCollectionEquality()
+                .equals(other.currentUserId, currentUserId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentUserId));
 
   @JsonKey(ignore: true)
   @override
@@ -131,10 +132,11 @@ class _$_CurrentUser implements _CurrentUser {
 }
 
 abstract class _CurrentUser implements CurrentUser {
-  const factory _CurrentUser({required UniqueId id}) = _$_CurrentUser;
+  const factory _CurrentUser({required UniqueId currentUserId}) =
+      _$_CurrentUser;
 
   @override
-  UniqueId get id;
+  UniqueId get currentUserId;
   @override
   @JsonKey(ignore: true)
   _$CurrentUserCopyWith<_CurrentUser> get copyWith =>

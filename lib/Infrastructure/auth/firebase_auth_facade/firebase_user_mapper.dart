@@ -6,7 +6,7 @@ import '../../../domain/auth/value_objects/objects/value_objects.dart';
 extension FirebaseUserDomainX on auth.User {
   CurrentUser toDomain() {
     return CurrentUser(
-      id: UniqueId.fromUniqueString(uid),
+      currentUserId: UniqueId.fromUniqueString(uid),
     );
   }
 }
