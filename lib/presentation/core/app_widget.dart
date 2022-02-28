@@ -5,13 +5,18 @@ import 'package:flutter_ddd_concepts/application/auth/auth.dart';
 import 'package:flutter_ddd_concepts/presentation/sign_in/sign_in_page.dart';
 
 import '../../injection.dart';
-import '../routes/route.dart';
+import '../routes/app_router.dart';
+import '../routes/routes.dart';
 
 class MyApp extends StatelessWidget {
-  final AppRoutes appRoutes;
-  const MyApp({
+  // make sure you don't initiate your router
+  // inside of the build function.
+  final _appRouter = AppRouter();
+
+  // final AppRoutes appRoutes;
+  MyApp({
     Key? key,
-    required this.appRoutes,
+    // required this.appRoutes,
   }) : super(key: key);
 
   @override
@@ -23,9 +28,12 @@ class MyApp extends StatelessWidget {
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
         )
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+
         title: 'Note',
-        home: const SignInPage(),
+        // home: const SignInPage(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
           colorScheme: ThemeData().colorScheme.copyWith(
@@ -43,8 +51,8 @@ class MyApp extends StatelessWidget {
           //   textTheme: ButtonTextTheme.accent,
           // ),
         ),
-        initialRoute: SignInPage.routeName,
-        onGenerateRoute: appRoutes.onGenerateRoute,
+        // initialRoute: SignInPage.routeName,
+        // onGenerateRoute: appRoutes.onGenerateRoute,
       ),
     );
   }
