@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ddd_concepts/presentation/core/app_widget.dart';
-import 'package:flutter_ddd_concepts/presentation/routes/routes.dart';
+import 'package:flutter_ddd_concepts/core/app.dart';
 import 'package:injectable/injectable.dart';
 
-import 'application/bloc_observer/bloc_observer.dart';
+import 'features/auth/application/aplication.dart';
 import 'injection.dart';
 
 Future<void> main() async {
