@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ddd_concepts/presentation/sign_in/widgets/button_widgets.dart';
 
 import '../../../application/aplication.dart';
 
@@ -36,6 +37,7 @@ class SignInForm extends StatelessWidget {
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
           child: ListView(
+            padding: const EdgeInsets.all(8),
             children: [
               const Text(
                 "📝",
@@ -90,7 +92,7 @@ class SignInForm extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: TextButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         context.read<SignInFormBloc>().add(
                               const SignInFormEvent
@@ -100,14 +102,19 @@ class SignInForm extends StatelessWidget {
                       child: const Text(
                         "SIGN IN",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
+                      style: elevatedbuttonStyle(
+                          fontColor: Colors.white, buttonColor: Colors.teal),
                     ),
+                  ),
+                  const SizedBox(
+                    width: 8,
                   ),
                   //fddfb
                   Expanded(
-                    child: TextButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         context.read<SignInFormBloc>().add(
                               const SignInFormEvent
@@ -117,9 +124,11 @@ class SignInForm extends StatelessWidget {
                       child: const Text(
                         "REGISTER",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
+                      style: elevatedbuttonStyle(
+                          fontColor: Colors.white, buttonColor: Colors.teal),
                     ),
                   ),
                 ],
@@ -134,14 +143,38 @@ class SignInForm extends StatelessWidget {
                   "SIGN IN WITH GOOGLE",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    // fontSize: 16,
                   ),
                 ),
+                style: elevatedbuttonStyle(
+                    fontColor: Colors.white, buttonColor: Colors.blue),
               ),
             ],
           ),
         );
       },
+    );
+  }
+
+  ButtonStyle elevatedbuttonStyle(
+      {required Color fontColor, required Color buttonColor}) {
+    return ElevatedButton.styleFrom(
+      /// Button height and width
+      // minimumSize: const Size(
+      //   300,
+      //   50,
+      // ),
+      textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      primary: buttonColor,
+
+      /// Backgroud
+      onPrimary: fontColor,
+
+      /// Font color
+      /// Button circular boder radiaus a
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.circular(30),
+      // ),
     );
   }
 }
