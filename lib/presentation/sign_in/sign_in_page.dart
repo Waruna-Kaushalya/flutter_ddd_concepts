@@ -6,7 +6,7 @@ import '../../application/aplication.dart';
 import '../../injection.dart';
 
 class SignInPage extends StatelessWidget {
-  static const routeName = '/signInPage';
+  // static const routeName = '/signInPage';
   const SignInPage({Key? key}) : super(key: key);
 
   @override
