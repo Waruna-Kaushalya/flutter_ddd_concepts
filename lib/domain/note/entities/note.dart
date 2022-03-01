@@ -1,4 +1,5 @@
 import 'package:flutter_ddd_concepts/domain/domain.dart';
+import 'package:flutter_ddd_concepts/domain/note/entities/todo_item.dart';
 import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,6 +11,6 @@ class Note with _$Note {
     required UniqueId id,
     required NoteBody body,
     required NoteColor color,
-    required List3<TodoName> todos,
+    required List3<TodoItem> todos,
   }) = _Note;
 }

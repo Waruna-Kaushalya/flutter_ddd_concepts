@@ -22,7 +22,7 @@ class _$NoteTearOff {
       {required UniqueId id,
       required NoteBody body,
       required NoteColor color,
-      required List3<TodoName> todos}) {
+      required List3<TodoItem> todos}) {
     return _Note(
       id: id,
       body: body,
@@ -40,7 +40,7 @@ mixin _$Note {
   UniqueId get id => throw _privateConstructorUsedError;
   NoteBody get body => throw _privateConstructorUsedError;
   NoteColor get color => throw _privateConstructorUsedError;
-  List3<TodoName> get todos => throw _privateConstructorUsedError;
+  List3<TodoItem> get todos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteCopyWith<Note> get copyWith => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoName> todos});
+      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List3<TodoName>,
+              as List3<TodoItem>,
     ));
   }
 }
@@ -96,7 +96,7 @@ abstract class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoName> todos});
+      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
 }
 
 /// @nodoc
@@ -131,7 +131,7 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List3<TodoName>,
+              as List3<TodoItem>,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$_Note implements _Note {
   @override
   final NoteColor color;
   @override
-  final List3<TodoName> todos;
+  final List3<TodoItem> todos;
 
   @override
   String toString() {
@@ -189,7 +189,7 @@ abstract class _Note implements Note {
       {required UniqueId id,
       required NoteBody body,
       required NoteColor color,
-      required List3<TodoName> todos}) = _$_Note;
+      required List3<TodoItem> todos}) = _$_Note;
 
   @override
   UniqueId get id;
@@ -198,7 +198,7 @@ abstract class _Note implements Note {
   @override
   NoteColor get color;
   @override
-  List3<TodoName> get todos;
+  List3<TodoItem> get todos;
   @override
   @JsonKey(ignore: true)
   _$NoteCopyWith<_Note> get copyWith => throw _privateConstructorUsedError;

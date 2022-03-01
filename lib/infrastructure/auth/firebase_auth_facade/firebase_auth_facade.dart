@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/domain.dart';
+import '../../../domain/domain.dart';
 
 import './firebase_user_mapper.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../application/aplication.dart';
-import '../sign_in/sign_in_page.dart';
+import '../auth/sign_in/sign_in_page.dart';
 
 class SplashPage extends StatelessWidget {
   static const routeName = '/splashPage';
