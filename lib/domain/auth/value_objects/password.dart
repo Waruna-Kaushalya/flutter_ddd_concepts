@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/value_object.dart';
-import '../../../core/value_failures.dart';
-import '../../../core/value_object_validators.dart';
+import '../../core/value_object.dart';
+import '../../core/value_failures.dart';
+import '../../core/value_object_validators.dart';
 
 /// Password data class
 class Password extends ValueObject<String> {

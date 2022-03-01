@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import 'value_object_failures.dart';
+import 'value_failures.dart';
 import 'errors.dart';
 
 @immutable

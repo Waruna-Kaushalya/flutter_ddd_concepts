@@ -1,4 +1,5 @@
 export './core/core.dart';
-// export './entities/entities.dart';
-// export './facade/facade.dart';
-// export './value_objects/value_objects.dart';
+export './auth/entities/entities.dart';
+export './auth/facade/facade.dart';
+export './auth/value_objects/value_objects.dart';
+export './auth/auth.dart';
