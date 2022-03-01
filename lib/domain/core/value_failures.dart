@@ -15,7 +15,6 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
       InvalidEmail<T>;
   const factory ValueFailure.shortPassword({required T failedValue}) =
       ShortPassword<T>;
-
   const factory ValueFailure.exceedingLength({
     required T failedValue,
     required int max,
@@ -27,3 +26,34 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
     required int max,
   }) = ListTooLong<T>;
 }
+
+// @freezed
+// class ValueFailure<T> with _$ValueFailure<T> {
+//   const factory ValueFailure.auth(AuthValueFailure<T> f) = Auth<T>;
+//   const factory ValueFailure.note(NoteValueFailure<T> f) = Note<T>;
+// }
+
+// @freezed
+// class AuthValueFailure<T> with _$AuthValueFailure<T> {
+//   const factory AuthValueFailure.invalidEmail({required T failedValue}) =
+//       InvalidEmail<T>;
+//   const factory AuthValueFailure.shortPassword({required T failedValue}) =
+//       ShortPassword<T>;
+// }
+
+// @freezed
+// class NoteValueFailure<T> with _$NoteValueFailure<T> {
+//   const factory NoteValueFailure.exceedingLength({
+//     required T failedValue,
+//     required int max,
+//   }) = ExceedingLength<T>;
+//   const factory NoteValueFailure.empty({required T failedValue}) = Empty<T>;
+//   const factory NoteValueFailure.multiLine({required T failedValue}) =
+//       MultiLine<T>;
+//   const factory NoteValueFailure.listTooLong({
+//     required T failedValue,
+//     required int max,
+//   }) = ListTooLong<T>;
+// }
+
+

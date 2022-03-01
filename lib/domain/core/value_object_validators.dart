@@ -16,6 +16,11 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
     return right(input);
   } else {
     return left(ValueFailure.invalidEmail(failedValue: input));
+    // return Left(
+    //   ValueFailure.auth(
+    //     AuthValueFailure.invalidEmail(failedValue: input),
+    //   ),
+    // );
   }
 }
 
@@ -25,6 +30,11 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return right(input);
   } else {
     return left(ValueFailure.shortPassword(failedValue: input));
+    // return Left(
+    //   ValueFailure.auth(
+    //     AuthValueFailure.shortPassword(failedValue: input),
+    //   ),
+    // );
   }
 }
 
@@ -37,6 +47,11 @@ Either<ValueFailure<String>, String> validateMaxStringLenght(
   } else {
     return Left(
         ValueFailure.exceedingLength(failedValue: input, max: maxLength));
+    // return Left(
+    //   ValueFailure.note(
+    //     NoteValueFailure.exceedingLength(failedValue: input, max: maxLength),
+    //   ),
+    // );
   }
 }
 
@@ -45,6 +60,11 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
     return Right(input);
   } else {
     return Left(ValueFailure.empty(failedValue: input));
+    // return Left(
+    //   ValueFailure.note(
+    //     NoteValueFailure.empty(failedValue: input),
+    //   ),
+    // );
   }
 }
 
@@ -53,6 +73,11 @@ Either<ValueFailure<String>, String> validateSingleline(String input) {
     return Right(input);
   } else {
     return Left(ValueFailure.multiLine(failedValue: input));
+    // return Left(
+    //   ValueFailure.note(
+    //     NoteValueFailure.multiLine(failedValue: input),
+    //   ),
+    // );
   }
 }
 
@@ -64,5 +89,10 @@ Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLenght<T>(
     return Right(input);
   } else {
     return Left(ValueFailure.listTooLong(failedValue: input, max: maxLenght));
+    // return Left(
+    //   ValueFailure.note(
+    //     NoteValueFailure.listTooLong(failedValue: input, max: maxLenght),
+    //   ),
+    // );
   }
 }

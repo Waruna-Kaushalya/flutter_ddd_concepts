@@ -14,6 +14,9 @@ class NoteBody extends ValueObject<String> {
 
   factory NoteBody(String input) {
     return NoteBody._(
+      /// [flatMap]
+      /// if Either is right, continue [flatmap]
+      /// if Either is left, not continue
       validateMaxStringLenght(input, maxLength).flatMap(validateStringNotEmpty),
     );
   }
