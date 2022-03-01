@@ -11,4 +11,12 @@ class TodoItem with _$TodoItem {
     required TodoName name,
     required bool done,
   }) = _TodoItem;
+
+  // when open new page, need to siaply empty page.
+  // so pre define the empty page state
+  factory TodoItem.empty() => TodoItem(
+        id: UniqueId(),
+        name: TodoName(''),
+        done: false,
+      );
 }
