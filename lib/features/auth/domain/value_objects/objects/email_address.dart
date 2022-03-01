@@ -16,7 +16,7 @@ class EmailAddress extends ValueObject<String> {
   /// becase Validated value object
   /// response must going Further.
   @override
-  final Either<ValueFailure<String>, String> value;
+  final Either<AuthValueFailure<String>, String> value;
 
   /// ptivate constructor
   const EmailAddress._(this.value);

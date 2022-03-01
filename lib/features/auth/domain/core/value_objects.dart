@@ -20,9 +20,9 @@ abstract class ValueObject<T> extends Equatable {
   /// why this line use Either type.
   ///  becase Validated value object
   /// response must going Further.
-  Either<ValueFailure<T>, T> get value;
+  Either<AuthValueFailure<T>, T> get value;
 
-  /// Throws [UnexpectedValueError] containing the [ValueFailure]
+  /// Throws [UnexpectedValueError] containing the [AuthValueFailure]
   T getOrCrash() {
     // id = identity - same as writing (right) => right
     return value.fold((f) => throw UnexpectedValueError(f), id);

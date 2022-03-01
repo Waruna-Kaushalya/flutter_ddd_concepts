@@ -10,9 +10,9 @@ part 'value_failures.freezed.dart';
 /// union make it for us when using [map] or [when]
 
 @freezed
-abstract class ValueFailure<T> with _$ValueFailure<T> {
-  const factory ValueFailure.invalidEmail({required T failedValue}) =
+abstract class AuthValueFailure<T> with _$AuthValueFailure<T> {
+  const factory AuthValueFailure.invalidEmail({required T failedValue}) =
       InvalidEmail<T>;
-  const factory ValueFailure.shortPassword({required T failedValue}) =
+  const factory AuthValueFailure.shortPassword({required T failedValue}) =
       ShortPassword<T>;
 }

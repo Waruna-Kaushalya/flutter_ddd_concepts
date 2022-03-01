@@ -5,16 +5,9 @@ import '../injection.dart';
 import '../routes/go_route.dart';
 
 class MyApp extends StatelessWidget {
-  // make sure you don't initiate your router
-  // inside of the build function.
-  // auto_route - one lines
-  // final _appRouter = AppRouter();
+  MyApp({Key? key}) : super(key: key);
 
-  // final AppRoutes appRoutes;
-  MyApp({
-    Key? key,
-    // required this.appRoutes,
-  }) : super(key: key);
+  final _router = Routes().router;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +19,8 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp.router(
-        // auto_route - two lines
         routerDelegate: _router.routerDelegate,
         routeInformationParser: _router.routeInformationParser,
-
         title: 'Note',
         // home: const SignInPage(),
 
@@ -47,13 +38,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-
-        // manual onGenerateRoute
-        // initialRoute: SignInPage.routeName,
-        // onGenerateRoute: appRoutes.onGenerateRoute,
       ),
     );
   }
-
-  final _router = Routes().router;
 }

@@ -15,8 +15,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ValueFailureTearOff {
-  const _$ValueFailureTearOff();
+class _$AuthValueFailureTearOff {
+  const _$AuthValueFailureTearOff();
 
   InvalidEmail<T> invalidEmail<T>({required T failedValue}) {
     return InvalidEmail<T>(
@@ -32,10 +32,10 @@ class _$ValueFailureTearOff {
 }
 
 /// @nodoc
-const $ValueFailure = _$ValueFailureTearOff();
+const $AuthValueFailure = _$AuthValueFailureTearOff();
 
 /// @nodoc
-mixin _$ValueFailure<T> {
+mixin _$AuthValueFailure<T> {
   T get failedValue => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -78,26 +78,26 @@ mixin _$ValueFailure<T> {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ValueFailureCopyWith<T, ValueFailure<T>> get copyWith =>
+  $AuthValueFailureCopyWith<T, AuthValueFailure<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ValueFailureCopyWith<T, $Res> {
-  factory $ValueFailureCopyWith(
-          ValueFailure<T> value, $Res Function(ValueFailure<T>) then) =
-      _$ValueFailureCopyWithImpl<T, $Res>;
+abstract class $AuthValueFailureCopyWith<T, $Res> {
+  factory $AuthValueFailureCopyWith(
+          AuthValueFailure<T> value, $Res Function(AuthValueFailure<T>) then) =
+      _$AuthValueFailureCopyWithImpl<T, $Res>;
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class _$ValueFailureCopyWithImpl<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
-  _$ValueFailureCopyWithImpl(this._value, this._then);
+class _$AuthValueFailureCopyWithImpl<T, $Res>
+    implements $AuthValueFailureCopyWith<T, $Res> {
+  _$AuthValueFailureCopyWithImpl(this._value, this._then);
 
-  final ValueFailure<T> _value;
+  final AuthValueFailure<T> _value;
   // ignore: unused_field
-  final $Res Function(ValueFailure<T>) _then;
+  final $Res Function(AuthValueFailure<T>) _then;
 
   @override
   $Res call({
@@ -114,7 +114,7 @@ class _$ValueFailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 abstract class $InvalidEmailCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+    implements $AuthValueFailureCopyWith<T, $Res> {
   factory $InvalidEmailCopyWith(
           InvalidEmail<T> value, $Res Function(InvalidEmail<T>) then) =
       _$InvalidEmailCopyWithImpl<T, $Res>;
@@ -124,7 +124,7 @@ abstract class $InvalidEmailCopyWith<T, $Res>
 
 /// @nodoc
 class _$InvalidEmailCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$AuthValueFailureCopyWithImpl<T, $Res>
     implements $InvalidEmailCopyWith<T, $Res> {
   _$InvalidEmailCopyWithImpl(
       InvalidEmail<T> _value, $Res Function(InvalidEmail<T>) _then)
@@ -156,7 +156,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.invalidEmail(failedValue: $failedValue)';
+    return 'AuthValueFailure<$T>.invalidEmail(failedValue: $failedValue)';
   }
 
   @override
@@ -240,7 +240,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   }
 }
 
-abstract class InvalidEmail<T> implements ValueFailure<T> {
+abstract class InvalidEmail<T> implements AuthValueFailure<T> {
   const factory InvalidEmail({required T failedValue}) = _$InvalidEmail<T>;
 
   @override
@@ -253,7 +253,7 @@ abstract class InvalidEmail<T> implements ValueFailure<T> {
 
 /// @nodoc
 abstract class $ShortPasswordCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+    implements $AuthValueFailureCopyWith<T, $Res> {
   factory $ShortPasswordCopyWith(
           ShortPassword<T> value, $Res Function(ShortPassword<T>) then) =
       _$ShortPasswordCopyWithImpl<T, $Res>;
@@ -263,7 +263,7 @@ abstract class $ShortPasswordCopyWith<T, $Res>
 
 /// @nodoc
 class _$ShortPasswordCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$AuthValueFailureCopyWithImpl<T, $Res>
     implements $ShortPasswordCopyWith<T, $Res> {
   _$ShortPasswordCopyWithImpl(
       ShortPassword<T> _value, $Res Function(ShortPassword<T>) _then)
@@ -295,7 +295,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.shortPassword(failedValue: $failedValue)';
+    return 'AuthValueFailure<$T>.shortPassword(failedValue: $failedValue)';
   }
 
   @override
@@ -379,7 +379,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   }
 }
 
-abstract class ShortPassword<T> implements ValueFailure<T> {
+abstract class ShortPassword<T> implements AuthValueFailure<T> {
   const factory ShortPassword({required T failedValue}) = _$ShortPassword<T>;
 
   @override

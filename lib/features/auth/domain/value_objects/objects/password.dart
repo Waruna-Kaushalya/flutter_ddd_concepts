@@ -6,7 +6,7 @@ import '../validators/value_object_validators.dart';
 /// Password data class
 class Password extends ValueObject<String> {
   @override
-  final Either<ValueFailure<String>, String> value;
+  final Either<AuthValueFailure<String>, String> value;
 
   const Password._(this.value);
 

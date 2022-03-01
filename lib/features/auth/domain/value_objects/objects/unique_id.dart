@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 class UniqueId extends ValueObject<String> {
   @override
-  final Either<ValueFailure<String>, String> value;
+  final Either<AuthValueFailure<String>, String> value;
 
   /// this constructer create unique id within inside a app
   factory UniqueId() {

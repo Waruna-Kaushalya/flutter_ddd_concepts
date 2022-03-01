@@ -11,11 +11,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final observer = AppBlocObserver();
 
-  await Firebase.initializeApp(); // new Firebase call
+  // Firebase call
+  await Firebase.initializeApp();
   configureDependencies(Environment.prod);
-  // runApp(const MyApp());
 
-  /// BlocObserver can be used to observe all
   BlocOverrides.runZoned(
     () {
       runApp(MyApp());

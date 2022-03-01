@@ -7,22 +7,22 @@ import '../failures/value_failures.dart';
 /// [right] side is validated without any issue
 /// [left] side is retun when object has any issue
 
-Either<ValueFailure<String>, String> validateEmailAddress(String input) {
+Either<AuthValueFailure<String>, String> validateEmailAddress(String input) {
   // Maybe not the most robust way of email validation but it's good enough
   const emailRegex =
       r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
   if (RegExp(emailRegex).hasMatch(input)) {
     return right(input);
   } else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
+    return left(AuthValueFailure.invalidEmail(failedValue: input));
   }
 }
 
-Either<ValueFailure<String>, String> validatePassword(String input) {
+Either<AuthValueFailure<String>, String> validatePassword(String input) {
   // You can also add some advanced password checks (uppercase/lowercase, at least 1 number, ...)
   if (input.length >= 6) {
     return right(input);
   } else {
-    return left(ValueFailure.shortPassword(failedValue: input));
+    return left(AuthValueFailure.shortPassword(failedValue: input));
   }
 }
