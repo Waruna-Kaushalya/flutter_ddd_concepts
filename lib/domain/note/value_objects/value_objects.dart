@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ddd_concepts/domain/core/value_transformers.dart';
+import 'package:kt_dart/collection.dart';
 
 import '../../core/value_failures.dart';
 import '../../core/value_object.dart';
@@ -60,4 +61,24 @@ class NoteColor extends ValueObject<Color> {
     );
   }
   const NoteColor._(this.value);
+}
+
+class List3<T> extends ValueObject<KtList<T>> {
+  @override
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+
+  static const maxLength = 3;
+
+  factory List3(KtList<T> input) {
+    return List3._(validateMaxListLenght(input, maxLength));
+  }
+  const List3._(this.value);
+
+  int get length {
+    return value.getOrElse(() => emptyList()).size;
+  }
+
+  bool get isFull {
+    return length == maxLength;
+  }
 }
