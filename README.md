@@ -20,3 +20,4 @@ samples, guidance on mobile development, and a full API reference.
 1. value_failures
 2. value_object_validators
 3. value_objects
+4. Entities
