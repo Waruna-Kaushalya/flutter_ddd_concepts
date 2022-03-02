@@ -13,6 +13,8 @@ class NoteBody extends ValueObject<String> {
 
   static const maxLength = 1000;
 
+  const NoteBody._(this.value);
+
   factory NoteBody(String input) {
     return NoteBody._(
       /// [flatMap]
@@ -21,7 +23,6 @@ class NoteBody extends ValueObject<String> {
       validateMaxStringLenght(input, maxLength).flatMap(validateStringNotEmpty),
     );
   }
-  const NoteBody._(this.value);
 }
 
 class TodoName extends ValueObject<String> {

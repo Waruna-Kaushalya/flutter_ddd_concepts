@@ -26,6 +26,9 @@ abstract class Note implements _$Note {
         id: UniqueId(),
         body: NoteBody(''),
         color: NoteColor(NoteColor.predefinedColors[0]),
+
+        /// Returns an empty read-only list.
+        /// KtList<T> emptyList<T>() => KtList<T>.empty();
         todos: List3(emptyList()),
       );
 
@@ -36,7 +39,6 @@ abstract class Note implements _$Note {
     /// Option<A> none<A>() => new None();
 
     /// Option<A> optionOf<A>(A? value) => value != null ? some(value) : none();
-
     return body.failureOrUnit
         .andThen(color.failureOrUnit)
         .andThen(todos.failureOrUnit)
