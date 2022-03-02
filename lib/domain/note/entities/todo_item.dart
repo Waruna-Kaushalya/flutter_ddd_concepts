@@ -24,8 +24,11 @@ abstract class TodoItem implements _$TodoItem {
         done: false,
       );
 
+  /// [TodoItem] entity validation
   Option<ValueFailure<dynamic>> get failureOption {
-    /// Option<A> optionOf<A>(A? value) => value != null ? some(value) : none();
+    /// if [failureOption] has some sort of failuer
+    /// then return it [left] side as [some(failure)]
+    /// otherwise evrything is valid then retun [none()]
     return todoName.value.fold(
       (f) => some(f),
       (_) => none(),

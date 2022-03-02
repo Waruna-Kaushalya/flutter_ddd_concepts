@@ -28,6 +28,13 @@ abstract class ValueObject<T> extends Equatable {
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold(
+      (l) => left(l),
+      (r) => right(unit),
+    );
+  }
+
   /// check email or pasword valid or not
   /// if valid [value] has data in [right] side
   /// then [isValid()] return true

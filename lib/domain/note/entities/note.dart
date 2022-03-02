@@ -29,15 +29,31 @@ abstract class Note implements _$Note {
         todos: List3(emptyList()),
       );
 
+  /// note entity validation
   Option<ValueFailure<dynamic>> get failureOption {
     /// B fold<B>(B ifLeft(L l), B ifRight(R r));
     /// Option<A> some<A>(A a) => new Some(a);
     /// Option<A> none<A>() => new None();
 
     /// Option<A> optionOf<A>(A? value) => value != null ? some(value) : none();
-    return noteBody.value.fold(
-      (f) => some(f),
-      (_) => none(),
-    );
+
+    return noteBody.failureOrUnit
+        .andThen(noteColor.failureOrUnit)
+        .andThen(todos.failureOrUnit)
+        .andThen(
+          todos
+              .getOrCrash()
+
+              /// getting the failureOption from the todoItem ENTITY -
+              /// NOT afailureOrUnit from a VALUE
+              .map((todoItem) => todoItem.failureOption)
+              .filter((o) => o.isSome())
+
+              /// if we can't get the 0thelement,the list is empty.
+              /// In such a case,it's valid
+              .getOrElse(0, (_) => none())
+              .fold(() => right(unit), (f) => left(f)),
+        )
+        .fold((f) => some(f), (_) => none());
   }
 }
