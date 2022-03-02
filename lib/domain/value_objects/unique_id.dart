@@ -18,9 +18,9 @@ class UniqueId extends ValueObject<String> {
   /// this constructer not create unique id within or inside a app
   /// insted of use 3rd paty unique id providrs Unique id
   /// ex: firebase auth
-  factory UniqueId.fromUniqueString({required String uniqueid}) {
+  factory UniqueId.fromUniqueString({required String id}) {
     return UniqueId._(
-      right(uniqueid),
+      right(id),
     );
   }
   const UniqueId._(this.value);
