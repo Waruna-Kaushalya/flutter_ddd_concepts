@@ -19,12 +19,10 @@ class _$TodoItemTearOff {
   const _$TodoItemTearOff();
 
   _TodoItem call(
-      {required UniqueId uniqueId,
-      required TodoName todoName,
-      required bool done}) {
+      {required UniqueId id, required TodoName name, required bool done}) {
     return _TodoItem(
-      uniqueId: uniqueId,
-      todoName: todoName,
+      id: id,
+      name: name,
       done: done,
     );
   }
@@ -35,8 +33,8 @@ const $TodoItem = _$TodoItemTearOff();
 
 /// @nodoc
 mixin _$TodoItem {
-  UniqueId get uniqueId => throw _privateConstructorUsedError;
-  TodoName get todoName => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
+  TodoName get name => throw _privateConstructorUsedError;
   bool get done => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -48,7 +46,7 @@ mixin _$TodoItem {
 abstract class $TodoItemCopyWith<$Res> {
   factory $TodoItemCopyWith(TodoItem value, $Res Function(TodoItem) then) =
       _$TodoItemCopyWithImpl<$Res>;
-  $Res call({UniqueId uniqueId, TodoName todoName, bool done});
+  $Res call({UniqueId id, TodoName name, bool done});
 }
 
 /// @nodoc
@@ -61,18 +59,18 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? uniqueId = freezed,
-    Object? todoName = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
     Object? done = freezed,
   }) {
     return _then(_value.copyWith(
-      uniqueId: uniqueId == freezed
-          ? _value.uniqueId
-          : uniqueId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      todoName: todoName == freezed
-          ? _value.todoName
-          : todoName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as TodoName,
       done: done == freezed
           ? _value.done
@@ -87,7 +85,7 @@ abstract class _$TodoItemCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   factory _$TodoItemCopyWith(_TodoItem value, $Res Function(_TodoItem) then) =
       __$TodoItemCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uniqueId, TodoName todoName, bool done});
+  $Res call({UniqueId id, TodoName name, bool done});
 }
 
 /// @nodoc
@@ -101,18 +99,18 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? uniqueId = freezed,
-    Object? todoName = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
     Object? done = freezed,
   }) {
     return _then(_TodoItem(
-      uniqueId: uniqueId == freezed
-          ? _value.uniqueId
-          : uniqueId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      todoName: todoName == freezed
-          ? _value.todoName
-          : todoName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as TodoName,
       done: done == freezed
           ? _value.done
@@ -125,20 +123,19 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TodoItem extends _TodoItem {
-  const _$_TodoItem(
-      {required this.uniqueId, required this.todoName, required this.done})
+  const _$_TodoItem({required this.id, required this.name, required this.done})
       : super._();
 
   @override
-  final UniqueId uniqueId;
+  final UniqueId id;
   @override
-  final TodoName todoName;
+  final TodoName name;
   @override
   final bool done;
 
   @override
   String toString() {
-    return 'TodoItem(uniqueId: $uniqueId, todoName: $todoName, done: $done)';
+    return 'TodoItem(id: $id, name: $name, done: $done)';
   }
 
   @override
@@ -146,16 +143,16 @@ class _$_TodoItem extends _TodoItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TodoItem &&
-            const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
-            const DeepCollectionEquality().equals(other.todoName, todoName) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.done, done));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(uniqueId),
-      const DeepCollectionEquality().hash(todoName),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(done));
 
   @JsonKey(ignore: true)
@@ -166,15 +163,15 @@ class _$_TodoItem extends _TodoItem {
 
 abstract class _TodoItem extends TodoItem {
   const factory _TodoItem(
-      {required UniqueId uniqueId,
-      required TodoName todoName,
+      {required UniqueId id,
+      required TodoName name,
       required bool done}) = _$_TodoItem;
   const _TodoItem._() : super._();
 
   @override
-  UniqueId get uniqueId;
+  UniqueId get id;
   @override
-  TodoName get todoName;
+  TodoName get name;
   @override
   bool get done;
   @override

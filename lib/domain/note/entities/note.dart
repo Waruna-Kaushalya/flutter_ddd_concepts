@@ -14,18 +14,18 @@ abstract class Note implements _$Note {
   const Note._();
 
   const factory Note({
-    required UniqueId uniqueId,
-    required NoteBody noteBody,
-    required NoteColor noteColor,
+    required UniqueId id,
+    required NoteBody body,
+    required NoteColor color,
     required List3<TodoItem> todos,
   }) = _Note;
 
   // when open new page, need to siaply empty page.
   // so pre define the empty page state
   factory Note.empty() => Note(
-        uniqueId: UniqueId(),
-        noteBody: NoteBody(''),
-        noteColor: NoteColor(NoteColor.predefinedColors[0]),
+        id: UniqueId(),
+        body: NoteBody(''),
+        color: NoteColor(NoteColor.predefinedColors[0]),
         todos: List3(emptyList()),
       );
 
@@ -37,8 +37,8 @@ abstract class Note implements _$Note {
 
     /// Option<A> optionOf<A>(A? value) => value != null ? some(value) : none();
 
-    return noteBody.failureOrUnit
-        .andThen(noteColor.failureOrUnit)
+    return body.failureOrUnit
+        .andThen(color.failureOrUnit)
         .andThen(todos.failureOrUnit)
         .andThen(
           todos

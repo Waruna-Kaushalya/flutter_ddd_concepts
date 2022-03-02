@@ -11,16 +11,16 @@ abstract class TodoItem implements _$TodoItem {
   const TodoItem._();
 
   const factory TodoItem({
-    required UniqueId uniqueId,
-    required TodoName todoName,
+    required UniqueId id,
+    required TodoName name,
     required bool done,
   }) = _TodoItem;
 
   // when open new page, need to siaply empty page.
   // so pre define the empty page state
   factory TodoItem.empty() => TodoItem(
-        uniqueId: UniqueId(),
-        todoName: TodoName(''),
+        id: UniqueId(),
+        name: TodoName(''),
         done: false,
       );
 
@@ -29,7 +29,7 @@ abstract class TodoItem implements _$TodoItem {
     /// if [failureOption] has some sort of failuer
     /// then return it [left] side as [some(failure)]
     /// otherwise evrything is valid then retun [none()]
-    return todoName.value.fold(
+    return name.value.fold(
       (f) => some(f),
       (_) => none(),
     );
