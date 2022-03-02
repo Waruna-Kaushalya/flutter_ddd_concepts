@@ -19,14 +19,14 @@ class _$NoteTearOff {
   const _$NoteTearOff();
 
   _Note call(
-      {required UniqueId id,
-      required NoteBody body,
-      required NoteColor color,
+      {required UniqueId uniqueId,
+      required NoteBody noteBody,
+      required NoteColor noteColor,
       required List3<TodoItem> todos}) {
     return _Note(
-      id: id,
-      body: body,
-      color: color,
+      uniqueId: uniqueId,
+      noteBody: noteBody,
+      noteColor: noteColor,
       todos: todos,
     );
   }
@@ -37,9 +37,9 @@ const $Note = _$NoteTearOff();
 
 /// @nodoc
 mixin _$Note {
-  UniqueId get id => throw _privateConstructorUsedError;
-  NoteBody get body => throw _privateConstructorUsedError;
-  NoteColor get color => throw _privateConstructorUsedError;
+  UniqueId get uniqueId => throw _privateConstructorUsedError;
+  NoteBody get noteBody => throw _privateConstructorUsedError;
+  NoteColor get noteColor => throw _privateConstructorUsedError;
   List3<TodoItem> get todos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -51,7 +51,10 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
+      {UniqueId uniqueId,
+      NoteBody noteBody,
+      NoteColor noteColor,
+      List3<TodoItem> todos});
 }
 
 /// @nodoc
@@ -64,23 +67,23 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? body = freezed,
-    Object? color = freezed,
+    Object? uniqueId = freezed,
+    Object? noteBody = freezed,
+    Object? noteColor = freezed,
     Object? todos = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      uniqueId: uniqueId == freezed
+          ? _value.uniqueId
+          : uniqueId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      body: body == freezed
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
+      noteBody: noteBody == freezed
+          ? _value.noteBody
+          : noteBody // ignore: cast_nullable_to_non_nullable
               as NoteBody,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      noteColor: noteColor == freezed
+          ? _value.noteColor
+          : noteColor // ignore: cast_nullable_to_non_nullable
               as NoteColor,
       todos: todos == freezed
           ? _value.todos
@@ -96,7 +99,10 @@ abstract class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
+      {UniqueId uniqueId,
+      NoteBody noteBody,
+      NoteColor noteColor,
+      List3<TodoItem> todos});
 }
 
 /// @nodoc
@@ -110,23 +116,23 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? body = freezed,
-    Object? color = freezed,
+    Object? uniqueId = freezed,
+    Object? noteBody = freezed,
+    Object? noteColor = freezed,
     Object? todos = freezed,
   }) {
     return _then(_Note(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      uniqueId: uniqueId == freezed
+          ? _value.uniqueId
+          : uniqueId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      body: body == freezed
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
+      noteBody: noteBody == freezed
+          ? _value.noteBody
+          : noteBody // ignore: cast_nullable_to_non_nullable
               as NoteBody,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      noteColor: noteColor == freezed
+          ? _value.noteColor
+          : noteColor // ignore: cast_nullable_to_non_nullable
               as NoteColor,
       todos: todos == freezed
           ? _value.todos
@@ -138,25 +144,26 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Note implements _Note {
+class _$_Note extends _Note {
   const _$_Note(
-      {required this.id,
-      required this.body,
-      required this.color,
-      required this.todos});
+      {required this.uniqueId,
+      required this.noteBody,
+      required this.noteColor,
+      required this.todos})
+      : super._();
 
   @override
-  final UniqueId id;
+  final UniqueId uniqueId;
   @override
-  final NoteBody body;
+  final NoteBody noteBody;
   @override
-  final NoteColor color;
+  final NoteColor noteColor;
   @override
   final List3<TodoItem> todos;
 
   @override
   String toString() {
-    return 'Note(id: $id, body: $body, color: $color, todos: $todos)';
+    return 'Note(uniqueId: $uniqueId, noteBody: $noteBody, noteColor: $noteColor, todos: $todos)';
   }
 
   @override
@@ -164,18 +171,18 @@ class _$_Note implements _Note {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Note &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.body, body) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
+            const DeepCollectionEquality().equals(other.noteBody, noteBody) &&
+            const DeepCollectionEquality().equals(other.noteColor, noteColor) &&
             const DeepCollectionEquality().equals(other.todos, todos));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(body),
-      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(uniqueId),
+      const DeepCollectionEquality().hash(noteBody),
+      const DeepCollectionEquality().hash(noteColor),
       const DeepCollectionEquality().hash(todos));
 
   @JsonKey(ignore: true)
@@ -184,19 +191,20 @@ class _$_Note implements _Note {
       __$NoteCopyWithImpl<_Note>(this, _$identity);
 }
 
-abstract class _Note implements Note {
+abstract class _Note extends Note {
   const factory _Note(
-      {required UniqueId id,
-      required NoteBody body,
-      required NoteColor color,
+      {required UniqueId uniqueId,
+      required NoteBody noteBody,
+      required NoteColor noteColor,
       required List3<TodoItem> todos}) = _$_Note;
+  const _Note._() : super._();
 
   @override
-  UniqueId get id;
+  UniqueId get uniqueId;
   @override
-  NoteBody get body;
+  NoteBody get noteBody;
   @override
-  NoteColor get color;
+  NoteColor get noteColor;
   @override
   List3<TodoItem> get todos;
   @override

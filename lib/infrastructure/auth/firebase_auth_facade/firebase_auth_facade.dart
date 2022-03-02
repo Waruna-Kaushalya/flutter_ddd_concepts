@@ -5,7 +5,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../domain/domain.dart';
-
 import './firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -21,6 +20,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   /// Either hold [none] or [some]
   /// if passed is null value then => [none]
   /// if passed some value then => [some]
+  ///
+  /// Option<A> optionOf<A>(A? value) => value != null ? some(value) : none();
   @override
   Future<Option<CurrentUser>> getSignedInUser() async =>
       optionOf(_firebaseAuth.currentUser?.toDomain());
@@ -83,6 +84,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       final googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
+        /// Either<L, R> left<L, R>(L l)
         return left(const AuthFailure.cancelledByUser());
       }
 

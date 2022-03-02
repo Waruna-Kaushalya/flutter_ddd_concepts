@@ -11,14 +11,16 @@ class SignInForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
+        /// Option<Either<AuthFailure, Unit>> get [authFailureOrSuccessOption]
+        /// B fold<B>(B ifNone(), B ifSome(A a));
         state.authFailureOrSuccessOption.fold(
           // ifNone
           () {},
           // ifSome
-          (either) => either.fold((failure) {
+          (either) => either.fold((authFailure) {
             /// [Snakbar]
             FlushbarHelper.createError(
-              message: failure.map(
+              message: authFailure.map(
                 cancelledByUser: (_) => "Canceled",
                 serverError: (_) => "Server Error",
                 emailAlreadyInUse: (_) => "Email Already In Use",
@@ -95,6 +97,8 @@ class SignInForm extends StatelessWidget {
                 onChanged: (value) => context.read<SignInFormBloc>().add(
                       SignInFormEvent.passwordChanged(value),
                     ),
+
+                /// B fold<B>(B Function(ValueFailure<String>) ifLeft, B Function(String) ifRight)
                 validator: (_) =>
                     context.read<SignInFormBloc>().state.password.value.fold(
                         (f) => f.maybeMap(

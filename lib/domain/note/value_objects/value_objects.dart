@@ -32,6 +32,14 @@ class TodoName extends ValueObject<String> {
 
   factory TodoName(String input) {
     return TodoName._(
+      /// [flatMap] if previos part ok, then go with after part
+      /// that means if [validateMaxStringLenght] return [right] side
+      /// with sussess then excute [validateStringNotEmpty] and then [validateSingleline]
+      /// if [validateMaxStringLenght] return validation failure with left side
+      /// then [validateStringNotEmpty] not excute
+      ///
+      /// if first validated value invalid, so it's [left] then whole chain
+      /// is shortcircited
       validateMaxStringLenght(input, maxLength)
           .flatMap(validateStringNotEmpty)
           .flatMap(validateSingleline),
