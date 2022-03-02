@@ -1,8 +1,8 @@
 import 'package:uuid/uuid.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../core/value_object.dart';
-import '../../core/value_failures.dart';
+import '../core/value_object.dart';
+import '../core/value_failures.dart';
 
 class UniqueId extends ValueObject<String> {
   @override

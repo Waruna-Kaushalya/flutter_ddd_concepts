@@ -148,6 +148,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.10"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.5.1"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.6.10"
   code_builder:
     dependency: transitive
     description:
@@ -286,6 +307,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.0.1"
+  flutter_hooks:
+    dependency: "direct main"
+    description:
+      name: flutter_hooks
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.2+1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -293,6 +321,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  flutter_slidable:
+    dependency: "direct main"
+    description:
+      name: flutter_slidable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -394,6 +429,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  implicitly_animated_reorderable_list:
+    dependency: "direct main"
+    description:
+      name: implicitly_animated_reorderable_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.2"
   injectable:
     dependency: "direct main"
     description:
@@ -430,12 +472,19 @@ packages:
     source: hosted
     version: "0.6.3"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  json_serializable:
+    dependency: "direct dev"
+    description:
+      name: json_serializable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.4"
   kt_dart:
     dependency: "direct main"
     description:
@@ -443,6 +492,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
+  lint:
+    dependency: transitive
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.8.2"
   lints:
     dependency: transitive
     description:
@@ -521,7 +577,7 @@ packages:
     source: hosted
     version: "1.5.0"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"
@@ -548,6 +604,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  reorderables:
+    dependency: "direct main"
+    description:
+      name: reorderables
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
+  rxdart:
+    dependency: "direct main"
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.3"
   shelf:
     dependency: transitive
     description:
@@ -574,6 +644,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  source_helper:
+    dependency: transitive
+    description:
+      name: source_helper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.1"
   source_span:
     dependency: transitive
     description:
@@ -609,6 +686,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  styled_widget:
+    dependency: "direct main"
+    description:
+      name: styled_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0+3"
   term_glyph:
     dependency: transitive
     description:
@@ -623,6 +707,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.8"
+  time:
+    dependency: "direct main"
+    description:
+      name: time
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   timing:
     dependency: transitive
     description:

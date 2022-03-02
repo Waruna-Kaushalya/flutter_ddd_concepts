@@ -22,9 +22,12 @@ abstract class ValueObject<T> extends Equatable {
   /// response must going Further.
   Either<ValueFailure<T>, T> get value;
 
-  /// Throws [UnexpectedValueError] containing the [AuthValueFailure]
+  /// [getOrCrash]
+  /// Throws [UnexpectedValueError] containing the [ValueFailure]
+  /// if not return value
   T getOrCrash() {
     // id = identity - same as writing (right) => right
+    /// A id<A>(A a) => a;
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 

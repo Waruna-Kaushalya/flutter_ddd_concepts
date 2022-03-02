@@ -13,6 +13,7 @@ dependencies:
   dartz: ^0.10.1
   firebase_auth: ^3.3.9
   firebase_core: ^1.13.1
+  cloud_firestore: ^3.1.10
   flutter_bloc: ^8.0.1
   freezed_annotation: ^1.1.0
   google_sign_in: ^5.2.4
@@ -24,6 +25,17 @@ dependencies:
   auto_route: ^3.2.4
   go_router: ^3.0.3
   kt_dart: ^0.10.0
+  json_annotation: ^4.4.0
+  
+  styled_widget: ^0.4.0+3
+  flutter_hooks: ^0.18.2+1
+  time: ^2.1.0
+  rxdart: ^0.27.3
+  reorderables: ^0.4.3
+  flutter_slidable: ^1.2.0
+  implicitly_animated_reorderable_list: ^0.4.2
+  provider: ^6.0.2
+  
 
 dev_dependencies:
   auto_route_generator: ^3.2.3
@@ -33,6 +45,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^1.1.1
   injectable_generator: ^1.5.3
+  json_serializable: ^6.1.4
  
 
 flutter:
