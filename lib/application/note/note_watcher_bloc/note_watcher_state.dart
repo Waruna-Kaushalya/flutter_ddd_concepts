@@ -3,9 +3,7 @@ part of 'note_watcher_bloc.dart';
 @freezed
 class NoteWatcherState with _$NoteWatcherState {
   const factory NoteWatcherState.initial() = _Initial;
-  const factory NoteWatcherState.loadInProgress() = _LoadInProgress;
-  const factory NoteWatcherState.loadSuccess(KtList<NoteEntity> notes) =
-      _LoadSuccess;
-  const factory NoteWatcherState.loadFailure(NoteFailure noteFailure) =
-      _LoadFailure;
+  const factory NoteWatcherState.loading() = _Loading;
+  const factory NoteWatcherState.success(KtList<NoteEntity> notes) = _Success;
+  const factory NoteWatcherState.failure(NoteFailure noteFailure) = _Failure;
 }

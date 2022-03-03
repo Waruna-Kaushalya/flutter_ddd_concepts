@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -14,17 +17,29 @@ part 'note_watcher_state.dart';
 
 @injectable
 class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
-  final INoteRepository iNoteRepository;
+  final INoteRepository _iNoteRepository;
+  late StreamSubscription<Either<NoteFailure, KtList<NoteEntity>>>
+      _noteStreamSubscription;
 
   NoteWatcherBloc(
-    this.iNoteRepository,
+    this._iNoteRepository,
   ) : super(const NoteWatcherState.initial()) {
     on<NoteWatcherEvent>((event, emit) async {
       await event.map(
         watchAllStarted: (value) {
-          emit(const NoteWatcherState.loadInProgress());
+          emit(const NoteWatcherState.loading());
+          _noteStreamSubscription =
+              _iNoteRepository.watchAll().listen((failureOrNotes) {
+            add(NoteWatcherEvent.notesReceived(failureOrNotes));
+          });
         },
         watchUncompletedStarted: (value) {},
+        notesReceived: (e) {
+          e.failureOrNotes.fold(
+            (failure) => NoteWatcherState.failure(failure),
+            (notes) => NoteWatcherState.success(notes),
+          );
+        },
       );
     });
   }
