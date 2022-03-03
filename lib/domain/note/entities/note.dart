@@ -47,14 +47,14 @@ abstract class Note implements _$Note {
               .getOrCrash()
 
               /// getting the failureOption from the todoItem ENTITY -
-              /// NOT afailureOrUnit from a VALUE
+              /// NOT a failureOrUnit from a VALUE
               .map((todoItem) => todoItem.failureOption)
               .filter((o) => o.isSome())
 
-              /// if we can't get the 0thelement,the list is empty.
+              /// if we can't get the 0 thelement,the list is empty.
               /// In such a case,it's valid
               .getOrElse(0, (_) => none())
-              .fold(() => right(unit), (f) => left(f)),
+              .fold(() => right(unit), (failure) => left(failure)),
         )
         .fold((f) => some(f), (_) => none());
   }
