@@ -5,7 +5,7 @@ import '../../core/value_failures.dart';
 import '../../core/value_object_validators.dart';
 
 /// EmailAddress data class
-class EmailAddress extends ValueObject<String> {
+class EmailAddressObj extends ValueObject<String> {
   /// Either is use for return validated value respose.
   /// that means [validateEmailAddress] function return
   /// [Either] type response. if value is validated without
@@ -20,11 +20,11 @@ class EmailAddress extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   /// ptivate constructor
-  const EmailAddress._(this.value);
+  const EmailAddressObj._(this.value);
 
-  factory EmailAddress(String input) {
+  factory EmailAddressObj(String input) {
     // assert(input != null);
-    return EmailAddress._(
+    return EmailAddressObj._(
       validateEmailAddress(input),
     );
   }

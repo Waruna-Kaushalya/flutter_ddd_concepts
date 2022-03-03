@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'note.dart';
+part of 'note_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,15 +15,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$NoteTearOff {
-  const _$NoteTearOff();
+class _$NoteEntityTearOff {
+  const _$NoteEntityTearOff();
 
-  _Note call(
-      {required UniqueId id,
-      required NoteBody body,
-      required NoteColor color,
-      required List3<TodoItem> todos}) {
-    return _Note(
+  _NoteEntity call(
+      {required UniqueIdObj id,
+      required NoteBodyObj body,
+      required NoteColorObj color,
+      required List3Obj<TodoItemEntity> todos}) {
+    return _NoteEntity(
       id: id,
       body: body,
       color: color,
@@ -33,34 +33,39 @@ class _$NoteTearOff {
 }
 
 /// @nodoc
-const $Note = _$NoteTearOff();
+const $NoteEntity = _$NoteEntityTearOff();
 
 /// @nodoc
-mixin _$Note {
-  UniqueId get id => throw _privateConstructorUsedError;
-  NoteBody get body => throw _privateConstructorUsedError;
-  NoteColor get color => throw _privateConstructorUsedError;
-  List3<TodoItem> get todos => throw _privateConstructorUsedError;
+mixin _$NoteEntity {
+  UniqueIdObj get id => throw _privateConstructorUsedError;
+  NoteBodyObj get body => throw _privateConstructorUsedError;
+  NoteColorObj get color => throw _privateConstructorUsedError;
+  List3Obj<TodoItemEntity> get todos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $NoteCopyWith<Note> get copyWith => throw _privateConstructorUsedError;
+  $NoteEntityCopyWith<NoteEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoteCopyWith<$Res> {
-  factory $NoteCopyWith(Note value, $Res Function(Note) then) =
-      _$NoteCopyWithImpl<$Res>;
+abstract class $NoteEntityCopyWith<$Res> {
+  factory $NoteEntityCopyWith(
+          NoteEntity value, $Res Function(NoteEntity) then) =
+      _$NoteEntityCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
+      {UniqueIdObj id,
+      NoteBodyObj body,
+      NoteColorObj color,
+      List3Obj<TodoItemEntity> todos});
 }
 
 /// @nodoc
-class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
-  _$NoteCopyWithImpl(this._value, this._then);
+class _$NoteEntityCopyWithImpl<$Res> implements $NoteEntityCopyWith<$Res> {
+  _$NoteEntityCopyWithImpl(this._value, this._then);
 
-  final Note _value;
+  final NoteEntity _value;
   // ignore: unused_field
-  final $Res Function(Note) _then;
+  final $Res Function(NoteEntity) _then;
 
   @override
   $Res call({
@@ -73,40 +78,45 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as UniqueIdObj,
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as NoteBody,
+              as NoteBodyObj,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as NoteColor,
+              as NoteColorObj,
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List3<TodoItem>,
+              as List3Obj<TodoItemEntity>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
-  factory _$NoteCopyWith(_Note value, $Res Function(_Note) then) =
-      __$NoteCopyWithImpl<$Res>;
+abstract class _$NoteEntityCopyWith<$Res> implements $NoteEntityCopyWith<$Res> {
+  factory _$NoteEntityCopyWith(
+          _NoteEntity value, $Res Function(_NoteEntity) then) =
+      __$NoteEntityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
+      {UniqueIdObj id,
+      NoteBodyObj body,
+      NoteColorObj color,
+      List3Obj<TodoItemEntity> todos});
 }
 
 /// @nodoc
-class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
-    implements _$NoteCopyWith<$Res> {
-  __$NoteCopyWithImpl(_Note _value, $Res Function(_Note) _then)
-      : super(_value, (v) => _then(v as _Note));
+class __$NoteEntityCopyWithImpl<$Res> extends _$NoteEntityCopyWithImpl<$Res>
+    implements _$NoteEntityCopyWith<$Res> {
+  __$NoteEntityCopyWithImpl(
+      _NoteEntity _value, $Res Function(_NoteEntity) _then)
+      : super(_value, (v) => _then(v as _NoteEntity));
 
   @override
-  _Note get _value => super._value as _Note;
+  _NoteEntity get _value => super._value as _NoteEntity;
 
   @override
   $Res call({
@@ -115,31 +125,31 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
     Object? color = freezed,
     Object? todos = freezed,
   }) {
-    return _then(_Note(
+    return _then(_NoteEntity(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as UniqueIdObj,
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as NoteBody,
+              as NoteBodyObj,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as NoteColor,
+              as NoteColorObj,
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List3<TodoItem>,
+              as List3Obj<TodoItemEntity>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Note extends _Note {
-  const _$_Note(
+class _$_NoteEntity extends _NoteEntity {
+  const _$_NoteEntity(
       {required this.id,
       required this.body,
       required this.color,
@@ -147,24 +157,24 @@ class _$_Note extends _Note {
       : super._();
 
   @override
-  final UniqueId id;
+  final UniqueIdObj id;
   @override
-  final NoteBody body;
+  final NoteBodyObj body;
   @override
-  final NoteColor color;
+  final NoteColorObj color;
   @override
-  final List3<TodoItem> todos;
+  final List3Obj<TodoItemEntity> todos;
 
   @override
   String toString() {
-    return 'Note(id: $id, body: $body, color: $color, todos: $todos)';
+    return 'NoteEntity(id: $id, body: $body, color: $color, todos: $todos)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Note &&
+            other is _NoteEntity &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.body, body) &&
             const DeepCollectionEquality().equals(other.color, color) &&
@@ -181,27 +191,28 @@ class _$_Note extends _Note {
 
   @JsonKey(ignore: true)
   @override
-  _$NoteCopyWith<_Note> get copyWith =>
-      __$NoteCopyWithImpl<_Note>(this, _$identity);
+  _$NoteEntityCopyWith<_NoteEntity> get copyWith =>
+      __$NoteEntityCopyWithImpl<_NoteEntity>(this, _$identity);
 }
 
-abstract class _Note extends Note {
-  const factory _Note(
-      {required UniqueId id,
-      required NoteBody body,
-      required NoteColor color,
-      required List3<TodoItem> todos}) = _$_Note;
-  const _Note._() : super._();
+abstract class _NoteEntity extends NoteEntity {
+  const factory _NoteEntity(
+      {required UniqueIdObj id,
+      required NoteBodyObj body,
+      required NoteColorObj color,
+      required List3Obj<TodoItemEntity> todos}) = _$_NoteEntity;
+  const _NoteEntity._() : super._();
 
   @override
-  UniqueId get id;
+  UniqueIdObj get id;
   @override
-  NoteBody get body;
+  NoteBodyObj get body;
   @override
-  NoteColor get color;
+  NoteColorObj get color;
   @override
-  List3<TodoItem> get todos;
+  List3Obj<TodoItemEntity> get todos;
   @override
   @JsonKey(ignore: true)
-  _$NoteCopyWith<_Note> get copyWith => throw _privateConstructorUsedError;
+  _$NoteEntityCopyWith<_NoteEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }

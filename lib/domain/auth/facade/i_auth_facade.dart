@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import '../entities/user.dart';
+import '../entities/user_entity.dart';
 import '../value_objects/value_objects.dart';
 import '../failures/auth_failure.dart';
 
@@ -12,15 +12,15 @@ abstract class IAuthFacade {
   /// Either hold [none] or [some]
   /// if passed is null value then => [none]
   /// if passed some value then => [some]
-  Future<Option<CurrentUser>> getSignedInUser();
+  Future<Option<UserEntity>> getSignedInUser();
 
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
+    required EmailAddressObj emailAddress,
+    required PasswordObj password,
   });
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
+    required EmailAddressObj emailAddress,
+    required PasswordObj password,
   });
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
 

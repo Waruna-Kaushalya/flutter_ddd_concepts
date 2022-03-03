@@ -21,7 +21,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// when user enter email and re enter email
         emailChanged: (value) {
           emit(state.copyWith(
-            emailAddress: EmailAddress(value.emailStr.trim()),
+            emailAddress: EmailAddressObj(value.emailStr.trim()),
 
             /// registerd successfully --> some(right(unit))
             /// unsscsefull --> none(left(AuthFailure))
@@ -33,7 +33,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// Validate newly update password
         passwordChanged: (value) {
           emit(state.copyWith(
-            password: Password(value.passwordStr.trim()),
+            password: PasswordObj(value.passwordStr.trim()),
 
             /// Option<A> none<A>() => new None();
             authFailureOrSuccessOption: none(),
@@ -102,8 +102,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
   Future<void> signInEmailP(
       Future<Either<AuthFailure, Unit>> Function({
-    required EmailAddress emailAddress,
-    required Password password,
+    required EmailAddressObj emailAddress,
+    required PasswordObj password,
   })
           forwardedCall,
       Emitter<SignInFormState> emit) async {

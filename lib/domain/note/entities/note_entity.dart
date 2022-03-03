@@ -1,35 +1,35 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_ddd_concepts/domain/domain.dart';
-import 'package:flutter_ddd_concepts/domain/note/entities/todo_item.dart';
+import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
 import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
 
 import '../../core/value_failures.dart';
 
-part 'note.freezed.dart';
+part 'note_entity.freezed.dart';
 
 @freezed
-abstract class Note implements _$Note {
-  const Note._();
+abstract class NoteEntity implements _$NoteEntity {
+  const NoteEntity._();
 
-  const factory Note({
-    required UniqueId id,
-    required NoteBody body,
-    required NoteColor color,
-    required List3<TodoItem> todos,
-  }) = _Note;
+  const factory NoteEntity({
+    required UniqueIdObj id,
+    required NoteBodyObj body,
+    required NoteColorObj color,
+    required List3Obj<TodoItemEntity> todos,
+  }) = _NoteEntity;
 
   // when open new page, need to siaply empty page.
   // so pre define the empty page state
-  factory Note.empty() => Note(
-        id: UniqueId(),
-        body: NoteBody(''),
-        color: NoteColor(NoteColor.predefinedColors[0]),
+  factory NoteEntity.empty() => NoteEntity(
+        id: UniqueIdObj(),
+        body: NoteBodyObj(''),
+        color: NoteColorObj(NoteColorObj.predefinedColors[0]),
 
         /// Returns an empty read-only list.
         /// KtList<T> emptyList<T>() => KtList<T>.empty();
-        todos: List3(emptyList()),
+        todos: List3Obj(emptyList()),
       );
 
   /// note entity validation

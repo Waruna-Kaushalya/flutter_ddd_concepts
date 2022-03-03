@@ -5,15 +5,15 @@ import '../../core/value_failures.dart';
 import '../../core/value_object_validators.dart';
 
 /// Password data class
-class Password extends ValueObject<String> {
+class PasswordObj extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  const Password._(this.value);
+  const PasswordObj._(this.value);
 
-  factory Password(String input) {
+  factory PasswordObj(String input) {
     // assert(input != null);
-    return Password._(
+    return PasswordObj._(
       validatePassword(input),
     );
   }

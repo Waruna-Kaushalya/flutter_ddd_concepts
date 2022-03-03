@@ -52,6 +52,15 @@ mixin _$NoteDTO {
   String get body => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   List<TodoItemDTO> get todos => throw _privateConstructorUsedError;
+
+  /// we need to sort [NoteDTO] acrding to time note is created
+  /// so [serverTimeStamp] is use for get note created time
+  ///Placeholder --> Time on the server when note is created or updated
+  ///
+  /// [ServerTimestampConverter()]
+  /// [JasonSerializable] can convert by default only fields which are
+  /// valid jsons. those are [String] [int] [bool] .., so on
+  /// thats whay we need to convert [FieldValue]
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
 
@@ -170,13 +179,14 @@ class __$NoteDTOCopyWithImpl<$Res> extends _$NoteDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NoteDTO implements _NoteDTO {
+class _$_NoteDTO extends _NoteDTO {
   const _$_NoteDTO(
       {@JsonKey(ignore: true) this.id,
       required this.body,
       required this.color,
       required this.todos,
-      @ServerTimestampConverter() required this.serverTimeStamp});
+      @ServerTimestampConverter() required this.serverTimeStamp})
+      : super._();
 
   factory _$_NoteDTO.fromJson(Map<String, dynamic> json) =>
       _$$_NoteDTOFromJson(json);
@@ -191,6 +201,15 @@ class _$_NoteDTO implements _NoteDTO {
   @override
   final List<TodoItemDTO> todos;
   @override
+
+  /// we need to sort [NoteDTO] acrding to time note is created
+  /// so [serverTimeStamp] is use for get note created time
+  ///Placeholder --> Time on the server when note is created or updated
+  ///
+  /// [ServerTimestampConverter()]
+  /// [JasonSerializable] can convert by default only fields which are
+  /// valid jsons. those are [String] [int] [bool] .., so on
+  /// thats whay we need to convert [FieldValue]
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
 
@@ -232,7 +251,7 @@ class _$_NoteDTO implements _NoteDTO {
   }
 }
 
-abstract class _NoteDTO implements NoteDTO {
+abstract class _NoteDTO extends NoteDTO {
   const factory _NoteDTO(
           {@JsonKey(ignore: true) String? id,
           required String body,
@@ -240,6 +259,7 @@ abstract class _NoteDTO implements NoteDTO {
           required List<TodoItemDTO> todos,
           @ServerTimestampConverter() required FieldValue serverTimeStamp}) =
       _$_NoteDTO;
+  const _NoteDTO._() : super._();
 
   factory _NoteDTO.fromJson(Map<String, dynamic> json) = _$_NoteDTO.fromJson;
 
@@ -253,6 +273,15 @@ abstract class _NoteDTO implements NoteDTO {
   @override
   List<TodoItemDTO> get todos;
   @override
+
+  /// we need to sort [NoteDTO] acrding to time note is created
+  /// so [serverTimeStamp] is use for get note created time
+  ///Placeholder --> Time on the server when note is created or updated
+  ///
+  /// [ServerTimestampConverter()]
+  /// [JasonSerializable] can convert by default only fields which are
+  /// valid jsons. those are [String] [int] [bool] .., so on
+  /// thats whay we need to convert [FieldValue]
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp;
   @override

@@ -3,8 +3,8 @@ part of 'sign_in_form_bloc.dart';
 @freezed
 class SignInFormState with _$SignInFormState {
   const factory SignInFormState({
-    required EmailAddress emailAddress,
-    required Password password,
+    required EmailAddressObj emailAddress,
+    required PasswordObj password,
     // required AutovalidateMode showErrorMessages,
     required bool showErrorMessages,
 
@@ -26,8 +26,8 @@ class SignInFormState with _$SignInFormState {
   }) = _SignInFormState;
 
   factory SignInFormState.initial() => SignInFormState(
-        emailAddress: EmailAddress(''),
-        password: Password(''),
+        emailAddress: EmailAddressObj(''),
+        password: PasswordObj(''),
 
         /// empty filed show err msg.
         /// but initily we dont need to do that

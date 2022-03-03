@@ -23,13 +23,13 @@ class FirebaseAuthFacade implements IAuthFacade {
   ///
   /// Option<A> optionOf<A>(A? value) => value != null ? some(value) : none();
   @override
-  Future<Option<CurrentUser>> getSignedInUser() async =>
+  Future<Option<UserEntity>> getSignedInUser() async =>
       optionOf(_firebaseAuth.currentUser?.toDomain());
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
+    required EmailAddressObj emailAddress,
+    required PasswordObj password,
   }) async {
     /// extract String value from value object
     final emailAddressStr = emailAddress.getOrCrash();
@@ -55,8 +55,8 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
+    required EmailAddressObj emailAddress,
+    required PasswordObj password,
   }) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();

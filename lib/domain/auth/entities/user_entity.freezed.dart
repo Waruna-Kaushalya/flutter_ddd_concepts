@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user.dart';
+part of 'user_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,43 +15,43 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$CurrentUserTearOff {
-  const _$CurrentUserTearOff();
+class _$UserEntityTearOff {
+  const _$UserEntityTearOff();
 
-  _CurrentUser call({required UniqueId currentUserId}) {
-    return _CurrentUser(
+  _UserEntity call({required UniqueIdObj currentUserId}) {
+    return _UserEntity(
       currentUserId: currentUserId,
     );
   }
 }
 
 /// @nodoc
-const $CurrentUser = _$CurrentUserTearOff();
+const $UserEntity = _$UserEntityTearOff();
 
 /// @nodoc
-mixin _$CurrentUser {
-  UniqueId get currentUserId => throw _privateConstructorUsedError;
+mixin _$UserEntity {
+  UniqueIdObj get currentUserId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CurrentUserCopyWith<CurrentUser> get copyWith =>
+  $UserEntityCopyWith<UserEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CurrentUserCopyWith<$Res> {
-  factory $CurrentUserCopyWith(
-          CurrentUser value, $Res Function(CurrentUser) then) =
-      _$CurrentUserCopyWithImpl<$Res>;
-  $Res call({UniqueId currentUserId});
+abstract class $UserEntityCopyWith<$Res> {
+  factory $UserEntityCopyWith(
+          UserEntity value, $Res Function(UserEntity) then) =
+      _$UserEntityCopyWithImpl<$Res>;
+  $Res call({UniqueIdObj currentUserId});
 }
 
 /// @nodoc
-class _$CurrentUserCopyWithImpl<$Res> implements $CurrentUserCopyWith<$Res> {
-  _$CurrentUserCopyWithImpl(this._value, this._then);
+class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
+  _$UserEntityCopyWithImpl(this._value, this._then);
 
-  final CurrentUser _value;
+  final UserEntity _value;
   // ignore: unused_field
-  final $Res Function(CurrentUser) _then;
+  final $Res Function(UserEntity) _then;
 
   @override
   $Res call({
@@ -61,62 +61,61 @@ class _$CurrentUserCopyWithImpl<$Res> implements $CurrentUserCopyWith<$Res> {
       currentUserId: currentUserId == freezed
           ? _value.currentUserId
           : currentUserId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as UniqueIdObj,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$CurrentUserCopyWith<$Res>
-    implements $CurrentUserCopyWith<$Res> {
-  factory _$CurrentUserCopyWith(
-          _CurrentUser value, $Res Function(_CurrentUser) then) =
-      __$CurrentUserCopyWithImpl<$Res>;
+abstract class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
+  factory _$UserEntityCopyWith(
+          _UserEntity value, $Res Function(_UserEntity) then) =
+      __$UserEntityCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId currentUserId});
+  $Res call({UniqueIdObj currentUserId});
 }
 
 /// @nodoc
-class __$CurrentUserCopyWithImpl<$Res> extends _$CurrentUserCopyWithImpl<$Res>
-    implements _$CurrentUserCopyWith<$Res> {
-  __$CurrentUserCopyWithImpl(
-      _CurrentUser _value, $Res Function(_CurrentUser) _then)
-      : super(_value, (v) => _then(v as _CurrentUser));
+class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
+    implements _$UserEntityCopyWith<$Res> {
+  __$UserEntityCopyWithImpl(
+      _UserEntity _value, $Res Function(_UserEntity) _then)
+      : super(_value, (v) => _then(v as _UserEntity));
 
   @override
-  _CurrentUser get _value => super._value as _CurrentUser;
+  _UserEntity get _value => super._value as _UserEntity;
 
   @override
   $Res call({
     Object? currentUserId = freezed,
   }) {
-    return _then(_CurrentUser(
+    return _then(_UserEntity(
       currentUserId: currentUserId == freezed
           ? _value.currentUserId
           : currentUserId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as UniqueIdObj,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_CurrentUser implements _CurrentUser {
-  const _$_CurrentUser({required this.currentUserId});
+class _$_UserEntity implements _UserEntity {
+  const _$_UserEntity({required this.currentUserId});
 
   @override
-  final UniqueId currentUserId;
+  final UniqueIdObj currentUserId;
 
   @override
   String toString() {
-    return 'CurrentUser(currentUserId: $currentUserId)';
+    return 'UserEntity(currentUserId: $currentUserId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CurrentUser &&
+            other is _UserEntity &&
             const DeepCollectionEquality()
                 .equals(other.currentUserId, currentUserId));
   }
@@ -127,18 +126,18 @@ class _$_CurrentUser implements _CurrentUser {
 
   @JsonKey(ignore: true)
   @override
-  _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
-      __$CurrentUserCopyWithImpl<_CurrentUser>(this, _$identity);
+  _$UserEntityCopyWith<_UserEntity> get copyWith =>
+      __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
 }
 
-abstract class _CurrentUser implements CurrentUser {
-  const factory _CurrentUser({required UniqueId currentUserId}) =
-      _$_CurrentUser;
+abstract class _UserEntity implements UserEntity {
+  const factory _UserEntity({required UniqueIdObj currentUserId}) =
+      _$_UserEntity;
 
   @override
-  UniqueId get currentUserId;
+  UniqueIdObj get currentUserId;
   @override
   @JsonKey(ignore: true)
-  _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
+  _$UserEntityCopyWith<_UserEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
