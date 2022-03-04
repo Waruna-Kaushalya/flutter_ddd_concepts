@@ -26,7 +26,6 @@ dependencies:
   go_router: ^3.0.3
   kt_dart: ^0.10.0
   json_annotation: ^4.4.0
-  
   styled_widget: ^0.4.0+3
   flutter_hooks: ^0.18.2+1
   time: ^2.1.0
