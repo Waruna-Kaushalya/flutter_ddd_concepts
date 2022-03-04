@@ -64,8 +64,37 @@ class NoteRepository implements INoteRepository {
   }
 
   @override
-  Stream<Either<NoteFailure, KtList<NoteEntity>>> watchUncompleted() {
-    throw UnimplementedError();
+  Stream<Either<NoteFailure, KtList<NoteEntity>>> watchUncompleted() async* {
+    final userDoc = await _firebaseFirestore.userDocument();
+
+    yield* userDoc
+        .collection("notes")
+        .orderBy("serverTimeStamp", descending: true)
+        .snapshots()
+        .map(
+          (snapshot) =>
+              snapshot.docs.map((doc) => NoteDTO.fromFirestore(doc).toDomain()),
+        )
+        .map(
+          /// [Iterable<NoteEntity> notes]
+          (notes) => right<NoteFailure, KtList<NoteEntity>>(
+            notes
+                .where(
+                  (note) => note.todos.getOrCrash().any(
+                        (todoItem) => !todoItem.done,
+                      ),
+                )
+                .toImmutableList(),
+          ),
+        )
+        .onErrorReturnWith((e, st) {
+      if (e is PlatformException && e.message!.contains('PERMISSION_DENIED')) {
+        return const Left(NoteFailure.insufficientPermissions());
+      } else {
+        log(e.toString());
+        return const Left(NoteFailure.insufficientPermissions());
+      }
+    });
   }
 
   @override
