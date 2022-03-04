@@ -108,11 +108,12 @@ abstract class NoteDTO implements _$NoteDTO {
   /// method. it is very similer to [fromJson] and it use [fromJson].
   /// but it will know about one more thing....
   /// about the [id] of the [firestore] document
-  factory NoteDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+  factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
     /// [doc.data()]
     /// Map<String, dynamic>? data()
     /// Contains all the data of this document snapshot.
-    return NoteDTO.fromJson(doc.data()!).copyWith(id: doc.id);
+    return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
+        .copyWith(id: doc.id);
   }
 }
 
