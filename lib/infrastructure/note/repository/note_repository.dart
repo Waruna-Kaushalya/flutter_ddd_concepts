@@ -71,10 +71,20 @@ class NoteRepository implements INoteRepository {
         .collection("notes")
         .orderBy("serverTimeStamp", descending: true)
         .snapshots()
+
+        /// first [map] functionmap th documentSnapshot to note Entities
         .map(
           (snapshot) =>
               snapshot.docs.map((doc) => NoteDTO.fromFirestore(doc).toDomain()),
         )
+
+        /// then they are pass in to the seconond [map] function as at [
+        /// [Iterable<NoteEntity> notes]].
+        ///
+        /// And here we only return [right] side because,[map] not recive
+        /// incorrect values.
+        ///
+        ///And we need to filter [uncompleted] todos
         .map(
           /// [Iterable<NoteEntity> notes]
           (notes) => right<NoteFailure, KtList<NoteEntity>>(
@@ -84,6 +94,10 @@ class NoteRepository implements INoteRepository {
                         (todoItem) => !todoItem.done,
                       ),
                 )
+
+                /// why [toImmutableList]
+                /// becase [KtList] is [Mutable List]
+                /// We need to convert it  [toImmutableList]
                 .toImmutableList(),
           ),
         )
