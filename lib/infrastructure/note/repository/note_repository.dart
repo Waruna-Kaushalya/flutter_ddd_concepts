@@ -85,6 +85,7 @@ class NoteRepository implements INoteRepository {
         /// incorrect values.
         ///
         ///And we need to filter [uncompleted] todos
+        /// git comm
         .map(
           /// [Iterable<NoteEntity> notes]
           (notes) => right<NoteFailure, KtList<NoteEntity>>(
