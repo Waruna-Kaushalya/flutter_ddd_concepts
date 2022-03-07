@@ -12,6 +12,12 @@ part 'todoitem_dto.g.dart';
 ///  need to change freed data class definition
 /// so [with] keyword --> [implements] &&
 /// add [const TodoItemDTO._();] constructor
+///
+/// /// why [freezed] [data class] with [implements] keyword insted of [with],
+/// we are including reguler member function [ TodoItemEntity toDomain()] so we
+///  need to change freed data class definition
+/// so [with] keyword --> [implements] &&
+/// add [const TodoItemDTO._();] constructor
 @freezed
 abstract class TodoItemDTO implements _$TodoItemDTO {
   const TodoItemDTO._();
