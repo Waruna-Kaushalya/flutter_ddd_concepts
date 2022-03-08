@@ -118,8 +118,6 @@ class NoteRepository implements INoteRepository {
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
         return const Left(NoteFailure.insufficientPermissions());
-      } else if (e.message!.contains('NOT_FOUND')) {
-        return const Left(NoteFailure.unableToUpdate());
       } else {
         log(e.toString());
         return const Left(NoteFailure.unexpected());
@@ -143,6 +141,8 @@ class NoteRepository implements INoteRepository {
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
         return const Left(NoteFailure.insufficientPermissions());
+      } else if (e.message!.contains('NOT_FOUND')) {
+        return const Left(NoteFailure.unableToUpdate());
       } else {
         log(e.toString());
         return const Left(NoteFailure.unexpected());
@@ -165,6 +165,8 @@ class NoteRepository implements INoteRepository {
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
         return const Left(NoteFailure.insufficientPermissions());
+      } else if (e.message!.contains('NOT_FOUND')) {
+        return const Left(NoteFailure.unableToUpdate());
       } else {
         log(e.toString());
         return const Left(NoteFailure.unexpected());
