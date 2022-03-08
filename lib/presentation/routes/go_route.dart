@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 
-import '../auth/sign_in/sign_in_page.dart';
-import '../splash/pages.dart';
+import '../../presentation/presentation.dart';
 
 class Routes {
   final router = GoRouter(
