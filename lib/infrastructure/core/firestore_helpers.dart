@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_ddd_concepts/domain/auth/facade/i_auth_facade.dart';
-import 'package:flutter_ddd_concepts/domain/core/core.dart';
 
+import '../../domain/auth/error/errors.dart';
 import '../../injection.dart';
 
 /// extension method gives us readily available user documents
