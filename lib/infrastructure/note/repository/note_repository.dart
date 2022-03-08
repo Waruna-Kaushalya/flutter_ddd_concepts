@@ -118,6 +118,8 @@ class NoteRepository implements INoteRepository {
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
         return const Left(NoteFailure.insufficientPermissions());
+      } else if (e.message!.contains('NOT_FOUND')) {
+        return const Left(NoteFailure.unableToUpdate());
       } else {
         log(e.toString());
         return const Left(NoteFailure.unexpected());
@@ -126,7 +128,7 @@ class NoteRepository implements INoteRepository {
   }
 
   @override
-  Future<Either<NoteFailure, Unit>> delete(NoteEntity note) async {
+  Future<Either<NoteFailure, Unit>> update(NoteEntity note) async {
     try {
       final userDoc = await _firebaseFirestore.userDocument();
       final noteDto = NoteDTO.fromDomain(note);
@@ -149,7 +151,25 @@ class NoteRepository implements INoteRepository {
   }
 
   @override
-  Future<Either<NoteFailure, Unit>> update(NoteEntity note) {
-    throw UnimplementedError();
+  Future<Either<NoteFailure, Unit>> delete(NoteEntity note) async {
+    try {
+      final userDoc = await _firebaseFirestore.userDocument();
+      final noteID = note.id.getOrCrash();
+
+      /// in here if we use [add] function then it generate firebase own id.
+      /// but we dont want to do that, becase we alredy generated our own if
+      /// Using [UniqueIdObj]. So we use [doc(noteDto.id).set]
+      ///
+      /// [delete]
+      await userDoc.noteColletion.doc(noteID).delete();
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return const Left(NoteFailure.insufficientPermissions());
+      } else {
+        log(e.toString());
+        return const Left(NoteFailure.unexpected());
+      }
+    }
   }
 }
