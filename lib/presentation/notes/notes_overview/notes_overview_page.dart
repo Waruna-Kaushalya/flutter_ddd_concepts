@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NotesOverviewPage extends StatelessWidget {
-  static const routeName = '/notesOverviewPage';
+  static const routeName = '/notesoverviewpage';
 
   const NotesOverviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Container(),
+    );
   }
 }

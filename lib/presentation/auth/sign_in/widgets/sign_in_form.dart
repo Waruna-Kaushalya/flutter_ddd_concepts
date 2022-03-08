@@ -1,8 +1,10 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../application/aplication.dart';
+import '../../../notes/notes_overview/notes_overview_page.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -28,7 +30,10 @@ class SignInForm extends StatelessWidget {
                     "Invalid Email And Password Combination",
               ),
             ).show(context);
-          }, (_) {}),
+          }, (_) {
+            context.go(NotesOverviewPage.routeName);
+            context.read<AuthBloc>().add(const AuthEvent.authCheckRequested());
+          }),
         );
       },
       builder: (context, state) {
