@@ -45,11 +45,11 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.warunakaushalyafirebase.flutter_ddd_concepts"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true
+        // multiDexEnabled true
     }
 
     buildTypes {
@@ -69,5 +69,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation "androidx.multidex:multidex:2.0.1"
+    // implementation "androidx.multidex:multidex:2.0.1"
 }
