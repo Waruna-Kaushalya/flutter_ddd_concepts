@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ddd_concepts/presentation/notes/notes_overview/notes_overview_page.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../application/aplication.dart';
@@ -16,7 +17,7 @@ class SplashPage extends StatelessWidget {
       listener: (context, state) {
         state.map(
           initial: (_) {},
-          authenticated: (_) {},
+          authenticated: (_) => context.goNamed(NotesOverviewPage.routeName),
           unAuthenticated: (_) => context.goNamed(SignInPage.routeName),
         );
       },

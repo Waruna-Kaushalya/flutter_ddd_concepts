@@ -25,56 +25,64 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
     this._noteRepository,
   ) : super(NoteFormState.initial()) {
     on<NoteFormEvent>((event, emit) async {
-      await event.map(initialized: (e) {
-        emit(e.initialNoteOption.fold(
-          // Yielding an unchanged state results in not emitting anything at all
-          () => state,
-          (initialNote) {
-            return state.copyWith(
-              note: initialNote,
-              isEditing: true,
-            );
-          },
-        ));
-      }, bodyChanged: (e) {
-        emit(state.copyWith(
-          note: state.note.copyWith(body: NoteBodyObj(e.bodyStr)),
-          saveFailureOrSuccessOption: none(),
-        ));
-      }, colorChanged: (e) {
-        emit(state.copyWith(
-          note: state.note.copyWith(color: NoteColorObj(e.color)),
-          saveFailureOrSuccessOption: none(),
-        ));
-      }, todosChanged: (e) {
-        emit(state.copyWith(
-          note: state.note.copyWith(
-            todos: List3Obj(
-              e.todos.map((primitive) => primitive.toDomain()),
+      await event.map(
+        initialized: (e) {
+          emit(e.initialNoteOption.fold(
+            // Yielding an unchanged state results in not emitting anything at all
+            () => state,
+            (initialNote) {
+              return state.copyWith(
+                note: initialNote,
+                isEditing: true,
+              );
+            },
+          ));
+        },
+        bodyChanged: (e) {
+          emit(state.copyWith(
+            note: state.note.copyWith(body: NoteBodyObj(e.bodyStr)),
+            saveFailureOrSuccessOption: none(),
+          ));
+        },
+        colorChanged: (e) {
+          emit(state.copyWith(
+            note: state.note.copyWith(color: NoteColorObj(e.color)),
+            saveFailureOrSuccessOption: none(),
+          ));
+        },
+        todosChanged: (e) {
+          emit(state.copyWith(
+            note: state.note.copyWith(
+              todos: List3Obj(
+                e.todos.map((primitive) => primitive.toDomain()),
+              ),
             ),
-          ),
-          saveFailureOrSuccessOption: none(),
-        ));
-      }, saved: (value) async {
-        Either<NoteFailure, Unit>? failureOrSuccess;
+            saveFailureOrSuccessOption: none(),
+          ));
+        },
+        saved: (value) async {
+          Either<NoteFailure, Unit>? failureOrSuccess;
 
-        emit(state.copyWith(
-          isSaving: true,
-          saveFailureOrSuccessOption: none(),
-        ));
+          emit(state.copyWith(
+            isSaving: true,
+            saveFailureOrSuccessOption: none(),
+          ));
 
-        if (state.note.failureOption.isNone()) {
-          failureOrSuccess = state.isEditing
-              ? await _noteRepository.update(state.note)
-              : await _noteRepository.create(state.note);
-        }
+          if (state.note.failureOption.isNone()) {
+            failureOrSuccess = state.isEditing
+                ? await _noteRepository.update(state.note)
+                : await _noteRepository.create(state.note);
+          }
 
-        emit(state.copyWith(
-          isSaving: false,
-          showErrorMessages: true,
-          saveFailureOrSuccessOption: optionOf(failureOrSuccess),
-        ));
-      });
+          emit(
+            state.copyWith(
+              isSaving: false,
+              showErrorMessages: true,
+              saveFailureOrSuccessOption: optionOf(failureOrSuccess),
+            ),
+          );
+        },
+      );
     });
   }
 }
