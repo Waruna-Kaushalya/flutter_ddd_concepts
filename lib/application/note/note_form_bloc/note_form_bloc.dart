@@ -42,7 +42,16 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
               saveFailureOrSuccessOption: none(),
             ));
           },
-          todosChanged: (e) {},
+          todosChanged: (e) {
+            emit(state.copyWith(
+              note: state.note.copyWith(
+                todos: List3Obj(
+                  e.todos.map((primitive) => primitive.toDomain()),
+                ),
+              ),
+              saveFailureOrSuccessOption: none(),
+            ));
+          },
           saved: (value) {});
     });
   }
