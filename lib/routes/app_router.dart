@@ -11,7 +11,6 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(page: SplashPage, initial: true),
-    // AutoRoute(page: SignInPage, initial: true),
     AutoRoute(page: SignInPage),
     AutoRoute(page: NotesOverviewPage),
   ],
