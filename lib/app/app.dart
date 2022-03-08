@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../routes/app_router.dart';
 import '../routes/go_route.dart';
 import '../injection.dart';
 import '../application/auth/auth_bloc/auth_bloc.dart';
@@ -7,7 +8,11 @@ import '../application/auth/auth_bloc/auth_bloc.dart';
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  final _router = Routes().router;
+  /// go_route
+  // final _router = Routes().router;
+
+  /// auto_route
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +24,13 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp.router(
-        routerDelegate: _router.routerDelegate,
-        routeInformationParser: _router.routeInformationParser,
+        /// go_route
+        // routerDelegate: _router.routerDelegate,
+        // routeInformationParser: _router.routeInformationParser,
+
+        /// auto_route
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
         title: 'Note',
         // home: const SignInPage(),
 
