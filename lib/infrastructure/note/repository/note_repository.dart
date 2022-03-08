@@ -159,7 +159,6 @@ class NoteRepository implements INoteRepository {
       /// in here if we use [add] function then it generate firebase own id.
       /// but we dont want to do that, becase we alredy generated our own if
       /// Using [UniqueIdObj]. So we use [doc(noteDto.id).set]
-      ///
       /// [delete]
       await userDoc.noteColletion.doc(noteID).delete();
       return right(unit);
