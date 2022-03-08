@@ -26,18 +26,19 @@ class MyApp extends StatelessWidget {
 
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
-          colorScheme: ThemeData().colorScheme.copyWith(
-                primary: Colors.green[800],
-                secondary: Colors.blueAccent,
-              ),
-          inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(
-                8,
+            colorScheme: ThemeData().colorScheme.copyWith(
+                  primary: Colors.green[800],
+                  secondary: Colors.blueAccent,
+                ),
+            inputDecorationTheme: InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(
+                  8,
+                ),
               ),
             ),
-          ),
-        ),
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: Colors.blue[900])),
       ),
     );
   }

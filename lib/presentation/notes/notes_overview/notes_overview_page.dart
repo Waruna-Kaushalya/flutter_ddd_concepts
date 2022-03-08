@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ddd_concepts/application/auth/auth_bloc/bloc.dart';
+import 'package:flutter_ddd_concepts/application/note/note_actor_bloc/note_actor_bloc.dart';
+import 'package:flutter_ddd_concepts/application/note/note_watcher_bloc/note_watcher_bloc.dart';
+
+import '../../../injection.dart';
 
 class NotesOverviewPage extends StatelessWidget {
   static const routeName = '/notesoverviewpage';
@@ -9,27 +13,39 @@ class NotesOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Notes"),
-        leading: IconButton(
-          icon: const Icon(Icons.exit_to_app),
-          onPressed: () {
-            context.read<AuthBloc>().add(const AuthEvent.signOut());
-          },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NoteWatcherBloc>(
+          create: (context) => getIt<NoteWatcherBloc>()
+            ..add(const NoteWatcherEvent.watchAllStarted()),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.indeterminate_check_box),
+        BlocProvider<NoteActorBloc>(
+          create: (context) => getIt<NoteActorBloc>(),
+        )
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Notes"),
+          leading: IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            onPressed: () {
+              context.read<AuthBloc>().add(const AuthEvent.signOut());
+            },
           ),
-        ],
-      ),
-      body: Container(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigate to note form page
-        },
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.indeterminate_check_box),
+            ),
+          ],
+        ),
+        body: Container(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Navigate to note form page
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
