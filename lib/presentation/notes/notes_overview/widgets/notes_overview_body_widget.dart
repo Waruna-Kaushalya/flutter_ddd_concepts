@@ -11,9 +11,24 @@ class NotesOverviewBody extends StatelessWidget {
       builder: (context, state) {
         return state.map(
           initial: (_) => Container(),
-          loading: (_) => const Center(child:  CircularProgressIndicator(),),
-          success: (_) => ,
-          failure: (_) => ,
+          loading: (_) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          success: (state) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                final note = state.notes[index];
+                if (note.failureOption.isSome()) {
+                  return Container();
+                } else {
+                  return Container();
+                }
+              },
+            );
+          },
+          failure: (state) {
+            return Container();
+          },
         );
       },
     );
