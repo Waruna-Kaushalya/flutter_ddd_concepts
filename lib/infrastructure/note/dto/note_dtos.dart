@@ -163,6 +163,7 @@
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -229,20 +230,21 @@ part 'note_dtos.g.dart';
 //   }
 // }
 
-@JsonSerializable(anyMap: true, explicitToJson: true, nullable: true)
-class NoteDTO {
+@JsonSerializable(explicitToJson: true, anyMap: true)
+class Notes {
   @JsonKey(ignore: true, name: "id")
-  String? id;
+  final String? id;
   @JsonKey(name: 'body')
-  String body;
+  final String body;
   @JsonKey(name: 'color')
-  int color;
+  final int color;
   @JsonKey(name: 'todos')
-  List<TodoDTO> todos;
+  final List<Todos> todos;
   @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
-  FieldValue serverTimeStamp;
-  NoteDTO({
+  final FieldValue serverTimeStamp;
+
+  Notes({
     this.id,
     required this.body,
     required this.color,
@@ -250,8 +252,8 @@ class NoteDTO {
     required this.serverTimeStamp,
   });
 
-  factory NoteDTO.fromDomain(NoteEntity noteEntity) {
-    return NoteDTO(
+  factory Notes.fromDomain(NoteEntity noteEntity) {
+    return Notes(
       id: noteEntity.id.getOrCrash(),
       body: noteEntity.body.getOrCrash(),
       color: noteEntity.color.getOrCrash().value,
@@ -259,7 +261,7 @@ class NoteDTO {
       todos: noteEntity.todos
           .getOrCrash()
           .map(
-            (todoItemEntity) => TodoDTO.fromDomain(todoItemEntity),
+            (todoItemEntity) => Todos.fromDomain(todoItemEntity),
           )
           .asList(),
     );
@@ -275,24 +277,26 @@ class NoteDTO {
     );
   }
 
-  factory NoteDTO.fromJson(Map json) => _$NoteDTOFromJson(json);
+  factory Notes.fromJson(Map json) => _$NotesFromJson(json);
 
-  Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
+  Map<String, dynamic> toJson() => _$NotesToJson(this);
 
-  factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data()! as Map;
+  factory Notes.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data()! as Map<String, dynamic>;
 
-    return NoteDTO.fromJson(data).copyWith(id: doc.id);
+    print(data);
+
+    return Notes.fromJson(data).copyWith(id: doc.id);
   }
 
-  NoteDTO copyWith({
+  Notes copyWith({
     String? id,
     String? body,
     int? color,
-    List<TodoDTO>? todos,
+    List<Todos>? todos,
     FieldValue? serverTimeStamp,
   }) {
-    return NoteDTO(
+    return Notes(
       id: id ?? this.id,
       body: body ?? this.body,
       color: color ?? this.color,

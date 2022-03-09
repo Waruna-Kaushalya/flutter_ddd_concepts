@@ -6,17 +6,17 @@ part of 'note_dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NoteDTO _$NoteDTOFromJson(Map json) => NoteDTO(
+Notes _$NotesFromJson(Map json) => Notes(
       body: json['body'] as String,
       color: json['color'] as int,
       todos: (json['todos'] as List<dynamic>)
-          .map((e) => TodoDTO.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map((e) => Todos.fromJson(e as Map))
           .toList(),
       serverTimeStamp: const ServerTimestampConverter()
           .fromJson(json['serverTimeStamp'] as Object),
     );
 
-Map<String, dynamic> _$NoteDTOToJson(NoteDTO instance) => <String, dynamic>{
+Map<String, dynamic> _$NotesToJson(Notes instance) => <String, dynamic>{
       'body': instance.body,
       'color': instance.color,
       'todos': instance.todos.map((e) => e.toJson()).toList(),

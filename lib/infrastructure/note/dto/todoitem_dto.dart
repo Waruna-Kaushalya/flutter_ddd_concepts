@@ -103,22 +103,22 @@ part 'todoitem_dto.g.dart';
 //       _$TodoDTOFromJson(json);
 // }
 
-@JsonSerializable(anyMap: true)
-class TodoDTO {
+@JsonSerializable(anyMap: true, explicitToJson: true)
+class Todos {
   @JsonKey(name: 'id')
   String id;
   @JsonKey(name: 'name')
   String name;
   @JsonKey(name: 'done')
   bool done;
-  TodoDTO({
+  Todos({
     required this.id,
     required this.name,
     required this.done,
   });
 
-  factory TodoDTO.fromDomain(TodoEntity todoItemEntity) {
-    return TodoDTO(
+  factory Todos.fromDomain(TodoEntity todoItemEntity) {
+    return Todos(
       id: todoItemEntity.id.getOrCrash(),
       name: todoItemEntity.name.getOrCrash(),
       done: todoItemEntity.done,
@@ -133,17 +133,16 @@ class TodoDTO {
     );
   }
 
-  factory TodoDTO.fromJson(Map<String, dynamic> json) =>
-      _$TodoDTOFromJson(json);
+  factory Todos.fromJson(Map json) => _$TodosFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TodoDTOToJson(this);
+  Map toJson() => _$TodosToJson(this);
 
-  TodoDTO copyWith({
+  Todos copyWith({
     String? id,
     String? name,
     bool? done,
   }) {
-    return TodoDTO(
+    return Todos(
       id: id ?? this.id,
       name: name ?? this.name,
       done: done ?? this.done,
