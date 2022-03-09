@@ -275,13 +275,12 @@ class NoteDTO {
     );
   }
 
-  factory NoteDTO.fromJson(Map<String, dynamic> json) =>
-      _$NoteDTOFromJson(json);
+  factory NoteDTO.fromJson(Map json) => _$NoteDTOFromJson(json);
 
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data()! as Map<String, dynamic>;
+    final data = doc.data()! as Map;
 
     return NoteDTO.fromJson(data).copyWith(id: doc.id);
   }
