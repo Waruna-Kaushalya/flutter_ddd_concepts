@@ -21,17 +21,19 @@ class NoteRepository implements INoteRepository {
   );
   @override
   Stream<Either<NoteFailure, KtList<NoteEntity>>> watchAll() async* {
+    ///get ["users"]
     final userDoc = await _firebaseFirestore.userDocument();
 
-    yield* userDoc
-        .collection("notes")
+    /// get ["notes"]
+    final notes = userDoc.collection("notes");
 
-        /// order by "serverTimeStamp" {sort}
-        .orderBy("serverTimeStamp", descending: true)
-        .snapshots()
+    /// order by "serverTimeStamp" {sort}
+    final orderbyServerTimeStamp =
+        notes.orderBy("serverTimeStamp", descending: true).snapshots();
 
-        /// [QuerySnapshot] map in to [Either<NoteFailure, KtList<NoteEntity>>]
-        /// [map] function always recive corect data
+    /// [QuerySnapshot] map in to [Either<NoteFailure, KtList<NoteEntity>>]
+    /// [map] function always recive corect data
+    final querySnapshotMap = orderbyServerTimeStamp
         .map((snapshot) => right<NoteFailure, KtList<NoteEntity>>(
               /// [snapshot.docs] has List of QueryDocumentSnapshot
               snapshot.docs
@@ -42,8 +44,9 @@ class NoteRepository implements INoteRepository {
                       /// [NoteDTO] map to domain
                       .toDomain())
                   .toImmutableList(),
-            ))
-        .onErrorReturnWith((e, st) {
+            ));
+
+    yield* querySnapshotMap.onErrorReturnWith((e, st) {
       if (e is PlatformException && e.message!.contains('PERMISSION_DENIED')) {
         return const Left(NoteFailure.insufficientPermissions());
       } else {

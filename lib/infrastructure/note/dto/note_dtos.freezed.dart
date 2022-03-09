@@ -192,7 +192,7 @@ class __$NoteDTOCopyWithImpl<$Res> extends _$NoteDTOCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(anyMap: true, explicitToJson: true, nullable: false)
+@JsonSerializable(anyMap: true, explicitToJson: true)
 class _$_NoteDTO extends _NoteDTO {
   _$_NoteDTO(
       {@JsonKey(ignore: true, name: "id")

@@ -74,7 +74,6 @@ part 'todoitem_dto.g.dart';
 abstract class TodoDTO implements _$TodoDTO {
   const TodoDTO._();
 
-  @JsonSerializable(anyMap: true, explicitToJson: true, nullable: false)
   factory TodoDTO({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'name') required String name,
@@ -97,6 +96,7 @@ abstract class TodoDTO implements _$TodoDTO {
     );
   }
 
+  @JsonSerializable(anyMap: true, explicitToJson: true)
   factory TodoDTO.fromJson(Map<String, dynamic> json) =>
       _$TodoDTOFromJson(json);
 }

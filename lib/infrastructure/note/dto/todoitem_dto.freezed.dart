@@ -140,8 +140,7 @@ class __$TodsDTOCopyWithImpl<$Res> extends _$TodoDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(anyMap: true, explicitToJson: true, nullable: false)
+@JsonSerializable()
 class _$_TodsDTO extends _TodsDTO {
   _$_TodsDTO(
       {@JsonKey(name: 'id') required this.id,

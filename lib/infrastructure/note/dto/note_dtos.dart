@@ -181,7 +181,7 @@ part 'note_dtos.g.dart';
 abstract class NoteDTO implements _$NoteDTO {
   const NoteDTO._();
 
-  @JsonSerializable(anyMap: true, explicitToJson: true, nullable: false)
+  @JsonSerializable(anyMap: true, explicitToJson: true)
   factory NoteDTO({
     @JsonKey(ignore: true, name: "id") String? id,
     @JsonKey(name: 'body') required String body,
@@ -217,14 +217,13 @@ abstract class NoteDTO implements _$NoteDTO {
     );
   }
 
+  @JsonSerializable(anyMap: true, explicitToJson: true)
   factory NoteDTO.fromJson(Map<String, dynamic> json) =>
       _$NoteDTOFromJson(json);
 
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    // return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
-    //     .copyWith(id: doc.id);
-    return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
-        .copyWith(id: doc.id);
+    final data = doc.data()! as Map<String, dynamic>;
+    return NoteDTO.fromJson(data).copyWith(id: doc.id);
   }
 }
 
