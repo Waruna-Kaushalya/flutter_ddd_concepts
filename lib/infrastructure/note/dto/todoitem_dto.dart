@@ -61,24 +61,61 @@
 //       _$TodoItemDTOFromJson(json);
 // }
 
+// import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:flutter_ddd_concepts/domain/domain.dart';
-import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
+import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'todoitem_dto.freezed.dart';
+// part 'todoitem_dto.freezed.dart';
 part 'todoitem_dto.g.dart';
 
-@freezed
-abstract class TodoDTO implements _$TodoDTO {
-  const TodoDTO._();
+// @freezed
+// abstract class TodoDTO implements _$TodoDTO {
+//   const TodoDTO._();
 
-  factory TodoDTO({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'done') required bool done,
-  }) = _TodsDTO;
+//   @JsonSerializable(anyMap: true)
+//   factory TodoDTO({
+//     @JsonKey(name: 'id') required String id,
+//     @JsonKey(name: 'name') required String name,
+//     @JsonKey(name: 'done') required bool done,
+//   }) = _TodsDTO;
+
+//   factory TodoDTO.fromDomain(TodoEntity todoItemEntity) {
+//     return TodoDTO(
+//       id: todoItemEntity.id.getOrCrash(),
+//       name: todoItemEntity.name.getOrCrash(),
+//       done: todoItemEntity.done,
+//     );
+//   }
+
+//   TodoEntity toDomain() {
+//     return TodoEntity(
+//       id: UniqueIdObj.fromUniqueString(id: id),
+//       name: TodoNameObj(name),
+//       done: done,
+//     );
+//   }
+
+//   @JsonSerializable(anyMap: true, explicitToJson: true)
+//   factory TodoDTO.fromJson(Map<String, dynamic> json) =>
+//       _$TodoDTOFromJson(json);
+// }
+
+@JsonSerializable(anyMap: true)
+class TodoDTO {
+  @JsonKey(name: 'id')
+  String id;
+  @JsonKey(name: 'name')
+  String name;
+  @JsonKey(name: 'done')
+  bool done;
+  TodoDTO({
+    required this.id,
+    required this.name,
+    required this.done,
+  });
 
   factory TodoDTO.fromDomain(TodoEntity todoItemEntity) {
     return TodoDTO(
@@ -96,7 +133,20 @@ abstract class TodoDTO implements _$TodoDTO {
     );
   }
 
-  @JsonSerializable(anyMap: true, explicitToJson: true)
   factory TodoDTO.fromJson(Map<String, dynamic> json) =>
       _$TodoDTOFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TodoDTOToJson(this);
+
+  TodoDTO copyWith({
+    String? id,
+    String? name,
+    bool? done,
+  }) {
+    return TodoDTO(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      done: done ?? this.done,
+    );
+  }
 }

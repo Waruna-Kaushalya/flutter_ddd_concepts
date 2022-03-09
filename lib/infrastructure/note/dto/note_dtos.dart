@@ -164,46 +164,104 @@
 // }
 
 import 'dart:ui';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:json_annotation/json_annotation.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kt_dart/kt.dart';
+
 import 'package:flutter_ddd_concepts/domain/domain.dart';
 import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
-
-import 'package:kt_dart/kt.dart';
 
 import '../../../domain/note/entities/note_entity.dart';
 import 'todoitem_dto.dart';
 
-part 'note_dtos.freezed.dart';
+// part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
 
-@freezed
-abstract class NoteDTO implements _$NoteDTO {
-  const NoteDTO._();
+// @freezed
+// abstract class NoteDTO implements _$NoteDTO {
+//   const NoteDTO._();
 
-  @JsonSerializable(anyMap: true, explicitToJson: true)
-  factory NoteDTO({
-    @JsonKey(ignore: true, name: "id") String? id,
-    @JsonKey(name: 'body') required String body,
-    @JsonKey(name: 'color') required int color,
-    @JsonKey(name: 'todos') required List<TodoDTO> todos,
-    @JsonKey(name: 'serverTimeStamp')
-    @ServerTimestampConverter()
-        required FieldValue serverTimeStamp,
-  }) = _NoteDTO;
+//   @JsonSerializable(explicitToJson: true, anyMap: true)
+//   factory NoteDTO({
+//     @JsonKey(ignore: true, name: "id") String? id,
+//     @JsonKey(name: 'body') required String body,
+//     @JsonKey(name: 'color') required int color,
+//     @JsonKey(name: 'todos') required List<TodoDTO> todos,
+//     @JsonKey(name: 'serverTimeStamp')
+//     @ServerTimestampConverter()
+//         required FieldValue serverTimeStamp,
+//   }) = _NoteDTO;
+
+//   factory NoteDTO.fromDomain(NoteEntity noteEntity) {
+//     return NoteDTO(
+//       id: noteEntity.id.getOrCrash(),
+//       body: noteEntity.body.getOrCrash(),
+//       color: noteEntity.color.getOrCrash().value,
+//       serverTimeStamp: FieldValue.serverTimestamp(),
+//       todos: noteEntity.todos
+//           .getOrCrash()
+//           .map(
+//             (todoItemEntity) => TodoDTO.fromDomain(todoItemEntity),
+//           )
+//           .asList(),
+//     );
+//   }
+
+//   NoteEntity toDomain() {
+//     return NoteEntity(
+//       id: UniqueIdObj.fromUniqueString(id: id!),
+//       body: NoteBodyObj(body),
+//       color: NoteColorObj(Color(color)),
+//       todos: List3Obj(
+//           todos.map((todoItemDTO) => todoItemDTO.toDomain()).toImmutableList()),
+//     );
+//   }
+
+//   factory NoteDTO.fromJson(Map<String, dynamic> json) =>
+//       _$NoteDTOFromJson(json);
+
+//   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
+//     final data = doc.data()! as Map<String, dynamic>;
+
+//     return NoteDTO.fromJson(data).copyWith(id: doc.id);
+//   }
+// }
+
+@JsonSerializable(anyMap: true, explicitToJson: true, nullable: true)
+class NoteDTO {
+  @JsonKey(ignore: true, name: "id")
+  String? id;
+  @JsonKey(name: 'body')
+  String body;
+  @JsonKey(name: 'color')
+  int color;
+  @JsonKey(name: 'todos')
+  List<TodoDTO> todos;
+  @JsonKey(name: 'serverTimeStamp')
+  @ServerTimestampConverter()
+  FieldValue serverTimeStamp;
+  NoteDTO({
+    this.id,
+    required this.body,
+    required this.color,
+    required this.todos,
+    required this.serverTimeStamp,
+  });
 
   factory NoteDTO.fromDomain(NoteEntity noteEntity) {
     return NoteDTO(
       id: noteEntity.id.getOrCrash(),
       body: noteEntity.body.getOrCrash(),
       color: noteEntity.color.getOrCrash().value,
+      serverTimeStamp: FieldValue.serverTimestamp(),
       todos: noteEntity.todos
           .getOrCrash()
           .map(
             (todoItemEntity) => TodoDTO.fromDomain(todoItemEntity),
           )
           .asList(),
-      serverTimeStamp: FieldValue.serverTimestamp(),
     );
   }
 
@@ -217,15 +275,35 @@ abstract class NoteDTO implements _$NoteDTO {
     );
   }
 
-  @JsonSerializable(anyMap: true, explicitToJson: true)
   factory NoteDTO.fromJson(Map<String, dynamic> json) =>
       _$NoteDTOFromJson(json);
 
+  Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
+
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data()! as Map<String, dynamic>;
+
     return NoteDTO.fromJson(data).copyWith(id: doc.id);
   }
+
+  NoteDTO copyWith({
+    String? id,
+    String? body,
+    int? color,
+    List<TodoDTO>? todos,
+    FieldValue? serverTimeStamp,
+  }) {
+    return NoteDTO(
+      id: id ?? this.id,
+      body: body ?? this.body,
+      color: color ?? this.color,
+      todos: todos ?? this.todos,
+      serverTimeStamp: serverTimeStamp ?? this.serverTimeStamp,
+    );
+  }
 }
+
+//!
 
 class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   const ServerTimestampConverter();

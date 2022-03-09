@@ -6,14 +6,13 @@ part of 'todoitem_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TodsDTO _$$_TodsDTOFromJson(Map json) => _$_TodsDTO(
+TodoDTO _$TodoDTOFromJson(Map json) => TodoDTO(
       id: json['id'] as String,
       name: json['name'] as String,
       done: json['done'] as bool,
     );
 
-Map<String, dynamic> _$$_TodsDTOToJson(_$_TodsDTO instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TodoDTOToJson(TodoDTO instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'done': instance.done,

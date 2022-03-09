@@ -11,6 +11,9 @@ import 'package:flutter_ddd_concepts/domain/note/failure/note_failure.dart';
 import 'package:flutter_ddd_concepts/domain/note/repository/i_note_repository.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
+import '../../../domain/auth/error/errors.dart';
+import '../../../domain/auth/facade/i_auth_facade.dart';
+import '../../../injection.dart';
 import '../../core/firestore_helpers.dart';
 
 @LazySingleton(as: INoteRepository)
@@ -21,30 +24,40 @@ class NoteRepository implements INoteRepository {
   );
   @override
   Stream<Either<NoteFailure, KtList<NoteEntity>>> watchAll() async* {
+    final userOption = await getIt<IAuthFacade>().getSignedInUser();
+    final user = userOption.getOrElse(() => throw NotAuthenticatedError());
+
+    DocumentReference<Map<String, dynamic>> userDoc = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.currentUserId.getOrCrash());
+
     ///get ["users"]
-    final userDoc = await _firebaseFirestore.userDocument();
+    // DocumentReference<Map<String, dynamic>> userDoc =
+    //     await _firebaseFirestore.userDocument();
 
     /// get ["notes"]
-    final notes = userDoc.collection("notes");
+    CollectionReference<Map<String, dynamic>> notes =
+        userDoc.collection("notes");
 
     /// order by "serverTimeStamp" {sort}
-    final orderbyServerTimeStamp =
+    Stream<QuerySnapshot<Map<String, dynamic>>> orderbyServerTimeStamp =
         notes.orderBy("serverTimeStamp", descending: true).snapshots();
 
     /// [QuerySnapshot] map in to [Either<NoteFailure, KtList<NoteEntity>>]
     /// [map] function always recive corect data
-    final querySnapshotMap = orderbyServerTimeStamp
-        .map((snapshot) => right<NoteFailure, KtList<NoteEntity>>(
-              /// [snapshot.docs] has List of QueryDocumentSnapshot
-              snapshot.docs
+    Stream<Either<NoteFailure, KtList<NoteEntity>>> querySnapshotMap =
+        orderbyServerTimeStamp
+            .map((snapshot) => right<NoteFailure, KtList<NoteEntity>>(
+                  /// [snapshot.docs] has List of QueryDocumentSnapshot
+                  snapshot.docs
 
-                  /// and we want to map [QueryDocumentSnapshot] in to [KtList] of NoteEntity
-                  .map((doc) => NoteDTO.fromFirestore(doc)
+                      /// and we want to map [QueryDocumentSnapshot] in to [KtList] of NoteEntity
+                      .map((doc) => NoteDTO.fromFirestore(doc)
 
-                      /// [NoteDTO] map to domain
-                      .toDomain())
-                  .toImmutableList(),
-            ));
+                          /// [NoteDTO] map to domain
+                          .toDomain())
+                      .toImmutableList(),
+                ));
 
     yield* querySnapshotMap.onErrorReturnWith((e, st) {
       if (e is PlatformException && e.message!.contains('PERMISSION_DENIED')) {
