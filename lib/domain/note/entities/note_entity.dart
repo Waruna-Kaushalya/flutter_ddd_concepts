@@ -13,11 +13,12 @@ part 'note_entity.freezed.dart';
 abstract class NoteEntity implements _$NoteEntity {
   const NoteEntity._();
 
+  // @JsonSerializable(explicitToJson: true, anyMap: true)
   const factory NoteEntity({
     required UniqueIdObj id,
     required NoteBodyObj body,
     required NoteColorObj color,
-    required List3Obj<TodoItemEntity> todos,
+    required List3Obj<TodoEntity> todos,
   }) = _NoteEntity;
 
   // when open new page, need to siaply empty page.

@@ -14,58 +14,64 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TodoItemDTO _$TodoItemDTOFromJson(Map<String, dynamic> json) {
-  return _TodoItemDTO.fromJson(json);
+TodoDTO _$TodoDTOFromJson(Map<String, dynamic> json) {
+  return _TodsDTO.fromJson(json);
 }
 
 /// @nodoc
-class _$TodoItemDTOTearOff {
-  const _$TodoItemDTOTearOff();
+class _$TodoDTOTearOff {
+  const _$TodoDTOTearOff();
 
-  _TodoItemDTO call(
-      {required String id, required String name, required bool done}) {
-    return _TodoItemDTO(
+  _TodsDTO call(
+      {@JsonKey(name: 'id') required String id,
+      @JsonKey(name: 'name') required String name,
+      @JsonKey(name: 'done') required bool done}) {
+    return _TodsDTO(
       id: id,
       name: name,
       done: done,
     );
   }
 
-  TodoItemDTO fromJson(Map<String, Object?> json) {
-    return TodoItemDTO.fromJson(json);
+  TodoDTO fromJson(Map<String, Object?> json) {
+    return TodoDTO.fromJson(json);
   }
 }
 
 /// @nodoc
-const $TodoItemDTO = _$TodoItemDTOTearOff();
+const $TodoDTO = _$TodoDTOTearOff();
 
 /// @nodoc
-mixin _$TodoItemDTO {
+mixin _$TodoDTO {
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'done')
   bool get done => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TodoItemDTOCopyWith<TodoItemDTO> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TodoDTOCopyWith<TodoDTO> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TodoItemDTOCopyWith<$Res> {
-  factory $TodoItemDTOCopyWith(
-          TodoItemDTO value, $Res Function(TodoItemDTO) then) =
-      _$TodoItemDTOCopyWithImpl<$Res>;
-  $Res call({String id, String name, bool done});
+abstract class $TodoDTOCopyWith<$Res> {
+  factory $TodoDTOCopyWith(TodoDTO value, $Res Function(TodoDTO) then) =
+      _$TodoDTOCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'done') bool done});
 }
 
 /// @nodoc
-class _$TodoItemDTOCopyWithImpl<$Res> implements $TodoItemDTOCopyWith<$Res> {
-  _$TodoItemDTOCopyWithImpl(this._value, this._then);
+class _$TodoDTOCopyWithImpl<$Res> implements $TodoDTOCopyWith<$Res> {
+  _$TodoDTOCopyWithImpl(this._value, this._then);
 
-  final TodoItemDTO _value;
+  final TodoDTO _value;
   // ignore: unused_field
-  final $Res Function(TodoItemDTO) _then;
+  final $Res Function(TodoDTO) _then;
 
   @override
   $Res call({
@@ -91,24 +97,24 @@ class _$TodoItemDTOCopyWithImpl<$Res> implements $TodoItemDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TodoItemDTOCopyWith<$Res>
-    implements $TodoItemDTOCopyWith<$Res> {
-  factory _$TodoItemDTOCopyWith(
-          _TodoItemDTO value, $Res Function(_TodoItemDTO) then) =
-      __$TodoItemDTOCopyWithImpl<$Res>;
+abstract class _$TodsDTOCopyWith<$Res> implements $TodoDTOCopyWith<$Res> {
+  factory _$TodsDTOCopyWith(_TodsDTO value, $Res Function(_TodsDTO) then) =
+      __$TodsDTOCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, bool done});
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'done') bool done});
 }
 
 /// @nodoc
-class __$TodoItemDTOCopyWithImpl<$Res> extends _$TodoItemDTOCopyWithImpl<$Res>
-    implements _$TodoItemDTOCopyWith<$Res> {
-  __$TodoItemDTOCopyWithImpl(
-      _TodoItemDTO _value, $Res Function(_TodoItemDTO) _then)
-      : super(_value, (v) => _then(v as _TodoItemDTO));
+class __$TodsDTOCopyWithImpl<$Res> extends _$TodoDTOCopyWithImpl<$Res>
+    implements _$TodsDTOCopyWith<$Res> {
+  __$TodsDTOCopyWithImpl(_TodsDTO _value, $Res Function(_TodsDTO) _then)
+      : super(_value, (v) => _then(v as _TodsDTO));
 
   @override
-  _TodoItemDTO get _value => super._value as _TodoItemDTO;
+  _TodsDTO get _value => super._value as _TodsDTO;
 
   @override
   $Res call({
@@ -116,7 +122,7 @@ class __$TodoItemDTOCopyWithImpl<$Res> extends _$TodoItemDTOCopyWithImpl<$Res>
     Object? name = freezed,
     Object? done = freezed,
   }) {
-    return _then(_TodoItemDTO(
+    return _then(_TodsDTO(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -134,32 +140,38 @@ class __$TodoItemDTOCopyWithImpl<$Res> extends _$TodoItemDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_TodoItemDTO extends _TodoItemDTO {
-  const _$_TodoItemDTO(
-      {required this.id, required this.name, required this.done})
+
+@JsonSerializable(anyMap: true, explicitToJson: true, nullable: false)
+class _$_TodsDTO extends _TodsDTO {
+  _$_TodsDTO(
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'name') required this.name,
+      @JsonKey(name: 'done') required this.done})
       : super._();
 
-  factory _$_TodoItemDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_TodoItemDTOFromJson(json);
+  factory _$_TodsDTO.fromJson(Map<String, dynamic> json) =>
+      _$$_TodsDTOFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final String id;
   @override
+  @JsonKey(name: 'name')
   final String name;
   @override
+  @JsonKey(name: 'done')
   final bool done;
 
   @override
   String toString() {
-    return 'TodoItemDTO(id: $id, name: $name, done: $done)';
+    return 'TodoDTO(id: $id, name: $name, done: $done)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TodoItemDTO &&
+            other is _TodsDTO &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.done, done));
@@ -174,33 +186,35 @@ class _$_TodoItemDTO extends _TodoItemDTO {
 
   @JsonKey(ignore: true)
   @override
-  _$TodoItemDTOCopyWith<_TodoItemDTO> get copyWith =>
-      __$TodoItemDTOCopyWithImpl<_TodoItemDTO>(this, _$identity);
+  _$TodsDTOCopyWith<_TodsDTO> get copyWith =>
+      __$TodsDTOCopyWithImpl<_TodsDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TodoItemDTOToJson(this);
+    return _$$_TodsDTOToJson(this);
   }
 }
 
-abstract class _TodoItemDTO extends TodoItemDTO {
-  const factory _TodoItemDTO(
-      {required String id,
-      required String name,
-      required bool done}) = _$_TodoItemDTO;
-  const _TodoItemDTO._() : super._();
+abstract class _TodsDTO extends TodoDTO {
+  factory _TodsDTO(
+      {@JsonKey(name: 'id') required String id,
+      @JsonKey(name: 'name') required String name,
+      @JsonKey(name: 'done') required bool done}) = _$_TodsDTO;
+  _TodsDTO._() : super._();
 
-  factory _TodoItemDTO.fromJson(Map<String, dynamic> json) =
-      _$_TodoItemDTO.fromJson;
+  factory _TodsDTO.fromJson(Map<String, dynamic> json) = _$_TodsDTO.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   String get id;
   @override
+  @JsonKey(name: 'name')
   String get name;
   @override
+  @JsonKey(name: 'done')
   bool get done;
   @override
   @JsonKey(ignore: true)
-  _$TodoItemDTOCopyWith<_TodoItemDTO> get copyWith =>
+  _$TodsDTOCopyWith<_TodsDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

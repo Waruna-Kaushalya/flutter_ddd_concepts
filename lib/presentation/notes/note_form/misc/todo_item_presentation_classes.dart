@@ -21,7 +21,7 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
         done: false,
       );
 
-  factory TodoItemPrimitive.fromDomain(TodoItemEntity todoItemValue) =>
+  factory TodoItemPrimitive.fromDomain(TodoEntity todoItemValue) =>
       TodoItemPrimitive(
         id: todoItemValue.id,
         // If we somehow get to this point, we missed something in other parts of the UI. It's better to throw an Error.
@@ -29,8 +29,8 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
         done: todoItemValue.done,
       );
 
-  TodoItemEntity toDomain() {
-    return TodoItemEntity(
+  TodoEntity toDomain() {
+    return TodoEntity(
       id: id,
       name: TodoNameObj(name),
       done: done,

@@ -48,7 +48,7 @@ class NoteRepository implements INoteRepository {
         return const Left(NoteFailure.insufficientPermissions());
       } else {
         log(e.toString());
-        return const Left(NoteFailure.insufficientPermissions());
+        return const Left(NoteFailure.unexpected());
       }
     });
   }

@@ -22,7 +22,7 @@ class _$NoteEntityTearOff {
       {required UniqueIdObj id,
       required NoteBodyObj body,
       required NoteColorObj color,
-      required List3Obj<TodoItemEntity> todos}) {
+      required List3Obj<TodoEntity> todos}) {
     return _NoteEntity(
       id: id,
       body: body,
@@ -40,7 +40,7 @@ mixin _$NoteEntity {
   UniqueIdObj get id => throw _privateConstructorUsedError;
   NoteBodyObj get body => throw _privateConstructorUsedError;
   NoteColorObj get color => throw _privateConstructorUsedError;
-  List3Obj<TodoItemEntity> get todos => throw _privateConstructorUsedError;
+  List3Obj<TodoEntity> get todos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteEntityCopyWith<NoteEntity> get copyWith =>
@@ -56,7 +56,7 @@ abstract class $NoteEntityCopyWith<$Res> {
       {UniqueIdObj id,
       NoteBodyObj body,
       NoteColorObj color,
-      List3Obj<TodoItemEntity> todos});
+      List3Obj<TodoEntity> todos});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class _$NoteEntityCopyWithImpl<$Res> implements $NoteEntityCopyWith<$Res> {
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List3Obj<TodoItemEntity>,
+              as List3Obj<TodoEntity>,
     ));
   }
 }
@@ -105,7 +105,7 @@ abstract class _$NoteEntityCopyWith<$Res> implements $NoteEntityCopyWith<$Res> {
       {UniqueIdObj id,
       NoteBodyObj body,
       NoteColorObj color,
-      List3Obj<TodoItemEntity> todos});
+      List3Obj<TodoEntity> todos});
 }
 
 /// @nodoc
@@ -141,7 +141,7 @@ class __$NoteEntityCopyWithImpl<$Res> extends _$NoteEntityCopyWithImpl<$Res>
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List3Obj<TodoItemEntity>,
+              as List3Obj<TodoEntity>,
     ));
   }
 }
@@ -163,7 +163,7 @@ class _$_NoteEntity extends _NoteEntity {
   @override
   final NoteColorObj color;
   @override
-  final List3Obj<TodoItemEntity> todos;
+  final List3Obj<TodoEntity> todos;
 
   @override
   String toString() {
@@ -200,7 +200,7 @@ abstract class _NoteEntity extends NoteEntity {
       {required UniqueIdObj id,
       required NoteBodyObj body,
       required NoteColorObj color,
-      required List3Obj<TodoItemEntity> todos}) = _$_NoteEntity;
+      required List3Obj<TodoEntity> todos}) = _$_NoteEntity;
   const _NoteEntity._() : super._();
 
   @override
@@ -210,7 +210,7 @@ abstract class _NoteEntity extends NoteEntity {
   @override
   NoteColorObj get color;
   @override
-  List3Obj<TodoItemEntity> get todos;
+  List3Obj<TodoEntity> get todos;
   @override
   @JsonKey(ignore: true)
   _$NoteEntityCopyWith<_NoteEntity> get copyWith =>

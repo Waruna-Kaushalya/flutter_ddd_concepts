@@ -23,11 +23,17 @@ class _$NoteDTOTearOff {
   const _$NoteDTOTearOff();
 
   _NoteDTO call(
-      {@JsonKey(ignore: true) String? id,
-      required String body,
-      required int color,
-      required List<TodoItemDTO> todos,
-      @ServerTimestampConverter() required FieldValue serverTimeStamp}) {
+      {@JsonKey(ignore: true, name: "id")
+          String? id,
+      @JsonKey(name: 'body')
+          required String body,
+      @JsonKey(name: 'color')
+          required int color,
+      @JsonKey(name: 'todos')
+          required List<TodoDTO> todos,
+      @JsonKey(name: 'serverTimeStamp')
+      @ServerTimestampConverter()
+          required FieldValue serverTimeStamp}) {
     return _NoteDTO(
       id: id,
       body: body,
@@ -47,20 +53,15 @@ const $NoteDTO = _$NoteDTOTearOff();
 
 /// @nodoc
 mixin _$NoteDTO {
-  @JsonKey(ignore: true)
+  @JsonKey(ignore: true, name: "id")
   String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'body')
   String get body => throw _privateConstructorUsedError;
+  @JsonKey(name: 'color')
   int get color => throw _privateConstructorUsedError;
-  List<TodoItemDTO> get todos => throw _privateConstructorUsedError;
-
-  /// we need to sort [NoteDTO] acrding to time note is created
-  /// so [serverTimeStamp] is use for get note created time
-  ///Placeholder --> Time on the server when note is created or updated
-  ///
-  /// [ServerTimestampConverter()]
-  /// [JasonSerializable] can convert by default only fields which are
-  /// valid jsons. those are [String] [int] [bool] .., so on
-  /// thats whay we need to convert [FieldValue]
+  @JsonKey(name: 'todos')
+  List<TodoDTO> get todos => throw _privateConstructorUsedError;
+  @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
 
@@ -74,11 +75,17 @@ abstract class $NoteDTOCopyWith<$Res> {
   factory $NoteDTOCopyWith(NoteDTO value, $Res Function(NoteDTO) then) =
       _$NoteDTOCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true) String? id,
-      String body,
-      int color,
-      List<TodoItemDTO> todos,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      {@JsonKey(ignore: true, name: "id")
+          String? id,
+      @JsonKey(name: 'body')
+          String body,
+      @JsonKey(name: 'color')
+          int color,
+      @JsonKey(name: 'todos')
+          List<TodoDTO> todos,
+      @JsonKey(name: 'serverTimeStamp')
+      @ServerTimestampConverter()
+          FieldValue serverTimeStamp});
 }
 
 /// @nodoc
@@ -113,7 +120,7 @@ class _$NoteDTOCopyWithImpl<$Res> implements $NoteDTOCopyWith<$Res> {
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List<TodoItemDTO>,
+              as List<TodoDTO>,
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
@@ -128,11 +135,17 @@ abstract class _$NoteDTOCopyWith<$Res> implements $NoteDTOCopyWith<$Res> {
       __$NoteDTOCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true) String? id,
-      String body,
-      int color,
-      List<TodoItemDTO> todos,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      {@JsonKey(ignore: true, name: "id")
+          String? id,
+      @JsonKey(name: 'body')
+          String body,
+      @JsonKey(name: 'color')
+          int color,
+      @JsonKey(name: 'todos')
+          List<TodoDTO> todos,
+      @JsonKey(name: 'serverTimeStamp')
+      @ServerTimestampConverter()
+          FieldValue serverTimeStamp});
 }
 
 /// @nodoc
@@ -168,7 +181,7 @@ class __$NoteDTOCopyWithImpl<$Res> extends _$NoteDTOCopyWithImpl<$Res>
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List<TodoItemDTO>,
+              as List<TodoDTO>,
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
@@ -178,38 +191,40 @@ class __$NoteDTOCopyWithImpl<$Res> extends _$NoteDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(anyMap: true, explicitToJson: true, nullable: false)
 class _$_NoteDTO extends _NoteDTO {
-  const _$_NoteDTO(
-      {@JsonKey(ignore: true) this.id,
-      required this.body,
-      required this.color,
-      required this.todos,
-      @ServerTimestampConverter() required this.serverTimeStamp})
+  _$_NoteDTO(
+      {@JsonKey(ignore: true, name: "id")
+          this.id,
+      @JsonKey(name: 'body')
+          required this.body,
+      @JsonKey(name: 'color')
+          required this.color,
+      @JsonKey(name: 'todos')
+          required this.todos,
+      @JsonKey(name: 'serverTimeStamp')
+      @ServerTimestampConverter()
+          required this.serverTimeStamp})
       : super._();
 
   factory _$_NoteDTO.fromJson(Map<String, dynamic> json) =>
       _$$_NoteDTOFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(ignore: true, name: "id")
   final String? id;
   @override
+  @JsonKey(name: 'body')
   final String body;
   @override
+  @JsonKey(name: 'color')
   final int color;
   @override
-  final List<TodoItemDTO> todos;
+  @JsonKey(name: 'todos')
+  final List<TodoDTO> todos;
   @override
-
-  /// we need to sort [NoteDTO] acrding to time note is created
-  /// so [serverTimeStamp] is use for get note created time
-  ///Placeholder --> Time on the server when note is created or updated
-  ///
-  /// [ServerTimestampConverter()]
-  /// [JasonSerializable] can convert by default only fields which are
-  /// valid jsons. those are [String] [int] [bool] .., so on
-  /// thats whay we need to convert [FieldValue]
+  @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
 
@@ -252,36 +267,36 @@ class _$_NoteDTO extends _NoteDTO {
 }
 
 abstract class _NoteDTO extends NoteDTO {
-  const factory _NoteDTO(
-          {@JsonKey(ignore: true) String? id,
+  factory _NoteDTO(
+      {@JsonKey(ignore: true, name: "id")
+          String? id,
+      @JsonKey(name: 'body')
           required String body,
+      @JsonKey(name: 'color')
           required int color,
-          required List<TodoItemDTO> todos,
-          @ServerTimestampConverter() required FieldValue serverTimeStamp}) =
-      _$_NoteDTO;
-  const _NoteDTO._() : super._();
+      @JsonKey(name: 'todos')
+          required List<TodoDTO> todos,
+      @JsonKey(name: 'serverTimeStamp')
+      @ServerTimestampConverter()
+          required FieldValue serverTimeStamp}) = _$_NoteDTO;
+  _NoteDTO._() : super._();
 
   factory _NoteDTO.fromJson(Map<String, dynamic> json) = _$_NoteDTO.fromJson;
 
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(ignore: true, name: "id")
   String? get id;
   @override
+  @JsonKey(name: 'body')
   String get body;
   @override
+  @JsonKey(name: 'color')
   int get color;
   @override
-  List<TodoItemDTO> get todos;
+  @JsonKey(name: 'todos')
+  List<TodoDTO> get todos;
   @override
-
-  /// we need to sort [NoteDTO] acrding to time note is created
-  /// so [serverTimeStamp] is use for get note created time
-  ///Placeholder --> Time on the server when note is created or updated
-  ///
-  /// [ServerTimestampConverter()]
-  /// [JasonSerializable] can convert by default only fields which are
-  /// valid jsons. those are [String] [int] [bool] .., so on
-  /// thats whay we need to convert [FieldValue]
+  @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp;
   @override

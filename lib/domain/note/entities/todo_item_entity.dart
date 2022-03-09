@@ -7,24 +7,25 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'todo_item_entity.freezed.dart';
 
 @freezed
-abstract class TodoItemEntity implements _$TodoItemEntity {
-  const TodoItemEntity._();
+abstract class TodoEntity implements _$TodoEntity {
+  const TodoEntity._();
 
-  const factory TodoItemEntity({
+  // @JsonSerializable(explicitToJson: true, anyMap: true)
+  const factory TodoEntity({
     required UniqueIdObj id,
     required TodoNameObj name,
     required bool done,
-  }) = _TodoItemEntity;
+  }) = _TodoEntity;
 
   // when open new page, need to siaply empty page.
   // so pre define the empty page state
-  factory TodoItemEntity.empty() => TodoItemEntity(
+  factory TodoEntity.empty() => TodoEntity(
         id: UniqueIdObj(),
         name: TodoNameObj(''),
         done: false,
       );
 
-  /// [TodoItemEntity] entity validation
+  /// [TodoEntity] entity validation
   Option<ValueFailure<dynamic>> get failureOption {
     /// if [failureOption] has some sort of failuer
     /// then return it [left] side as [some(failure)]
