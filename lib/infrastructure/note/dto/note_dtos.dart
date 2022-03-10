@@ -230,19 +230,19 @@ part 'note_dtos.g.dart';
 //   }
 // }
 
-@JsonSerializable(explicitToJson: true, anyMap: true)
+@JsonSerializable()
 class Notes {
   @JsonKey(ignore: true, name: "id")
-  final String? id;
-  @JsonKey(name: 'body')
-  final String body;
-  @JsonKey(name: 'color')
-  final int color;
-  @JsonKey(name: 'todos')
-  final List<Todos> todos;
-  @JsonKey(name: 'serverTimeStamp')
+  String? id;
+  // @JsonKey(name: 'body')
+  String body;
+  // @JsonKey(name: 'color')
+  int color;
+  // @JsonKey(name: 'todos')
+  List<Todos> todos;
+  // @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
-  final FieldValue serverTimeStamp;
+  FieldValue serverTimeStamp;
 
   Notes({
     this.id,
@@ -277,7 +277,7 @@ class Notes {
     );
   }
 
-  factory Notes.fromJson(Map json) => _$NotesFromJson(json);
+  factory Notes.fromJson(Map<String, dynamic> json) => _$NotesFromJson(json);
 
   Map<String, dynamic> toJson() => _$NotesToJson(this);
 

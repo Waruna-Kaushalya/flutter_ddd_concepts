@@ -6,7 +6,7 @@ part of 'todoitem_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Todos _$TodosFromJson(Map json) => Todos(
+Todos _$TodosFromJson(Map<String, dynamic> json) => Todos(
       id: json['id'] as String,
       name: json['name'] as String,
       done: json['done'] as bool,

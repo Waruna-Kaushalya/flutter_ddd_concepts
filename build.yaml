@@ -7,8 +7,7 @@ targets:
           # `@JsonSerializable`-annotated class in the package.
           #
           # The default value for each is listed.
-          any_map: true
-          checked: false
+          any_map: false
           constructor: ""
           create_factory: true
           create_to_json: true
@@ -18,3 +17,4 @@ targets:
           generic_argument_factories: false
           ignore_unannotated: false
           include_if_null: true
+

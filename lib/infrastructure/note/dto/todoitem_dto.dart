@@ -103,13 +103,13 @@ part 'todoitem_dto.g.dart';
 //       _$TodoDTOFromJson(json);
 // }
 
-@JsonSerializable(anyMap: true, explicitToJson: true)
+@JsonSerializable()
 class Todos {
-  @JsonKey(name: 'id')
+  // @JsonKey(name: 'id')
   String id;
-  @JsonKey(name: 'name')
+  // @JsonKey(name: 'name')
   String name;
-  @JsonKey(name: 'done')
+  // @JsonKey(name: 'done')
   bool done;
   Todos({
     required this.id,
@@ -133,9 +133,9 @@ class Todos {
     );
   }
 
-  factory Todos.fromJson(Map json) => _$TodosFromJson(json);
+  factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
 
-  Map toJson() => _$TodosToJson(this);
+  Map<String, dynamic> toJson() => _$TodosToJson(this);
 
   Todos copyWith({
     String? id,
