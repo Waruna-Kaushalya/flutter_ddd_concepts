@@ -228,7 +228,7 @@ class NoteRepository implements INoteRepository {
         .snapshots()
         .map((snapshot) => right<NoteFailure, KtList<NoteEntity>>(
               snapshot.docs
-                  .map((doc) => Notes.fromFirestore(doc).toDomain())
+                  .map((doc) => NoteDTO.fromFirestore(doc).toDomain())
                   .toImmutableList(),
             ))
         .onErrorReturnWith((e, st) {
@@ -250,7 +250,7 @@ class NoteRepository implements INoteRepository {
         .snapshots()
         .map(
           (snapshot) =>
-              snapshot.docs.map((doc) => Notes.fromFirestore(doc).toDomain()),
+              snapshot.docs.map((doc) => NoteDTO.fromFirestore(doc).toDomain()),
         )
         .map(
           (notes) => right<NoteFailure, KtList<NoteEntity>>(
@@ -277,7 +277,7 @@ class NoteRepository implements INoteRepository {
   Future<Either<NoteFailure, Unit>> create(NoteEntity note) async {
     try {
       final userDoc = await _firebaseFirestore.userDocument();
-      final noteDto = Notes.fromDomain(note);
+      final noteDto = NoteDTO.fromDomain(note);
 
       /// in here if we use [add] function then it generate firebase own id.
       /// but we dont want to do that, becase we alredy generated our own if
@@ -300,7 +300,7 @@ class NoteRepository implements INoteRepository {
   Future<Either<NoteFailure, Unit>> update(NoteEntity note) async {
     try {
       final userDoc = await _firebaseFirestore.userDocument();
-      final noteDto = Notes.fromDomain(note);
+      final noteDto = NoteDTO.fromDomain(note);
 
       /// in here if we use [add] function then it generate firebase own id.
       /// but we dont want to do that, becase we alredy generated our own if

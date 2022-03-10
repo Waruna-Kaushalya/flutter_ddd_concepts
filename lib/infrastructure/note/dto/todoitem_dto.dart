@@ -66,56 +66,22 @@
 import 'package:flutter_ddd_concepts/domain/domain.dart';
 import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
 import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-// part 'todoitem_dto.freezed.dart';
+part 'todoitem_dto.freezed.dart';
 part 'todoitem_dto.g.dart';
 
-// @freezed
-// abstract class TodoDTO implements _$TodoDTO {
-//   const TodoDTO._();
+@freezed
+abstract class Todos implements _$Todos {
+  const Todos._();
 
-//   @JsonSerializable(anyMap: true)
-//   factory TodoDTO({
-//     @JsonKey(name: 'id') required String id,
-//     @JsonKey(name: 'name') required String name,
-//     @JsonKey(name: 'done') required bool done,
-//   }) = _TodsDTO;
-
-//   factory TodoDTO.fromDomain(TodoEntity todoItemEntity) {
-//     return TodoDTO(
-//       id: todoItemEntity.id.getOrCrash(),
-//       name: todoItemEntity.name.getOrCrash(),
-//       done: todoItemEntity.done,
-//     );
-//   }
-
-//   TodoEntity toDomain() {
-//     return TodoEntity(
-//       id: UniqueIdObj.fromUniqueString(id: id),
-//       name: TodoNameObj(name),
-//       done: done,
-//     );
-//   }
-
-//   @JsonSerializable(anyMap: true, explicitToJson: true)
-//   factory TodoDTO.fromJson(Map<String, dynamic> json) =>
-//       _$TodoDTOFromJson(json);
-// }
-
-@JsonSerializable()
-class Todos {
-  // @JsonKey(name: 'id')
-  String id;
-  // @JsonKey(name: 'name')
-  String name;
-  // @JsonKey(name: 'done')
-  bool done;
-  Todos({
-    required this.id,
-    required this.name,
-    required this.done,
-  });
+  @JsonSerializable(anyMap: true)
+  factory Todos({
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'name') required String name,
+    @JsonKey(name: 'done') required bool done,
+  }) = _Todos;
 
   factory Todos.fromDomain(TodoEntity todoItemEntity) {
     return Todos(
@@ -133,19 +99,53 @@ class Todos {
     );
   }
 
+  @JsonSerializable(anyMap: true, explicitToJson: true)
   factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TodosToJson(this);
-
-  Todos copyWith({
-    String? id,
-    String? name,
-    bool? done,
-  }) {
-    return Todos(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      done: done ?? this.done,
-    );
-  }
 }
+//!
+// @JsonSerializable()
+// class TodoDTO {
+//   // @JsonKey(name: 'id')
+//   String id;
+//   // @JsonKey(name: 'name')
+//   String name;
+//   // @JsonKey(name: 'done')
+//   bool done;
+//   TodoDTO({
+//     required this.id,
+//     required this.name,
+//     required this.done,
+//   });
+
+//   factory TodoDTO.fromDomain(TodoEntity todoItemEntity) {
+//     return TodoDTO(
+//       id: todoItemEntity.id.getOrCrash(),
+//       name: todoItemEntity.name.getOrCrash(),
+//       done: todoItemEntity.done,
+//     );
+//   }
+
+//   TodoEntity toDomain() {
+//     return TodoEntity(
+//       id: UniqueIdObj.fromUniqueString(id: id),
+//       name: TodoNameObj(name),
+//       done: done,
+//     );
+//   }
+
+//   factory TodoDTO.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
+
+//   Map<String, dynamic> toJson() => _$TodosToJson(this);
+
+//   TodoDTO copyWith({
+//     String? id,
+//     String? name,
+//     bool? done,
+//   }) {
+//     return TodoDTO(
+//       id: id ?? this.id,
+//       name: name ?? this.name,
+//       done: done ?? this.done,
+//     );
+//   }
+// }
