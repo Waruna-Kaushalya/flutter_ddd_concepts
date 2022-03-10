@@ -67,7 +67,6 @@ import 'package:flutter_ddd_concepts/domain/domain.dart';
 import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
 import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'todoitem_dto.freezed.dart';
 part 'todoitem_dto.g.dart';
@@ -76,11 +75,11 @@ part 'todoitem_dto.g.dart';
 abstract class Todos implements _$Todos {
   const Todos._();
 
-  @JsonSerializable(anyMap: true)
+  @JsonSerializable(explicitToJson: true, anyMap: true)
   factory Todos({
     @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'done') required bool done,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'done') bool? done,
   }) = _Todos;
 
   factory Todos.fromDomain(TodoEntity todoItemEntity) {
@@ -94,13 +93,22 @@ abstract class Todos implements _$Todos {
   TodoEntity toDomain() {
     return TodoEntity(
       id: UniqueIdObj.fromUniqueString(id: id),
-      name: TodoNameObj(name),
-      done: done,
+      name: TodoNameObj(name!),
+      done: done!,
     );
   }
 
-  @JsonSerializable(anyMap: true, explicitToJson: true)
-  factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
+  static List<Todos> fromJsonArray(List<dynamic> jsonParts) {
+    List<Todos> parts = [];
+
+    for (var jsonData in jsonParts) {
+      parts.add(Todos.fromJson(jsonData));
+    }
+
+    return parts;
+  }
+
+  factory Todos.fromJson(Map<String, Object?> json) => _$TodosFromJson(json);
 }
 //!
 // @JsonSerializable()

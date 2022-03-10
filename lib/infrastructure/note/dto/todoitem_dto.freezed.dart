@@ -24,8 +24,8 @@ class _$TodosTearOff {
 
   _Todos call(
       {@JsonKey(name: 'id') required String id,
-      @JsonKey(name: 'name') required String name,
-      @JsonKey(name: 'done') required bool done}) {
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'done') bool? done}) {
     return _Todos(
       id: id,
       name: name,
@@ -46,9 +46,9 @@ mixin _$Todos {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'done')
-  bool get done => throw _privateConstructorUsedError;
+  bool? get done => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,8 +61,8 @@ abstract class $TodosCopyWith<$Res> {
       _$TodosCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'done') bool done});
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'done') bool? done});
 }
 
 /// @nodoc
@@ -87,11 +87,11 @@ class _$TodosCopyWithImpl<$Res> implements $TodosCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       done: done == freezed
           ? _value.done
           : done // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -103,8 +103,8 @@ abstract class _$TodosCopyWith<$Res> implements $TodosCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'done') bool done});
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'done') bool? done});
 }
 
 /// @nodoc
@@ -130,23 +130,23 @@ class __$TodosCopyWithImpl<$Res> extends _$TodosCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       done: done == freezed
           ? _value.done
           : done // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
 
 /// @nodoc
 
-@JsonSerializable(anyMap: true)
+@JsonSerializable(explicitToJson: true, anyMap: true)
 class _$_Todos extends _Todos {
   _$_Todos(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'done') required this.done})
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'done') this.done})
       : super._();
 
   factory _$_Todos.fromJson(Map<String, dynamic> json) =>
@@ -157,10 +157,10 @@ class _$_Todos extends _Todos {
   final String id;
   @override
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: 'done')
-  final bool done;
+  final bool? done;
 
   @override
   String toString() {
@@ -198,8 +198,8 @@ class _$_Todos extends _Todos {
 abstract class _Todos extends Todos {
   factory _Todos(
       {@JsonKey(name: 'id') required String id,
-      @JsonKey(name: 'name') required String name,
-      @JsonKey(name: 'done') required bool done}) = _$_Todos;
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'done') bool? done}) = _$_Todos;
   _Todos._() : super._();
 
   factory _Todos.fromJson(Map<String, dynamic> json) = _$_Todos.fromJson;
@@ -209,10 +209,10 @@ abstract class _Todos extends Todos {
   String get id;
   @override
   @JsonKey(name: 'name')
-  String get name;
+  String? get name;
   @override
   @JsonKey(name: 'done')
-  bool get done;
+  bool? get done;
   @override
   @JsonKey(ignore: true)
   _$TodosCopyWith<_Todos> get copyWith => throw _privateConstructorUsedError;

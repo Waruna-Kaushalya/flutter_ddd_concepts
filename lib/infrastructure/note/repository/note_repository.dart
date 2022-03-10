@@ -219,8 +219,9 @@ class NoteRepository implements INoteRepository {
   Stream<Either<NoteFailure, KtList<NoteEntity>>> watchAll() async* {
     final userOption = await getIt<IAuthFacade>().getSignedInUser();
     final user = userOption.getOrElse(() => throw NotAuthenticatedError());
+    final firebaseFirestore = getIt<FirebaseFirestore>();
 
-    yield* FirebaseFirestore.instance
+    yield* firebaseFirestore
         .collection('users')
         .doc(user.currentUserId.getOrCrash())
         .collection("notes")

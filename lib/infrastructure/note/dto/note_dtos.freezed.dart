@@ -26,11 +26,11 @@ class _$NoteDTOTearOff {
       {@JsonKey(ignore: true, name: "id")
           String? id,
       @JsonKey(name: 'body')
-          required String body,
+          String? body,
       @JsonKey(name: 'color')
-          required int color,
+          int? color,
       @JsonKey(name: 'todos')
-          required List<Todos> todos,
+          List<Todos>? todos,
       @JsonKey(name: 'serverTimeStamp')
       @ServerTimestampConverter()
           required FieldValue serverTimeStamp}) {
@@ -56,11 +56,11 @@ mixin _$NoteDTO {
   @JsonKey(ignore: true, name: "id")
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
-  String get body => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
   @JsonKey(name: 'color')
-  int get color => throw _privateConstructorUsedError;
+  int? get color => throw _privateConstructorUsedError;
   @JsonKey(name: 'todos')
-  List<Todos> get todos => throw _privateConstructorUsedError;
+  List<Todos>? get todos => throw _privateConstructorUsedError;
   @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
@@ -78,11 +78,11 @@ abstract class $NoteDTOCopyWith<$Res> {
       {@JsonKey(ignore: true, name: "id")
           String? id,
       @JsonKey(name: 'body')
-          String body,
+          String? body,
       @JsonKey(name: 'color')
-          int color,
+          int? color,
       @JsonKey(name: 'todos')
-          List<Todos> todos,
+          List<Todos>? todos,
       @JsonKey(name: 'serverTimeStamp')
       @ServerTimestampConverter()
           FieldValue serverTimeStamp});
@@ -112,15 +112,15 @@ class _$NoteDTOCopyWithImpl<$Res> implements $NoteDTOCopyWith<$Res> {
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List<Todos>,
+              as List<Todos>?,
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
@@ -138,11 +138,11 @@ abstract class _$NoteDTOCopyWith<$Res> implements $NoteDTOCopyWith<$Res> {
       {@JsonKey(ignore: true, name: "id")
           String? id,
       @JsonKey(name: 'body')
-          String body,
+          String? body,
       @JsonKey(name: 'color')
-          int color,
+          int? color,
       @JsonKey(name: 'todos')
-          List<Todos> todos,
+          List<Todos>? todos,
       @JsonKey(name: 'serverTimeStamp')
       @ServerTimestampConverter()
           FieldValue serverTimeStamp});
@@ -173,15 +173,15 @@ class __$NoteDTOCopyWithImpl<$Res> extends _$NoteDTOCopyWithImpl<$Res>
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
-              as List<Todos>,
+              as List<Todos>?,
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
@@ -198,11 +198,11 @@ class _$_NoteDTO extends _NoteDTO {
       {@JsonKey(ignore: true, name: "id")
           this.id,
       @JsonKey(name: 'body')
-          required this.body,
+          this.body,
       @JsonKey(name: 'color')
-          required this.color,
+          this.color,
       @JsonKey(name: 'todos')
-          required this.todos,
+          this.todos,
       @JsonKey(name: 'serverTimeStamp')
       @ServerTimestampConverter()
           required this.serverTimeStamp})
@@ -216,13 +216,13 @@ class _$_NoteDTO extends _NoteDTO {
   final String? id;
   @override
   @JsonKey(name: 'body')
-  final String body;
+  final String? body;
   @override
   @JsonKey(name: 'color')
-  final int color;
+  final int? color;
   @override
   @JsonKey(name: 'todos')
-  final List<Todos> todos;
+  final List<Todos>? todos;
   @override
   @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
@@ -271,11 +271,11 @@ abstract class _NoteDTO extends NoteDTO {
       {@JsonKey(ignore: true, name: "id")
           String? id,
       @JsonKey(name: 'body')
-          required String body,
+          String? body,
       @JsonKey(name: 'color')
-          required int color,
+          int? color,
       @JsonKey(name: 'todos')
-          required List<Todos> todos,
+          List<Todos>? todos,
       @JsonKey(name: 'serverTimeStamp')
       @ServerTimestampConverter()
           required FieldValue serverTimeStamp}) = _$_NoteDTO;
@@ -288,13 +288,13 @@ abstract class _NoteDTO extends NoteDTO {
   String? get id;
   @override
   @JsonKey(name: 'body')
-  String get body;
+  String? get body;
   @override
   @JsonKey(name: 'color')
-  int get color;
+  int? get color;
   @override
   @JsonKey(name: 'todos')
-  List<Todos> get todos;
+  List<Todos>? get todos;
   @override
   @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()

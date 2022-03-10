@@ -163,11 +163,13 @@
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
+import 'dart:convert';
+import 'dart:core';
+
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
 // import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -187,9 +189,9 @@ abstract class NoteDTO implements _$NoteDTO {
   @JsonSerializable(explicitToJson: true, anyMap: true)
   factory NoteDTO({
     @JsonKey(ignore: true, name: "id") String? id,
-    @JsonKey(name: 'body') required String body,
-    @JsonKey(name: 'color') required int color,
-    @JsonKey(name: 'todos') required List<Todos> todos,
+    @JsonKey(name: 'body') String? body,
+    @JsonKey(name: 'color') int? color,
+    @JsonKey(name: 'todos') List<Todos>? todos,
     @JsonKey(name: 'serverTimeStamp')
     @ServerTimestampConverter()
         required FieldValue serverTimeStamp,
@@ -213,10 +215,11 @@ abstract class NoteDTO implements _$NoteDTO {
   NoteEntity toDomain() {
     return NoteEntity(
       id: UniqueIdObj.fromUniqueString(id: id!),
-      body: NoteBodyObj(body),
-      color: NoteColorObj(Color(color)),
-      todos: List3Obj(
-          todos.map((todoItemDTO) => todoItemDTO.toDomain()).toImmutableList()),
+      body: NoteBodyObj(body!),
+      color: NoteColorObj(Color(color!)),
+      todos: List3Obj(todos!
+          .map((todoItemDTO) => todoItemDTO.toDomain())
+          .toImmutableList()),
     );
   }
 
