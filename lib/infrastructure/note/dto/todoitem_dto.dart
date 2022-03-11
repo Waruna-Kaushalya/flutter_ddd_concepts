@@ -68,67 +68,24 @@ import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart'
 import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'todoitem_dto.freezed.dart';
+// part 'todoitem_dto.freezed.dart';
 part 'todoitem_dto.g.dart';
 
-@freezed
-class Todos with _$Todos {
-  const Todos._();
+// @freezed
+// class Todos with _$Todos {
+//   const Todos._();
 
-  @JsonSerializable(explicitToJson: true, anyMap: true)
-  factory Todos({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'done') bool? done,
-  }) = _Todos;
+//   @JsonSerializable(includeIfNull: false, anyMap: true)
+//   factory Todos({
+//     required String id,
+//     required String name,
+//     required bool done,
+//   }) = _Todos;
 
-  factory Todos.fromDomain(TodoEntity todoItemEntity) {
-    return Todos(
-      id: todoItemEntity.id.getOrCrash(),
-      name: todoItemEntity.name.getOrCrash(),
-      done: todoItemEntity.done,
-    );
-  }
+//   factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
 
-  TodoEntity toDomain() {
-    return TodoEntity(
-      id: UniqueIdObj.fromUniqueString(id: id),
-      name: TodoNameObj(name!),
-      done: done!,
-    );
-  }
-
-  static List<Todos> fromJsonArray(List<dynamic> jsonParts) {
-    List<Todos> parts = [];
-
-    for (var jsonData in jsonParts) {
-      parts.add(Todos.fromJson(jsonData));
-    }
-
-    return parts;
-  }
-
-  factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
-
-  map(Todos Function(dynamic i) param0) {}
-}
-//!
-// @JsonSerializable()
-// class TodoDTO {
-//   // @JsonKey(name: 'id')
-//   String id;
-//   // @JsonKey(name: 'name')
-//   String name;
-//   // @JsonKey(name: 'done')
-//   bool done;
-//   TodoDTO({
-//     required this.id,
-//     required this.name,
-//     required this.done,
-//   });
-
-//   factory TodoDTO.fromDomain(TodoEntity todoItemEntity) {
-//     return TodoDTO(
+//   factory Todos.fromDomain(TodoEntity todoItemEntity) {
+//     return Todos(
 //       id: todoItemEntity.id.getOrCrash(),
 //       name: todoItemEntity.name.getOrCrash(),
 //       done: todoItemEntity.done,
@@ -143,19 +100,62 @@ class Todos with _$Todos {
 //     );
 //   }
 
-//   factory TodoDTO.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
+//   // static List<Todos> fromJsonArray(List<dynamic> jsonParts) {
+//   //   List<Todos> parts = [];
 
-//   Map<String, dynamic> toJson() => _$TodosToJson(this);
+//   //   for (var jsonData in jsonParts) {
+//   //     parts.add(Todos.fromJson(jsonData));
+//   //   }
 
-//   TodoDTO copyWith({
-//     String? id,
-//     String? name,
-//     bool? done,
-//   }) {
-//     return TodoDTO(
-//       id: id ?? this.id,
-//       name: name ?? this.name,
-//       done: done ?? this.done,
-//     );
-//   }
+//   //   return parts;
+//   // }
+
+//   // map(Todos Function(dynamic i) param0) {}
 // }
+//!
+@JsonSerializable()
+class Todos {
+  // @JsonKey(name: 'id')
+  String id;
+  // @JsonKey(name: 'name')
+  String name;
+  // @JsonKey(name: 'done')
+  bool done;
+  Todos({
+    required this.id,
+    required this.name,
+    required this.done,
+  });
+
+  factory Todos.fromDomain(TodoEntity todoItemEntity) {
+    return Todos(
+      id: todoItemEntity.id.getOrCrash(),
+      name: todoItemEntity.name.getOrCrash(),
+      done: todoItemEntity.done,
+    );
+  }
+
+  TodoEntity toDomain() {
+    return TodoEntity(
+      id: UniqueIdObj.fromUniqueString(id: id),
+      name: TodoNameObj(name),
+      done: done,
+    );
+  }
+
+  factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TodosToJson(this);
+
+  Todos copyWith({
+    String? id,
+    String? name,
+    bool? done,
+  }) {
+    return Todos(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      done: done ?? this.done,
+    );
+  }
+}
