@@ -227,9 +227,53 @@ abstract class NoteDTO implements _$NoteDTO {
       _$NoteDTOFromJson(json);
 
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data()! as Map<String, dynamic>;
+    Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+    // String datab = doc.data()!.toString();
 
-    return NoteDTO.fromJson(data).copyWith(id: doc.id);
+    // Map<String, dynamic> user = jsonDecode(datab);
+    // final jlist = jsonDecode(datab);
+
+    // return NoteDTO.fromJson(data).copyWith(id: doc.id);
+
+    Map<dynamic, dynamic> imagesListf = data['todos'] as Map;
+
+    // final List<dynamic> dataList = jsonDecode(imagesListf);
+
+    // String imagesListgg = imagesList.toString();
+
+    List<Todos>? lista;
+
+    // var jlist = jsonDecode(imagesListgg);
+
+    imagesListf.forEach((key, value) {
+      lista?.add(Todos(
+        id: imagesListf['id'] as String,
+        name: imagesListf['name'] as String,
+        done: imagesListf['done'] as bool,
+      ));
+    });
+
+    // jlist.forEach((element) {
+    //   lista!.add(Todos.fromJson(element));
+    // });
+
+    // final ccc = Todos(
+    //   id: imagesListf['id'] as String,
+    //   name: imagesListf['name'] as String,
+    //   done: imagesListf['done'] as bool,
+    // ) as List<Todos>;
+
+    // List<Todos> images = imagesLcccist.map((i) => Todos.fromJson(i)).toList();
+
+    // List<Todos> images = imagesList.map((i) => Todos.fromJson(i)).toList();
+
+    return NoteDTO(
+      body: data['body'] as String?,
+      color: data['color'] as int?,
+      serverTimeStamp: const ServerTimestampConverter()
+          .fromJson(data['serverTimeStamp'] as Object),
+      todos: lista,
+    ).copyWith(id: doc.id);
   }
 }
 

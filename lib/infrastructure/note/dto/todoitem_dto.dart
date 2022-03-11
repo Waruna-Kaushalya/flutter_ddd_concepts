@@ -108,7 +108,9 @@ abstract class Todos implements _$Todos {
     return parts;
   }
 
-  factory Todos.fromJson(Map<String, Object?> json) => _$TodosFromJson(json);
+  factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
+
+  map(Todos Function(dynamic i) param0) {}
 }
 //!
 // @JsonSerializable()
