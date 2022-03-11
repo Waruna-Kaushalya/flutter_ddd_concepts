@@ -72,7 +72,7 @@ part 'todoitem_dto.freezed.dart';
 part 'todoitem_dto.g.dart';
 
 @freezed
-abstract class Todos implements _$Todos {
+class Todos with _$Todos {
   const Todos._();
 
   @JsonSerializable(explicitToJson: true, anyMap: true)

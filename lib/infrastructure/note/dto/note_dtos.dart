@@ -183,7 +183,7 @@ part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
 
 @freezed
-abstract class NoteDTO implements _$NoteDTO {
+class NoteDTO with _$NoteDTO {
   const NoteDTO._();
 
   @JsonSerializable(explicitToJson: true, anyMap: true)
@@ -233,23 +233,13 @@ abstract class NoteDTO implements _$NoteDTO {
 
     List<Todos> lista = [];
 
-    // var lista = [];
-
-    for (var i = 0; i < imagesListf.length; i++) {
+    imagesListf.forEach((key, value) {
       lista.add(Todos(
         id: imagesListf['id'] as String,
         name: imagesListf['name'] as String,
         done: imagesListf['done'] as bool,
       ));
-    }
-
-    // imagesListf.forEach((key, value) {
-    //   lista!.add(Todos(
-    //     id: imagesListf['id'] as String,
-    //     name: imagesListf['name'] as String,
-    //     done: imagesListf['done'] as bool,
-    //   ));
-    // });
+    });
 
     print(lista);
 
