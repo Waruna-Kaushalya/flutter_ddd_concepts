@@ -63,13 +63,13 @@
 
 // import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:flutter_ddd_concepts/domain/domain.dart';
-import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
-import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:flutter_ddd_concepts/domain/domain.dart';
+// import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
+// import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
 
-// part 'todoitem_dto.freezed.dart';
-part 'todoitem_dto.g.dart';
+// // part 'todoitem_dto.freezed.dart';
+// part 'todoitem_dto.g.dart';
 
 // @freezed
 // class Todos with _$Todos {
@@ -113,7 +113,17 @@ part 'todoitem_dto.g.dart';
 //   // map(Todos Function(dynamic i) param0) {}
 // }
 //!
-@JsonSerializable()
+import 'package:flutter_ddd_concepts/domain/domain.dart';
+import 'package:flutter_ddd_concepts/domain/note/entities/todo_item_entity.dart';
+import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+// import 'package:freezed_annotation/freezed_annotation.dart';
+
+// part 'todoitem_dto.freezed.dart';
+part 'todoitem_dto.g.dart';
+
+@JsonSerializable(explicitToJson: true, anyMap: true)
 class Todos {
   // @JsonKey(name: 'id')
   String id;

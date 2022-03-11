@@ -244,9 +244,14 @@ class NoteRepository implements INoteRepository {
 
   @override
   Stream<Either<NoteFailure, KtList<NoteEntity>>> watchUncompleted() async* {
-    final userDoc = await _firebaseFirestore.userDocument();
+    final userOption = await getIt<IAuthFacade>().getSignedInUser();
+    final user = userOption.getOrElse(() => throw NotAuthenticatedError());
+    final firebaseInstance = getIt<FirebaseFirestore>();
 
-    yield* userDoc.noteColletion
+    yield* firebaseInstance
+        .collection('users')
+        .doc(user.currentUserId.getOrCrash())
+        .collection('notes')
         .orderBy("serverTimeStamp", descending: true)
         .snapshots()
         .map(

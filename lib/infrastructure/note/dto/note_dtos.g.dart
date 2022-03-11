@@ -8,10 +8,10 @@ part of 'note_dtos.dart';
 
 NoteDTO _$NoteDTOFromJson(Map json) => NoteDTO(
       body: json['body'] as String?,
-      color: json['color'] as int?,
       todos: (json['todos'] as List<dynamic>?)
           ?.map((e) => Todos.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
+      color: json['color'] as int?,
       serverTimeStamp: const ServerTimestampConverter()
           .fromJson(json['serverTimeStamp'] as Object),
     );

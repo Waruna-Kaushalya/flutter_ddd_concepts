@@ -163,23 +163,21 @@
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
-import 'dart:convert';
-import 'dart:core';
-import 'dart:ui';
+// import 'dart:core';
+// import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kt_dart/kt.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:kt_dart/kt.dart';
 
-import 'package:flutter_ddd_concepts/domain/domain.dart';
-import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
+// import 'package:flutter_ddd_concepts/domain/domain.dart';
+// import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
 
-import '../../../domain/note/entities/note_entity.dart';
-import 'todoitem_dto.dart';
+// import '../../../domain/note/entities/note_entity.dart';
+// import 'todoitem_dto.dart';
 
-// part 'note_dtos.freezed.dart';
-part 'note_dtos.g.dart';
+// // part 'note_dtos.freezed.dart';
+// part 'note_dtos.g.dart';
 
 // @freezed
 // class NoteDTO with _$NoteDTO {
@@ -265,6 +263,23 @@ part 'note_dtos.g.dart';
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
+import 'dart:convert';
+import 'dart:core';
+import 'dart:ui';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:kt_dart/kt.dart';
+
+import 'package:flutter_ddd_concepts/domain/domain.dart';
+import 'package:flutter_ddd_concepts/domain/note/value_objects/value_objects.dart';
+
+import '../../../domain/note/entities/note_entity.dart';
+import 'todoitem_dto.dart';
+
+// part 'note_dtos.freezed.dart';
+part 'note_dtos.g.dart';
+
 @JsonSerializable(explicitToJson: true, anyMap: true)
 class NoteDTO {
   @JsonKey(ignore: true, name: "id")
@@ -272,15 +287,15 @@ class NoteDTO {
   final String? body;
   final int? color;
   @JsonSerializable(anyMap: true)
-  final List<Todos>? todos;
+  List<Todos>? todos = [];
   @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
   NoteDTO({
     this.id,
     this.body,
-    this.color,
     this.todos,
+    this.color,
     required this.serverTimeStamp,
   });
 
@@ -315,12 +330,12 @@ class NoteDTO {
 
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
-  factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
+  factory NoteDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
     Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
 
     // return NoteDTO.fromJson(data);
-    // return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
-    //     .copyWith(id: doc.id);
+    final abcd = NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
+        .copyWith(id: doc.id);
 
     Map<dynamic, dynamic> todos = data['todos'] as Map;
 
