@@ -12,7 +12,7 @@ class NotesOverviewBody extends StatelessWidget {
         return state.map(
           initial: (_) => Container(),
           loading: (_) => const Center(
-            child: CircularProgressIndicator(),
+            child: Text("sdvdvsdv"),
           ),
           success: (state) {
             return ListView.builder(

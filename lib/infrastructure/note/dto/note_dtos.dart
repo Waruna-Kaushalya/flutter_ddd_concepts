@@ -228,44 +228,30 @@ abstract class NoteDTO implements _$NoteDTO {
 
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
-    // String datab = doc.data()!.toString();
-
-    // Map<String, dynamic> user = jsonDecode(datab);
-    // final jlist = jsonDecode(datab);
-
-    // return NoteDTO.fromJson(data).copyWith(id: doc.id);
 
     Map<dynamic, dynamic> imagesListf = data['todos'] as Map;
 
-    // final List<dynamic> dataList = jsonDecode(imagesListf);
+    List<Todos> lista = [];
 
-    // String imagesListgg = imagesList.toString();
+    // var lista = [];
 
-    List<Todos>? lista;
-
-    // var jlist = jsonDecode(imagesListgg);
-
-    imagesListf.forEach((key, value) {
-      lista?.add(Todos(
+    for (var i = 0; i < imagesListf.length; i++) {
+      lista.add(Todos(
         id: imagesListf['id'] as String,
         name: imagesListf['name'] as String,
         done: imagesListf['done'] as bool,
       ));
-    });
+    }
 
-    // jlist.forEach((element) {
-    //   lista!.add(Todos.fromJson(element));
+    // imagesListf.forEach((key, value) {
+    //   lista!.add(Todos(
+    //     id: imagesListf['id'] as String,
+    //     name: imagesListf['name'] as String,
+    //     done: imagesListf['done'] as bool,
+    //   ));
     // });
 
-    // final ccc = Todos(
-    //   id: imagesListf['id'] as String,
-    //   name: imagesListf['name'] as String,
-    //   done: imagesListf['done'] as bool,
-    // ) as List<Todos>;
-
-    // List<Todos> images = imagesLcccist.map((i) => Todos.fromJson(i)).toList();
-
-    // List<Todos> images = imagesList.map((i) => Todos.fromJson(i)).toList();
+    print(lista);
 
     return NoteDTO(
       body: data['body'] as String?,
@@ -287,97 +273,3 @@ class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   @override
   Object toJson(FieldValue fieldValue) => fieldValue;
 }
-
-//!
-// @JsonSerializable(explicitToJson: true)
-// class NoteDTO {
-//   @JsonKey(name: "todos")
-//   List<TodoDTO> todos;
-//   @JsonKey(ignore: true, name: "id")
-//   String? id;
-//   // @JsonKey(name: 'body')
-//   String body;
-//   // @JsonKey(name: 'color')
-//   int color;
-//   // @JsonKey(name: 'todos')
-
-//   // @JsonKey(name: 'serverTimeStamp')
-//   @ServerTimestampConverter()
-//   FieldValue serverTimeStamp;
-
-//   NoteDTO({
-//     required this.todos,
-//     this.id,
-//     required this.body,
-//     required this.color,
-//     required this.serverTimeStamp,
-//   });
-
-//   factory NoteDTO.fromDomain(NoteEntity noteEntity) {
-//     return NoteDTO(
-//       id: noteEntity.id.getOrCrash(),
-//       body: noteEntity.body.getOrCrash(),
-//       color: noteEntity.color.getOrCrash().value,
-//       serverTimeStamp: FieldValue.serverTimestamp(),
-//       todos: noteEntity.todos
-//           .getOrCrash()
-//           .map(
-//             (todoItemEntity) => TodoDTO.fromDomain(todoItemEntity),
-//           )
-//           .asList(),
-//     );
-//   }
-
-//   NoteEntity toDomain() {
-//     return NoteEntity(
-//       id: UniqueIdObj.fromUniqueString(id: id!),
-//       body: NoteBodyObj(body),
-//       color: NoteColorObj(Color(color)),
-//       todos: List3Obj(
-//           todos.map((todoItemDTO) => todoItemDTO.toDomain()).toImmutableList()),
-//     );
-//   }
-
-//   factory NoteDTO.fromJson(Map<String, dynamic> json) =>
-//       _$NoteDTOFromJson(json);
-
-//   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
-
-//   factory NoteDTO.fromFirestore(DocumentSnapshot document) {
-//     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-
-//     print(data);
-
-//     return NoteDTO.fromJson(Map<String, dynamic>.from(data))
-//         .copyWith(id: document.id);
-//   }
-
-//   NoteDTO copyWith({
-//     String? id,
-//     String? body,
-//     int? color,
-//     List<TodoDTO>? todos,
-//     FieldValue? serverTimeStamp,
-//   }) {
-//     return NoteDTO(
-//       id: id ?? this.id,
-//       body: body ?? this.body,
-//       color: color ?? this.color,
-//       todos: todos ?? this.todos,
-//       serverTimeStamp: serverTimeStamp ?? this.serverTimeStamp,
-//     );
-//   }
-// }
-
-// //!
-
-// class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
-//   const ServerTimestampConverter();
-//   @override
-//   FieldValue fromJson(Object json) {
-//     return FieldValue.serverTimestamp();
-//   }
-
-//   @override
-//   Object toJson(FieldValue fieldValue) => fieldValue;
-// }
