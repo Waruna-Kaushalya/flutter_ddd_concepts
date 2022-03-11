@@ -168,4 +168,6 @@ class Todos {
       done: done ?? this.done,
     );
   }
+
+  static fromSetCookieValue(String value) {}
 }

@@ -331,11 +331,11 @@ class NoteDTO {
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
   factory NoteDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
-    Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+    Map<String, dynamic> data = doc.data()!;
 
     // return NoteDTO.fromJson(data);
-    final abcd = NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
-        .copyWith(id: doc.id);
+
+    // final abcd = NoteDTO.fromJson(data).copyWith(id: doc.id);
 
     Map<dynamic, dynamic> todos = data['todos'] as Map;
 
@@ -385,3 +385,26 @@ class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   @override
   Object toJson(FieldValue fieldValue) => fieldValue;
 }
+
+class _CookiesJsonConverter
+    implements JsonConverter<List<Todos>, List<String>> {
+  const _CookiesJsonConverter();
+
+  @override
+  List<Todos> fromJson(List<String> json) {
+    // TODO: implement fromJson
+    throw UnimplementedError();
+  }
+
+  @override
+  List<String> toJson(List<Todos> object) {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
+}
+
+
+
+//! -----------------
+
+
