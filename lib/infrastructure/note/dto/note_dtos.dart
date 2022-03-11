@@ -286,8 +286,8 @@ class NoteDTO {
   final String? id;
   final String? body;
   final int? color;
-  @JsonSerializable(anyMap: true)
-  List<Todos>? todos = [];
+  @JsonKey(name: "notes/todos")
+  List<Todos>? todos;
   @JsonKey(name: 'serverTimeStamp')
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
@@ -330,32 +330,33 @@ class NoteDTO {
 
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
-  factory NoteDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
-    Map<String, dynamic> data = doc.data()!;
+  factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
     // return NoteDTO.fromJson(data);
 
-    // final abcd = NoteDTO.fromJson(data).copyWith(id: doc.id);
+    NoteDTO abcd = NoteDTO.fromJson(data).copyWith(id: doc.id);
 
-    Map<dynamic, dynamic> todos = data['todos'] as Map;
+    return abcd;
+    // Map<dynamic, dynamic> todos = data['todos'] as Map;
 
-    List<Todos> todolist = [];
+    // List<Todos> todolist = [];
 
-    todos.forEach((key, value) {
-      todolist.add(Todos(
-        id: todos['id'] as String,
-        name: todos['name'] as String,
-        done: todos['done'] as bool,
-      ));
-    });
+    // todos.forEach((key, value) {
+    //   todolist.add(Todos(
+    //     id: todos['id'] as String,
+    //     name: todos['name'] as String,
+    //     done: todos['done'] as bool,
+    //   ));
+    // });
 
-    return NoteDTO(
-      body: data['body'] as String?,
-      color: data['color'] as int?,
-      serverTimeStamp: const ServerTimestampConverter()
-          .fromJson(data['serverTimeStamp'] as Object),
-      todos: todolist,
-    ).copyWith(id: doc.id);
+    // return NoteDTO(
+    //   body: data['body'] as String?,
+    //   color: data['color'] as int?,
+    //   serverTimeStamp: const ServerTimestampConverter()
+    //       .fromJson(data['serverTimeStamp'] as Object),
+    //   todos: todolist,
+    // ).copyWith(id: doc.id);
   }
 
   NoteDTO copyWith({
@@ -386,24 +387,29 @@ class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   Object toJson(FieldValue fieldValue) => fieldValue;
 }
 
-class _CookiesJsonConverter
-    implements JsonConverter<List<Todos>, List<String>> {
-  const _CookiesJsonConverter();
+// List<Todos> _choiceListFromJson(List<dynamic> items) =>
+//     const IndexedConverter<Todos>(Todos.fromJson).fromJson(items);
 
-  @override
-  List<Todos> fromJson(List<String> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
-  }
+// class IndexedConverter<T> implements JsonConverter<List<T>, List<dynamic>> {
+//   const IndexedConverter(this.fromJsonConverter);
 
-  @override
-  List<String> toJson(List<Todos> object) {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
-}
+//   final T Function(Map<String, dynamic> onMap) fromJsonConverter;
 
+//   @override
+//   List<T> fromJson(List<dynamic> jsonItems) {
+//     return jsonItems.asMap().entries.map((entry) {
+//       final index = entry.key;
+//       final json = entry.value;
+//       return fromJsonConverter({'index': index, ...json});
+//     }).toList();
+//   }
 
+//   @override
+//   List toJson(List<T> object) {
+//     // TODO: implement toJson
+//     throw UnimplementedError();
+//   }
+// }
 
 //! -----------------
 

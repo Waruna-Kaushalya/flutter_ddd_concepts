@@ -125,11 +125,11 @@ part 'todoitem_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true, anyMap: true)
 class Todos {
-  // @JsonKey(name: 'id')
+  @JsonKey(name: 'notes/todos/id')
   String id;
-  // @JsonKey(name: 'name')
+  @JsonKey(name: 'name')
   String name;
-  // @JsonKey(name: 'done')
+  @JsonKey(name: 'done')
   bool done;
   Todos({
     required this.id,
