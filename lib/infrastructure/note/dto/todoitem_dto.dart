@@ -125,11 +125,11 @@ part 'todoitem_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true, anyMap: true)
 class Todos {
-  @JsonKey(name: 'notes/todos/id')
+  @JsonKey(name: 'todos/id')
   String id;
-  @JsonKey(name: 'notes/todos/name')
+  @JsonKey(name: 'todos/name')
   String name;
-  @JsonKey(name: 'notes/todos/done')
+  @JsonKey(name: 'todos/done')
   bool done;
   Todos({
     required this.id,
@@ -168,6 +168,4 @@ class Todos {
       done: done ?? this.done,
     );
   }
-
-  static fromSetCookieValue(String value) {}
 }

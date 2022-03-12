@@ -313,7 +313,9 @@ class NoteRepository implements INoteRepository {
       /// Using [UniqueIdObj]. So we use [doc(noteDto.id).set]
       ///
       /// [update]
-      await userDoc.noteColletion.doc(noteDto.id).update(noteDto.toJson());
+      await userDoc.noteColletion
+          .doc(noteDto.id)
+          .update(noteDto.toJson() as Map<String, dynamic>);
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {

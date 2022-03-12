@@ -263,10 +263,12 @@
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
+import 'dart:convert';
 import 'dart:core';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -287,7 +289,8 @@ class NoteDTO {
   String? id;
   final String body;
   final int color;
-  final List<Todos> todos;
+  @Default(<Todos>[])
+  List<Todos> todos;
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
   NoteDTO({
@@ -323,7 +326,7 @@ class NoteDTO {
     );
   }
 
-  factory NoteDTO.fromJson(Map<String, dynamic> json) =>
+  factory NoteDTO.fromJson(Map<dynamic, dynamic> json) =>
       _$NoteDTOFromJson(json);
 
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
@@ -333,10 +336,20 @@ class NoteDTO {
 
     // return NoteDTO.fromJson(data);
 
+    // final abc = (data['todos'] as List<dynamic>)
+    //     .map((e) => Todos.fromJson(Map<String, dynamic>.from(e as Map)))
+    //     .toList();
+
     // return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
     //     .copyWith(id: doc.id);
 
-    // return abcd;
+    // final cleanMap = jsonDecode(jsonEncode(data));
+    // final dff = jsonDecode(vdsvs as Map<dynamic,dynamic>);
+
+    // final dddd = NoteDTO.fromJson(vdsvsd).copyWith(id: doc.id);
+
+    // Map<String, dynamic> myMap = Map<String, dynamic>.from(ddd);
+
     Map<dynamic, dynamic> todos = data['todos'] as Map;
 
     List<Todos> todolist = [];
@@ -420,7 +433,4 @@ class Converter<T> implements JsonConverter<T, Object?> {
   Object? toJson(T object) => object;
 }
 
-
 //! -----------------
-
-
