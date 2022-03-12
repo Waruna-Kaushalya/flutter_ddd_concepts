@@ -127,9 +127,9 @@ part 'todoitem_dto.g.dart';
 class Todos {
   @JsonKey(name: 'notes/todos/id')
   String id;
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'notes/todos/name')
   String name;
-  @JsonKey(name: 'done')
+  @JsonKey(name: 'notes/todos/done')
   bool done;
   Todos({
     required this.id,

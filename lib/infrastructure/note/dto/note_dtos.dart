@@ -263,7 +263,6 @@
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
-import 'dart:convert';
 import 'dart:core';
 import 'dart:ui';
 
@@ -280,22 +279,22 @@ import 'todoitem_dto.dart';
 // part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
 
+// @DocumentSerializerNullable()
 @JsonSerializable(explicitToJson: true, anyMap: true)
+@DocumentSerializer()
 class NoteDTO {
-  @JsonKey(ignore: true, name: "id")
-  final String? id;
-  final String? body;
-  final int? color;
-  @JsonKey(name: "notes/todos")
-  List<Todos>? todos;
-  @JsonKey(name: 'serverTimeStamp')
+  @JsonKey(ignore: true)
+  String? id;
+  final String body;
+  final int color;
+  final List<Todos> todos;
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
   NoteDTO({
     this.id,
-    this.body,
-    this.todos,
-    this.color,
+    required this.body,
+    required this.color,
+    required this.todos,
     required this.serverTimeStamp,
   });
 
@@ -317,11 +316,10 @@ class NoteDTO {
   NoteEntity toDomain() {
     return NoteEntity(
       id: UniqueIdObj.fromUniqueString(id: id!),
-      body: NoteBodyObj(body!),
-      color: NoteColorObj(Color(color!)),
-      todos: List3Obj(todos!
-          .map((todoItemDTO) => todoItemDTO.toDomain())
-          .toImmutableList()),
+      body: NoteBodyObj(body),
+      color: NoteColorObj(Color(color)),
+      todos: List3Obj(
+          todos.map((todoItemDTO) => todoItemDTO.toDomain()).toImmutableList()),
     );
   }
 
@@ -331,32 +329,33 @@ class NoteDTO {
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
 
     // return NoteDTO.fromJson(data);
 
-    NoteDTO abcd = NoteDTO.fromJson(data).copyWith(id: doc.id);
+    // return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
+    //     .copyWith(id: doc.id);
 
-    return abcd;
-    // Map<dynamic, dynamic> todos = data['todos'] as Map;
+    // return abcd;
+    Map<dynamic, dynamic> todos = data['todos'] as Map;
 
-    // List<Todos> todolist = [];
+    List<Todos> todolist = [];
 
-    // todos.forEach((key, value) {
-    //   todolist.add(Todos(
-    //     id: todos['id'] as String,
-    //     name: todos['name'] as String,
-    //     done: todos['done'] as bool,
-    //   ));
-    // });
+    todos.forEach((key, value) {
+      todolist.add(Todos(
+        id: todos['id'] as String,
+        name: todos['name'] as String,
+        done: todos['done'] as bool,
+      ));
+    });
 
-    // return NoteDTO(
-    //   body: data['body'] as String?,
-    //   color: data['color'] as int?,
-    //   serverTimeStamp: const ServerTimestampConverter()
-    //       .fromJson(data['serverTimeStamp'] as Object),
-    //   todos: todolist,
-    // ).copyWith(id: doc.id);
+    return NoteDTO(
+      body: data['body'] as String,
+      color: data['color'] as int,
+      serverTimeStamp: const ServerTimestampConverter()
+          .fromJson(data['serverTimeStamp'] as Object),
+      todos: todolist,
+    ).copyWith(id: doc.id);
   }
 
   NoteDTO copyWith({
@@ -387,29 +386,40 @@ class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   Object toJson(FieldValue fieldValue) => fieldValue;
 }
 
-// List<Todos> _choiceListFromJson(List<dynamic> items) =>
-//     const IndexedConverter<Todos>(Todos.fromJson).fromJson(items);
+class DocumentSerializer
+    implements JsonConverter<DocumentReference, DocumentReference> {
+  const DocumentSerializer();
 
-// class IndexedConverter<T> implements JsonConverter<List<T>, List<dynamic>> {
-//   const IndexedConverter(this.fromJsonConverter);
+  @override
+  DocumentReference fromJson(DocumentReference docRef) => docRef;
 
-//   final T Function(Map<String, dynamic> onMap) fromJsonConverter;
+  @override
+  DocumentReference toJson(DocumentReference docRef) => docRef;
+}
 
-//   @override
-//   List<T> fromJson(List<dynamic> jsonItems) {
-//     return jsonItems.asMap().entries.map((entry) {
-//       final index = entry.key;
-//       final json = entry.value;
-//       return fromJsonConverter({'index': index, ...json});
-//     }).toList();
-//   }
+class Converter<T> implements JsonConverter<T, Object?> {
+  const Converter();
 
-//   @override
-//   List toJson(List<T> object) {
-//     // TODO: implement toJson
-//     throw UnimplementedError();
-//   }
-// }
+  @override
+  T fromJson(Object? json) {
+    if (json is Map<String, dynamic> &&
+        json.containsKey('name') &&
+        json.containsKey('size')) {
+      return Todos.fromJson(json) as T;
+    }
+    // This will only work if `json` is a native JSON type:
+    //   num, String, bool, null, etc
+    // *and* is assignable to `T`.
+    return json as T;
+  }
+
+  // This will only work if `object` is a native JSON type:
+  //   num, String, bool, null, etc
+  // Or if it has a `toJson()` function`.
+  @override
+  Object? toJson(T object) => object;
+}
+
 
 //! -----------------
 
