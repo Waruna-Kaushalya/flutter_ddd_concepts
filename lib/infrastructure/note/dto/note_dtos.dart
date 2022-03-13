@@ -374,25 +374,6 @@ class NoteDTO {
     ).copyWith(id: doc.id);
   }
 
-  List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
-    final vaccinations = <Todos>[];
-
-    Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
-
-    vaccinationMap.forEach((key, value) {
-      vaccinations.add(Todos(
-        id: todos['id'] as String,
-        name: todos['name'] as String,
-        done: todos['done'] as bool,
-      ));
-    });
-
-    // for (final vaccination in vaccinationMap) {
-    //   vaccinations.add(Todos.fromJson(vaccination as Map<String, dynamic>));
-    // }
-    return vaccinations;
-  }
-
   NoteDTO copyWith({
     String? id,
     String? body,
@@ -410,21 +391,36 @@ class NoteDTO {
   }
 }
 
-// List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
-//   Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
+List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
+  Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
 
-//   List<Todos> todolist = [];
+  final abc = todos.toString();
 
-//   vaccinationMap.forEach((key, value) {
-//     todolist.add(Todos(
-//       id: key['id'] as String,
-//       name: key['name'] as String,
-//       done: key['done'] as bool,
-//     ));
-//   });
+  Todos fff = Todos.fromJson(todos);
 
-//   return todolist;
-// }
+  // final ffff = jsonDecode(abc);
+
+  List<Todos> todolist = [];
+
+  todolist.add(fff);
+
+  // todos.forEach((key, value) {
+  //   // todolist.add(Todos(
+  //   //   id: todos['id'] as String,
+  //   //   name: todos['name'] as String,
+  //   //   done: todos['done'] as bool,
+  //   // ));
+
+  //   Todos dd = Todos(
+  //     id: todos['id'] as String,
+  //     name: todos['name'] as String,
+  //     done: todos['done'] as bool,
+  //   );
+  //   todolist.add(dd);
+  // });
+
+  return todolist;
+}
 
 class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   const ServerTimestampConverter();

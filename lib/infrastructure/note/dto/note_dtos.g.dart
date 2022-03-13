@@ -22,18 +22,18 @@ Map<String, dynamic> _$NoteDTOToJson(NoteDTO instance) => <String, dynamic>{
           const ServerTimestampConverter().toJson(instance.serverTimeStamp),
     };
 
-List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
-  Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
+// List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
+//   Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
 
-  List<Todos> todolist = [];
+//   List<Todos> todolist = [];
 
-  todos.forEach((key, value) {
-    todolist.add(Todos(
-      id: todos['id'] as String,
-      name: todos['name'] as String,
-      done: todos['done'] as bool,
-    ));
-  });
+//   todos.forEach((key, value) {
+//     todolist.add(Todos(
+//       id: todos['id'] as String,
+//       name: todos['name'] as String,
+//       done: todos['done'] as bool,
+//     ));
+//   });
 
-  return todolist;
-}
+//   return todolist;
+// }

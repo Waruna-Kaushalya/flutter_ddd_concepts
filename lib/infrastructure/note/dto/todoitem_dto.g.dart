@@ -7,9 +7,9 @@ part of 'todoitem_dto.dart';
 // **************************************************************************
 
 Todos _$TodosFromJson(Map json) => Todos(
-      id: json['todos/id'] as String,
-      name: json['todos/name'] as String,
-      done: json['todos/done'] as bool,
+      id: json['id'] as String,
+      name: json['name'] as String,
+      done: json['done'] as bool,
     );
 
 Map<String, dynamic> _$TodosToJson(Todos instance) => <String, dynamic>{
