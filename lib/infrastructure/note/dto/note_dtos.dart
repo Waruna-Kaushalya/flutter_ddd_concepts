@@ -264,7 +264,7 @@
 // }
 
 import 'dart:convert';
-import 'dart:core';
+// import 'dart:core';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -289,7 +289,6 @@ class NoteDTO {
   String? id;
   final String body;
   final int color;
-  @Default(<Todos>[])
   List<Todos> todos;
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
@@ -331,8 +330,12 @@ class NoteDTO {
 
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
-  factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+  factory NoteDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    // Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+
+    final data = doc.data()!;
+
+    final ddd = NoteDTO.fromJson(data).copyWith(id: doc.id);
 
     // return NoteDTO.fromJson(data);
 
@@ -371,6 +374,25 @@ class NoteDTO {
     ).copyWith(id: doc.id);
   }
 
+  List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
+    final vaccinations = <Todos>[];
+
+    Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
+
+    vaccinationMap.forEach((key, value) {
+      vaccinations.add(Todos(
+        id: todos['id'] as String,
+        name: todos['name'] as String,
+        done: todos['done'] as bool,
+      ));
+    });
+
+    // for (final vaccination in vaccinationMap) {
+    //   vaccinations.add(Todos.fromJson(vaccination as Map<String, dynamic>));
+    // }
+    return vaccinations;
+  }
+
   NoteDTO copyWith({
     String? id,
     String? body,
@@ -387,6 +409,22 @@ class NoteDTO {
     );
   }
 }
+
+// List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
+//   Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
+
+//   List<Todos> todolist = [];
+
+//   vaccinationMap.forEach((key, value) {
+//     todolist.add(Todos(
+//       id: key['id'] as String,
+//       name: key['name'] as String,
+//       done: key['done'] as bool,
+//     ));
+//   });
+
+//   return todolist;
+// }
 
 class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   const ServerTimestampConverter();

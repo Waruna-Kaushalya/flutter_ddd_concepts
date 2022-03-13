@@ -153,9 +153,9 @@ class Todos {
     );
   }
 
-  factory Todos.fromJson(Map<String, dynamic> json) => _$TodosFromJson(json);
+  factory Todos.fromJson(Map json) => _$TodosFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TodosToJson(this);
+  Map toJson() => _$TodosToJson(this);
 
   Todos copyWith({
     String? id,

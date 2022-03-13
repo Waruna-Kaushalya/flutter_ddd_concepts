@@ -221,6 +221,21 @@ class NoteRepository implements INoteRepository {
     final user = userOption.getOrElse(() => throw NotAuthenticatedError());
     final firebaseFirestore = getIt<FirebaseFirestore>();
 
+    final collection = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.currentUserId.getOrCrash())
+        .collection("notes")
+        .withConverter<NoteDTO>(
+          fromFirestore: (snapshot, options) {
+            final abc = NoteDTO.fromJson(snapshot.data()!);
+            return abc;
+          },
+          toFirestore: (NoteDTO, _) => NoteDTO.toJson(),
+        );
+
+    // final NoteDTO movie2 =
+    //     (await collection.doc(user.currentUserId.getOrCrash()).get()).data()!;
+
     yield* firebaseFirestore
         .collection('users')
         .doc(user.currentUserId.getOrCrash())
