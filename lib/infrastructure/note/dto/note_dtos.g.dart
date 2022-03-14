@@ -9,7 +9,9 @@ part of 'note_dtos.dart';
 NoteDTO _$NoteDTOFromJson(Map json) => NoteDTO(
       body: json['body'] as String,
       color: json['color'] as int,
-      todos: _convertVaccinations(json),
+      todos: (json['todos'] as List<dynamic>)
+          .map((e) => Todos.fromJson(e as Map))
+          .toList(),
       serverTimeStamp: const ServerTimestampConverter()
           .fromJson(json['serverTimeStamp'] as Object),
     );
@@ -21,19 +23,3 @@ Map<String, dynamic> _$NoteDTOToJson(NoteDTO instance) => <String, dynamic>{
       'serverTimeStamp':
           const ServerTimestampConverter().toJson(instance.serverTimeStamp),
     };
-
-// List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
-//   Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
-
-//   List<Todos> todolist = [];
-
-//   todos.forEach((key, value) {
-//     todolist.add(Todos(
-//       id: todos['id'] as String,
-//       name: todos['name'] as String,
-//       done: todos['done'] as bool,
-//     ));
-//   });
-
-//   return todolist;
-// }

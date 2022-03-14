@@ -335,7 +335,7 @@ class NoteDTO {
 
     final data = doc.data()!;
 
-    final ddd = NoteDTO.fromJson(data).copyWith(id: doc.id);
+    return NoteDTO.fromJson(data).copyWith(id: doc.id);
 
     // return NoteDTO.fromJson(data);
 
@@ -353,25 +353,25 @@ class NoteDTO {
 
     // Map<String, dynamic> myMap = Map<String, dynamic>.from(ddd);
 
-    Map<dynamic, dynamic> todos = data['todos'] as Map;
+    // Map<dynamic, dynamic> todos = data['todos'] as Map;
 
-    List<Todos> todolist = [];
+    // List<Todos> todolist = [];
 
-    todos.forEach((key, value) {
-      todolist.add(Todos(
-        id: todos['id'] as String,
-        name: todos['name'] as String,
-        done: todos['done'] as bool,
-      ));
-    });
+    // todos.forEach((key, value) {
+    //   todolist.add(Todos(
+    //     id: todos['id'] as String,
+    //     name: todos['name'] as String,
+    //     done: todos['done'] as bool,
+    //   ));
+    // });
 
-    return NoteDTO(
-      body: data['body'] as String,
-      color: data['color'] as int,
-      serverTimeStamp: const ServerTimestampConverter()
-          .fromJson(data['serverTimeStamp'] as Object),
-      todos: todolist,
-    ).copyWith(id: doc.id);
+    // return NoteDTO(
+    //   body: data['body'] as String,
+    //   color: data['color'] as int,
+    //   serverTimeStamp: const ServerTimestampConverter()
+    //       .fromJson(data['serverTimeStamp'] as Object),
+    //   todos: todolist,
+    // ).copyWith(id: doc.id);
   }
 
   NoteDTO copyWith({
@@ -391,36 +391,36 @@ class NoteDTO {
   }
 }
 
-List<Todos> _convertVaccinations(Map<dynamic, dynamic> vaccinationMap) {
-  Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
+// List<Todos> _convertVaccinations(List<> vaccinationMap) {
+//   Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
 
-  final abc = todos.toString();
+//   final abc = todos.toString();
 
-  Todos fff = Todos.fromJson(todos);
+//   Todos fff = Todos.fromJson(todos);
 
-  // final ffff = jsonDecode(abc);
+//   // final ffff = jsonDecode(abc);
 
-  List<Todos> todolist = [];
+//   List<Todos> todolist = [];
 
-  todolist.add(fff);
+//   todolist.add(fff);
 
-  // todos.forEach((key, value) {
-  //   // todolist.add(Todos(
-  //   //   id: todos['id'] as String,
-  //   //   name: todos['name'] as String,
-  //   //   done: todos['done'] as bool,
-  //   // ));
+//   // todos.forEach((key, value) {
+//   //   // todolist.add(Todos(
+//   //   //   id: todos['id'] as String,
+//   //   //   name: todos['name'] as String,
+//   //   //   done: todos['done'] as bool,
+//   //   // ));
 
-  //   Todos dd = Todos(
-  //     id: todos['id'] as String,
-  //     name: todos['name'] as String,
-  //     done: todos['done'] as bool,
-  //   );
-  //   todolist.add(dd);
-  // });
+//   //   Todos dd = Todos(
+//   //     id: todos['id'] as String,
+//   //     name: todos['name'] as String,
+//   //     done: todos['done'] as bool,
+//   //   );
+//   //   todolist.add(dd);
+//   // });
 
-  return todolist;
-}
+//   return todolist;
+// }
 
 class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   const ServerTimestampConverter();
