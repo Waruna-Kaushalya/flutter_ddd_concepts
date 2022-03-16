@@ -263,10 +263,8 @@
 //   Object toJson(FieldValue fieldValue) => fieldValue;
 // }
 
-import 'dart:convert';
-// import 'dart:core';
+//!
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -281,9 +279,7 @@ import 'todoitem_dto.dart';
 // part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
 
-// @DocumentSerializerNullable()
 @JsonSerializable(explicitToJson: true, anyMap: true)
-@DocumentSerializer()
 class NoteDTO {
   @JsonKey(ignore: true)
   String? id;
@@ -330,48 +326,9 @@ class NoteDTO {
 
   Map<String, dynamic> toJson() => _$NoteDTOToJson(this);
 
-  factory NoteDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
-    // Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
-
-    final data = doc.data()!;
-
-    return NoteDTO.fromJson(data).copyWith(id: doc.id);
-
-    // return NoteDTO.fromJson(data);
-
-    // final abc = (data['todos'] as List<dynamic>)
-    //     .map((e) => Todos.fromJson(Map<String, dynamic>.from(e as Map)))
-    //     .toList();
-
-    // return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
-    //     .copyWith(id: doc.id);
-
-    // final cleanMap = jsonDecode(jsonEncode(data));
-    // final dff = jsonDecode(vdsvs as Map<dynamic,dynamic>);
-
-    // final dddd = NoteDTO.fromJson(vdsvsd).copyWith(id: doc.id);
-
-    // Map<String, dynamic> myMap = Map<String, dynamic>.from(ddd);
-
-    // Map<dynamic, dynamic> todos = data['todos'] as Map;
-
-    // List<Todos> todolist = [];
-
-    // todos.forEach((key, value) {
-    //   todolist.add(Todos(
-    //     id: todos['id'] as String,
-    //     name: todos['name'] as String,
-    //     done: todos['done'] as bool,
-    //   ));
-    // });
-
-    // return NoteDTO(
-    //   body: data['body'] as String,
-    //   color: data['color'] as int,
-    //   serverTimeStamp: const ServerTimestampConverter()
-    //       .fromJson(data['serverTimeStamp'] as Object),
-    //   todos: todolist,
-    // ).copyWith(id: doc.id);
+  factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
+    return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
+        .copyWith(id: doc.id);
   }
 
   NoteDTO copyWith({
@@ -390,37 +347,6 @@ class NoteDTO {
     );
   }
 }
-// dfvdfvdfvdfvdf
-// List<Todos> _convertVaccinations(List<> vaccinationMap) {
-//   Map<dynamic, dynamic> todos = vaccinationMap['todos'] as Map;
-
-//   final abc = todos.toString();
-
-//   Todos fff = Todos.fromJson(todos);
-
-//   // final ffff = jsonDecode(abc);
-
-//   List<Todos> todolist = [];
-
-//   todolist.add(fff);
-
-//   // todos.forEach((key, value) {
-//   //   // todolist.add(Todos(
-//   //   //   id: todos['id'] as String,
-//   //   //   name: todos['name'] as String,
-//   //   //   done: todos['done'] as bool,
-//   //   // ));
-
-//   //   Todos dd = Todos(
-//   //     id: todos['id'] as String,
-//   //     name: todos['name'] as String,
-//   //     done: todos['done'] as bool,
-//   //   );
-//   //   todolist.add(dd);
-//   // });
-
-//   return todolist;
-// }
 
 class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   const ServerTimestampConverter();
@@ -432,39 +358,3 @@ class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   @override
   Object toJson(FieldValue fieldValue) => fieldValue;
 }
-
-class DocumentSerializer
-    implements JsonConverter<DocumentReference, DocumentReference> {
-  const DocumentSerializer();
-
-  @override
-  DocumentReference fromJson(DocumentReference docRef) => docRef;
-
-  @override
-  DocumentReference toJson(DocumentReference docRef) => docRef;
-}
-
-class Converter<T> implements JsonConverter<T, Object?> {
-  const Converter();
-
-  @override
-  T fromJson(Object? json) {
-    if (json is Map<String, dynamic> &&
-        json.containsKey('name') &&
-        json.containsKey('size')) {
-      return Todos.fromJson(json) as T;
-    }
-    // This will only work if `json` is a native JSON type:
-    //   num, String, bool, null, etc
-    // *and* is assignable to `T`.
-    return json as T;
-  }
-
-  // This will only work if `object` is a native JSON type:
-  //   num, String, bool, null, etc
-  // Or if it has a `toJson()` function`.
-  @override
-  Object? toJson(T object) => object;
-}
-
-//! -----------------
