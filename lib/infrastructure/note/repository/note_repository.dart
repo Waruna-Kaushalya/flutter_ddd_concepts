@@ -368,6 +368,3 @@ class NoteRepository implements INoteRepository {
     }
   }
 }
-
-// svsddsv
-// dfdfbdfbdfbdfbdfb
